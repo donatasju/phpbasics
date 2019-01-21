@@ -1,3 +1,6 @@
+<?php
+Date_default_timezone_set('Europe/Vilnius');
+?>
 <html>
     <head>
         <title>PHP lydes ir <?php print date('Y-m-d', strtotime('+1 day'))?></title>
