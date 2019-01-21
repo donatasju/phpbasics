@@ -14,8 +14,8 @@ $rand_h1_size = rand(0, 50);
     <head>
         <title>PHP lydes ir <?php print $rand_titledate ?> </title>
     </head>
-    <body style="background-color: rgb(<?php print $rand_color . ' , ' . $rand_color1 . ' , ' . $rand_color2 ?>)">
+    <body style="background-color: rgb(<?php print "$rand_color,$rand_color1,$rand_color2" ?>)">
         <h1 style="font-size: <?php print $rand_h1_size . 'px' ?>">Donatas - galbut turesiu <?php print rand(1, 5) ?> vaiku(us) !</h1>
-        <p style="color: rgb(<?php print $rand_color2 . ' , ' . $rand_color . ' , ' . $rand_color1 ?>">D. Trump'as nebebus prezidentu <?php print $rand_trumpdate ?></p>
+        <p style="color: rgb(<?php print "$rand_color2,$rand_color,$rand_color1"?>">D. Trump'as nebebus prezidentu <?php print $rand_trumpdate ?></p>
     </body>
 </html>
