@@ -1,16 +1,15 @@
+<?php
+$random = rand(0,10);
+$vaikai = rand(1,5);
+$random2 = rand(2,12);
+?>
 <html>
     <head>
-        <title>Komentarai</title>
+        <title>PHP lydes ir <?php print date('Y', strtotime('+'.($random).'year'))?></title>
     </head>
     <body>
-        <!-- Sitas blogas paaiskina zemiau esanti diva -->
-        <div>
-            <h1>As pradedu</h1>
-            <h2>O as papildau</h2>
-        </div>
-        <!-- <div>
-            <p>As esu ta pana, kuri kalba ir kalba ir kalba...</p>
-        </div> -->
+        <h1>Galbut turesiu <?php print $vaikai?> vaiku!</h1>
+        <p>D. Trumpas nebebus <?php print date('Y-m-d', strtotime('+'.($random2).'year'))?> </p>
     </body>
 </html>
 
