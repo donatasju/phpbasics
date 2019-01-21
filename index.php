@@ -1,7 +1,7 @@
 <?php
 Date_default_timezone_set('Europe/Vilnius');
 $time = date('l', strtotime('tomorrow'));
-$hour = date('H.i', strtotime('-1 hour'));
+$hour = date('H:i', strtotime('-1 hour'));
 $year = date('Y', strtotime('+1 year'))
 ?>
 <html>
