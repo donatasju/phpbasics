@@ -3,12 +3,12 @@
         <title>Komentarai</title>
     </head>
     <body>
-        <div>
+        <div> <!--Pridetas h1 ir h2 tagai-->
             <h1>As pradedu</h1>
             <h2>O as papildau</h2>
         </div>
-        <div>
+<!--        <div>
             <p>As esu ta pana, kuri kalba ir kalba, ir kalba, ir kalba ...</p>
-        </div>
+        </div>-->
     </body>
 </html>
