@@ -1,22 +1,12 @@
 <?php
-date_default_timezone_set('Europe/Vilnius');
-$random_metai = rand(0,10);
-$random_vaikai = rand(1,5);
-$random_trumpo_metai = rand(2,12);
-$random_spalva1 = rand(0,255);
-$random_spalva2 = rand(0,255);
-$random_spalva3 = rand(0,255);
-$random_font_size = rand(10,50);
+$random_skaicius = rand(1,6);
 ?>
 <html>
     <head>
-        <title>PHP lydes ir <?php print date('Y', strtotime('+' . $random_metai . 'year'));?></title>
+        <title>Alkoholio randomaizeris</title>
+        <link rel="stylesheet" href="css/main.css">
     </head>
-    <body style="background-color:rgb(<?php print $random_spalva1 . ',' . $random_spalva2 . ',' . $random_spalva3 ?>)">
-        <h1 style="font-size:<?php print $random_font_size ?> ">Galbut turesiu <?php print $random_vaikai?> vaiku!</h1>
-        <p style="color:rgb(<?php print $random_spalva3 . ',' . $random_spalva1 . ',' . $random_spalva3 ?>)">D. Trumpas nebebus <?php print date('Y-m-d', strtotime('+' . $random_trumpo_metai . 'year'));?> </p>
+    <body>
+        <div class="<?php print "klase-$random_skaicius" ?>"></div>
     </body>
 </html>
-
-
-
