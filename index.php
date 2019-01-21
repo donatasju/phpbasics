@@ -1,10 +1,10 @@
 <html>
     <head>
-        <title> <?php print 'As, ' . date('D') . ' ir PHP' ?></title>
+        <title>PHP lydes ir <?php print date('Y-m-d', strtotime('+1 day'))?></title>
     </head>
     <body>
-        <h1>Ernestas - HTML ir <?php print 'PHP' ?> asas jau nuo <?php print date('Y') . ' metu' ?></h1>
-        <p>Viska prasidejo <?php print date('m') . ' menesio' . ', ' . date('d') . ' diena' ?>!</p>
+        <h1>Ernestas - PHP su manim buvo ir <?php print date('H:i', strtotime('-1 hour')) . ' valanda'?> </h1>
+        <p><?php print date('Y', strtotime('+1 year')); ?> ne uz kalnu!</p>
     </body>
 </html>
 
