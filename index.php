@@ -1,15 +1,14 @@
-<?php
-Date_default_timezone_set('Europe/Vilnius');
-$time = date('l', strtotime('tomorrow'));
-$hour = date('H:i', strtotime('-1 hour'));
-$year = date('Y', strtotime('+1 year'))
-?>
 <html>
     <head>
-        <title>PHP lydes ir <?php print $time ?></title>
+        <title>Komentarai</title>
     </head>
     <body>
-        <h1>Donatas - PHP su manim buvo ir <?php print $hour ?></h1>
-        <p><?php print $year ?> ne uz kalnu !</p>
+        <div>
+            <h1>As pradedu</h1>
+            <h2>O as papildau</h2>
+        </div>
+        <div>
+            <p>As esu ta pana, kuri kalba ir kalba, ir kalba, ir kalba ...</p>
+        </div>
     </body>
 </html>
