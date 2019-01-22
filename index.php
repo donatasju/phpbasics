@@ -1,14 +1,17 @@
 <?php
-$string = 'stringas';
-$integer = 10;
-$float = 10.10;
-$boolean = true;
-$null = null;
-
-print "$string <br>";
-print "$integer <br>";
-print "$float <br>";
-print "$boolean <br>";
-print $null;
+$link = 'https://www.foxmovies.com/s3/dev-temp/en-US/__5951f4d047790.jpg';
 ?>
 
+<html>
+    <head>
+        <title>Fight club</title>
+    </head>
+    <body>
+        <p>
+            <img src="<?php print $link ?>">
+            <img src="<?php print $link ?>">
+            <img src="<?php print $link ?>">
+            <img src="<?php print $link ?>">
+        </p>
+    </body>
+</html>
