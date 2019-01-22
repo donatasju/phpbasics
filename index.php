@@ -6,7 +6,7 @@ if($sunny){
 }else {
     $oras = 'debesuota';
     $textas = 'debesuota';
-}
+};
 ?>
 <html>
     <head>
