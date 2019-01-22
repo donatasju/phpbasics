@@ -16,7 +16,7 @@ else {
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="<?php print $img; ?>"></div>
+        <div class="<?php print $class; ?>"></div>
          <h1><?php print $text; ?></h1>
     </body>
 </html>
