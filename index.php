@@ -1,7 +1,8 @@
 <?php
-$sudas1 = (rand(1, 100));
-$sudas2 = (rand(101, 200));
-$sudas3 = (rand(201, 300));
+$jievrai = (rand(1, 100));
+$antras_grazinti = (rand(201, 300));
+$pirmas_grazinti = (rand(101, 200));
+
 ?>
 
 <html>
@@ -11,9 +12,9 @@ $sudas3 = (rand(201, 300));
     <body>
         <div>
             <h1>Skolos skaiciuokle</h1>
-            <h2>Jei paemei <?php print $sudas1 ?> jievru</h2>
-            <h3>Su dviem kabanciais grazinsi <?php print $sudas3 ?></h3>
-            <h4>Su vienu kabanciu grazinsi <?php print $sudas2 ?></h4>
+            <h2>Jei paemei <?php print $jievrai ?> jievru</h2>
+            <h3>Su dviem kabanciais grazinsi <?php print $antras_grazinti ?></h3>
+            <h4>Su vienu kabanciu grazinsi <?php print $pirmas_grazinti ?></h4>
         </div>
     </body>
 </html>
