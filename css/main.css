@@ -1,1 +1,13 @@
-
+div {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 400px;
+}
+.debesuota {
+    background-image: url("../images/test.gif");
+        color: white;
+}
+.sauleta {
+    background-image: url("../images/test2.gif");
+}
