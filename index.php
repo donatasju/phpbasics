@@ -11,7 +11,7 @@ if($sunny){
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div class="<?php print $oras ?>"></div>
-        <h1><?php print $oras ?></h1>
+        <div class="<?php print $oras; ?>"></div>
+        <h1><?php print $oras; ?></h1>
     </body>
 </html>
