@@ -1,17 +1,12 @@
 <?php
-$link = 'https://www.foxmovies.com/s3/dev-temp/en-US/__5951f4d047790.jpg';
+$sudas1 = (rand(1,100));
+$sudas2 = (rand(101,200));
+$sudas3 = (rand(201,300));
 ?>
 
-<html>
-    <head>
-        <title>Fight club</title>
-    </head>
-    <body>
-        <p>
-            <img src="<?php print $link ?>">
-            <img src="<?php print $link ?>">
-            <img src="<?php print $link ?>">
-            <img src="<?php print $link ?>">
-        </p>
-    </body>
-</html>
+<div>
+    <h1>Skolos skaiciuokle</h1>
+    <h2>Jei paemei <?php print $sudas1 ?> jievru</h2>
+    <h3>Su dviem kabanciais grazinsi <?php print $sudas3 ?></h3>
+    <h4>Su vienu kabanciu grazinsi <?php print $sudas2 ?></h4>
+</div>
