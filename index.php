@@ -2,8 +2,10 @@
 $sunny = rand(0,1);
 if($sunny){
     $oras = 'sauleta';
+    $textas = 'sauleta';
 }else {
     $oras = 'debesuota';
+    $textas = 'debesuota';
 }
 ?>
 <html>
@@ -12,6 +14,6 @@ if($sunny){
     </head>
     <body>
         <div class="<?php print $oras; ?>"></div>
-        <h1><?php print $oras; ?></h1>
+        <h1><?php print $textas; ?></h1>
     </body>
 </html>
