@@ -1,23 +1,14 @@
-<?php 
-$second = date('s') * 10;
+<?php
+$string = 'stringas';
+$integer = 10;
+$float = 10.10;
+$boolean = true;
+$null = null;
 
+print "$string <br>";
+print "$integer <br>";
+print "$float <br>";
+print "$boolean <br>";
+print $null;
 ?>
-<html>
-    <head>
-        <title></title>
-        <link rel="stylesheet" href="style/style.css">
-        <style>
-            .img {
-                background-image: url("../images/bomb.png");
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: <?php print $second; ?>px;
-                height: <?php print $second; ?>px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="img"></div>
-        <div><?php print date('s') ?></div>
-    </body>
-</html>
+
