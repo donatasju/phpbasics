@@ -8,6 +8,7 @@ else {
     $img = 'shitty';
     $text = 'Debesuota';
 };
+
 ?>
 <html>
     <head>
@@ -15,8 +16,8 @@ else {
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="<?php print $img ?>">
-            <h1><?php print $text ?></h1>
+        <div class="<?php print $img; ?>">
+            <h1><?php print $text; ?></h1>
         </div>
     </body>
 </html>
