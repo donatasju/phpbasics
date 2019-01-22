@@ -1,11 +1,11 @@
 <?php
 $sunny = rand(0,1);
 if ($sunny) {
-    $img = 'sunny';
+    $class = 'sunny';
     $text = 'Sauleta';
 }
 else {
-    $img = 'shitty';
+    $class = 'shitty';
     $text = 'Debesuota';
 };
 
@@ -16,7 +16,8 @@ else {
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="<?php print $img; ?>">
+        <div class="<?php print $img; ?>"></div>
+        <div>
             <h1><?php print $text; ?></h1>
         </div>
     </body>
