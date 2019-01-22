@@ -17,8 +17,6 @@ else {
     </head>
     <body>
         <div class="<?php print $img; ?>"></div>
-        <div>
-            <h1><?php print $text; ?></h1>
-        </div>
+         <h1><?php print $text; ?></h1>
     </body>
 </html>
