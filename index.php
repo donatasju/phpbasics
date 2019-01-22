@@ -1,17 +1,17 @@
 <?php
 $sunny = rand(0,1);
+if($sunny){
+    $oras = 'sauleta';
+}else {
+    $oras = 'debesuota';
+}
 ?>
 <html>
     <head>
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div>
-            <?php if($sunny): ?>
-            <div class="sauleta">Sauleta</div>
-            <?php else: ?>
-            <div class="debesuota">Debesuota</div>
-            <?php endif; ?>
-        </div>
+        <div class="<?php print $oras ?>"></div>
+        <h1><?php print $oras ?></h1>
     </body>
 </html>
