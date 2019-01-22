@@ -1,5 +1,13 @@
 <?php
 $sunny = rand(0,1);
+if ($sunny) {
+    $img = 'sunny';
+    $text = 'Sauleta';
+}
+else {
+    $img = 'shitty';
+    $text = 'Debesuota';
+};
 ?>
 <html>
     <head>
@@ -7,10 +15,8 @@ $sunny = rand(0,1);
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <?php if ($sunny): ?>
-        <h1 class="sunny">It is sunny !</h1>
-        <?php else: ?>
-        <h1 class="shitty">Shitty weather !</h1>
-        <?php endif; ?>
+        <div class="<?php print $img ?>">
+            <h1><?php print $text ?></h1>
+        </div>
     </body>
 </html>

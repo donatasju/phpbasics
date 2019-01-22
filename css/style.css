@@ -1,11 +1,13 @@
-.sunny {
-    background-image: url("../images/sunny.jpg");
+div {
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 300px;
     height: 300px;
 }
+.sunny {
+    background-image: url("../images/sunny.jpg");
+}
 .shitty {
     background-repeat: no-repeat;
-    background-image: url("../images/shitty.png");
-    width: 300px;
-    height: 300px;
+    background-image: url("../images/shitty.jpg");
 }
