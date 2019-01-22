@@ -1,19 +1,16 @@
 <?php
-date_default_timezone_set('Europe/Vilnius');
-$siukslines_turis = 40;
-$dienos_siuksliu_turis = rand(10, 20);
-$max_kaupo_turis = rand (1, 20);
-$dienos = floor(($siukslines_turis + $max_kaupo_turis) / $dienos_siuksliu_turis);
-$date = date('Y.m.d', strtotime("+$dienos days"));
-
+$sunny = rand(0,1);
 ?>
 <html>
     <head>
-        <title>Uzduotis 4</title>
+        <title>Uzduotis 5</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <p>
-            Po <?php print "$dienos($date)" ?> dienu pirk geliu ir sampano, jeigu nori, kad zmona siuskles pati isinestu.
-        </p>
+        <?php if ($sunny): ?>
+        <h1 class="sunny">It is sunny !</h1>
+        <?php else: ?>
+        <h1 class="shitty">Shitty weather !</h1>
+        <?php endif; ?>
     </body>
 </html>
