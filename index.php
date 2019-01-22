@@ -1,11 +1,11 @@
 <?php
-$sunny = rand(0,1);
-if($sunny){
+$sunny = rand(0, 1);
+if ($sunny) {
     $oras = 'sauleta';
-    $textas = 'sauleta';
-}else {
+    $textas = 'Sauleta';
+} else {
     $oras = 'debesuota';
-    $textas = 'debesuota';
+    $textas = 'Debesuota';
 };
 ?>
 <html>
