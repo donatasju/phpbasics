@@ -1,19 +1,15 @@
 <?php
-$pasiskolintu_pinigu_suma = rand(1,100);
-$pasiskolintu_pinigu_suma_su_dviem_kabanciais = rand(101,200);
-$pasiskolintu_pinigu_suma_su_vienu_kabanciu = rand(201,300);
+$siukslines_turis = 40;
+$dienos_siuksliu_turis = rand(10,20);
+$max_kaupo_turis = rand(10,20);
+$diena = floor(($siukslines_turis + $max_kaupo_turis) / $dienos_siuksliu_turis);
+$data = date('Y-m-d', strtotime("+$diena day"));
 ?>
 <html>
-    <head>
-        <title>Skolos skaiciuokle</title>
-    </head>
     <body>
-        <h1>Skolos skaiciuokle</h1>
         <p>
-            Jei paemei <?php print $pasiskolintu_pinigu_suma; ?> jievru Su dviem kabanciais
-            grazinsi <?php print $pasiskolintu_pinigu_suma_su_vienu_kabanciu; ?> Su vienu kabanciu grazinsi
-            <?php print $pasiskolintu_pinigu_suma_su_dviem_kabanciais; ?>
+            Po <?php print "$diena ($data)" ?> pirk geliu ir sampona, jeigu nori, 
+            kad zmona siuksles pati isnestu.
         </p>
     </body>
 </html>
-
