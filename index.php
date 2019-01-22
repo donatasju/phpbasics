@@ -1,7 +1,7 @@
 <?php
-$sudas1 = rand(1,100);
-$sudas2 = rand(101,200);
-$sudas3 = rand(201,300);
+$pasiskolintu_pinigu_suma = rand(1,100);
+$pasiskolintu_pinigu_suma_su_dviem_kabanciais = rand(101,200);
+$pasiskolintu_pinigu_suma_su_vienu_kabanciu = rand(201,300);
 ?>
 <html>
     <head>
@@ -10,9 +10,9 @@ $sudas3 = rand(201,300);
     <body>
         <h1>Skolos skaiciuokle</h1>
         <p>
-            Jei paemei <?php print $sudas1; ?> jievru Su dviem kabanciais
-            grazinsi <?php print $sudas3; ?> Su vienu kabanciu grazinsi
-            <?php print $sudas2; ?>
+            Jei paemei <?php print $pasiskolintu_pinigu_suma; ?> jievru Su dviem kabanciais
+            grazinsi <?php print $pasiskolintu_pinigu_suma_su_vienu_kabanciu; ?> Su vienu kabanciu grazinsi
+            <?php print $pasiskolintu_pinigu_suma_su_dviem_kabanciais; ?>
         </p>
     </body>
 </html>
