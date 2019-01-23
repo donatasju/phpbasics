@@ -4,7 +4,7 @@ $dar_alaus = 0;
 $kablys = 1;
 
 for ($i = 0; $i < $po_alaus; $i++){
-    $dar_alaus += floor(($po_alaus/2) + $kablys);
+    $dar_alaus += floor($po_alaus/2) + $kablys;
 }
 ?>
 <html>
