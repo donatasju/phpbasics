@@ -9,9 +9,8 @@ for ($i = 0; $i <= $months; $i++) {
     if ($kisene <= 0) {
         $text = "Bloga prognoze: po $i menesi gali baigtis pinigai! Atsargiai. Likutis $kisene euru";
         break;
-    } else {
-        $text = "Tavo kiseneje $kisene euru po $i menesiu.";
     }
+    $text = "Tavo kiseneje $kisene euru po $i menesiu.";
 }
 
 ?>
@@ -20,8 +19,6 @@ for ($i = 0; $i <= $months; $i++) {
         <title>Uzduotis 4</title>
     </head>
     <body>
-        <p>
-            <?php print $text; ?>
-        </p>
+        <p><?php print $text; ?></p>
     </body>
 </html>
