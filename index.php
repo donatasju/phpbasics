@@ -14,10 +14,10 @@ for ($i = 0; $i < $kates; $i++) {
 ?>
 <html>
     <head>
-        <title>Alus</title>
+        <title>Katasuniai</title>
     </head>
     <body>
-        <h1>Evente dalyvavo <?php print "$kates ir $sunys" ?></h1>
-        <h2>Katasuniu iseiga: <?php print $katasuniai ?> </h2>
+        <h1>Evente dalyvavo <?php print "$kates; ir $sunys;" ?></h1>
+        <h2>Katasuniu iseiga: <?php print $katasuniai; ?> </h2>
     </body>
 </html>
