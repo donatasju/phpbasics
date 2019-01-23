@@ -1,8 +1,8 @@
 <?php
 $t = rand(1, 10);
 $text = 'N';
-for ($i = 0; $i < $t; $i++){
-    $text.= 'x';
+for ($i = 0; $i < $t; $i++) {
+    $text .= 'x';
 }
 ?>
 <html>
