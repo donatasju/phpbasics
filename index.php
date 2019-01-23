@@ -1,16 +1,16 @@
 <?php
-$t = rand(1, 10);
-$text = 'N';
-for ($i = 0; $i < $t; $i++) {
-    $text .= 'x';
+$po_alaus = rand(1, 5);
+$dar_alaus = 0;
+$kablys = 1;
+for ($i = 0; $i < $po_alaus; $i++){
+    $dar_alaus += floor($po_alaus/2) + $kablys;
 }
 ?>
 <html>
     <head>
-        <title>Nxx uzduotis</title>
+        <title>Alus</title>
     </head>
     <body>
-        <h1>As po <?php print $t; ?> valandu praktikos</h1>
-        <h2><?php print $text; ?> koks pavarges</h2>
+        <p>Po <?php print $po_alaus ?> alaus tiketina, dar imsiu <?php print $dar_alaus ?> alaus.</p>
     </body>
 </html>
