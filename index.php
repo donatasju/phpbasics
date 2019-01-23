@@ -7,7 +7,7 @@ for ($i = 0; $i < $t; $i++){
 ?>
 <html>
     <head>
-        <title>Nxx uzduotis</title>
+        <title>Uzduotis 1</title>
     </head>
     <body>
         <h1>As po <?php print $t ?> valandu praktikos..</h1>
