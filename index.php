@@ -1,23 +1,24 @@
 <?php
-$kates = rand(1, 3);
-$sunys = rand(1, 3);
-$katasuniai = null;
-for ($i = 0; $i < $kates; $i++) {
-    for ($j = 0; $j < $sunys; $j++) {
-        $success = rand(0, 1);
-        if ($success) {
-            $katasuniai++;
-            break;
-        }
+$months = 12;
+$kisene = 1000;
+$alga = 700;
+
+for ($i = 0; $i < $months; $i++) {
+    $islaidos = rand(500, 1000);
+    $kisene += $alga - $islaidos;
+    if ($kisene < 0) {
+        $babkes = "Babkes tau baigsis $i menesi";
+        break;
+    } else {
+        $babkes = "Tau liko: $kisene";
     }
 }
 ?>
 <html>
     <head>
-        <title>Katasuniai</title>
+        <title>Alga</title>
     </head>
     <body>
-        <h1>Evente dalyvavo <?php print "$kates; ir $sunys;" ?></h1>
-        <h2>Katasuniu iseiga: <?php print $katasuniai; ?> </h2>
+        <?php print $babkes; ?>
     </body>
 </html>
