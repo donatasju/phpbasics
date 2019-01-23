@@ -5,6 +5,9 @@ $kablys = 1;
 
 for ($i = 0; $i < $po_alaus; $i++){
     $dar_alaus += floor($po_alaus/2) + $kablys;
+    if ($dar_alaus == 12) {
+        break;
+    }
 }
 ?>
 <html>
@@ -13,7 +16,7 @@ for ($i = 0; $i < $po_alaus; $i++){
     </head>
     <body>
         <p>
-            Po <?php print $po_alaus ;?> alaus, tiketina dar imsiu <?php print $dar_alaus; ?>
+            Po <?php print $po_alaus; ?> alaus, tiketina dar imsiu <?php print $dar_alaus; ?>
         </p>
     </body>
 </html>
