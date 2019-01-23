@@ -1,22 +1,27 @@
 <?php
-$po_alaus = rand(1,5);
-$dar_alaus = 0;
-$kablys = 1;
+$kates = rand(1, 3);
+$sunys = rand(1, 3);
+$katasuniai = 0;
 
-for ($i = 0; $i < $po_alaus; $i++){
-    $dar_alaus += floor($po_alaus/2) + $kablys;
-    if ($dar_alaus == 12) {
-        break;
+for ($i = 1; $i <= $kates; $i++) {
+    for ($j = 1; $j <= $sunys; $j++) {
+        $success = rand(0, 1);
+        if ($success) {
+            $katasuniai++;
+            break;
+        }
     }
 }
+
 ?>
 <html>
     <head>
-        <title>Uzduotis 2</title>
+        <title>Uzduotis 4</title>
     </head>
     <body>
         <p>
-            Po <?php print $po_alaus; ?> alaus, tiketina dar imsiu <?php print $dar_alaus; ?>
+            Event'e dalyvavo <?php print $kates; ?> kates ir <?php print $sunys; ?> sunys.
+            Katasuniu iseiga: <?php print $katasuniai ?>
         </p>
     </body>
 </html>
