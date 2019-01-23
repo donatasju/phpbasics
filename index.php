@@ -1,19 +1,16 @@
 <?php
-$sunny = rand(0, 1);
-if ($sunny) {
-    $oras = 'sauleta';
-    $textas = 'Sauleta';
-} else {
-    $oras = 'debesuota';
-    $textas = 'Debesuota';
+$t = rand(1, 10);
+$text = 'N';
+for ($i = 0; $i < $t; $i++){
+    $text.= 'x';
 }
 ?>
 <html>
     <head>
-        <link rel="stylesheet" href="css/main.css">
+        
     </head>
     <body>
-        <div class="<?php print $oras; ?>"></div>
-        <h1><?php print $textas; ?></h1>
+        <h1>As po <?php print $t ?> valandu praktikos</h1>
+        <h2><?php print $text ?> koks pavarges</h2>
     </body>
 </html>
