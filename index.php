@@ -1,13 +1,15 @@
 <?php
-$po_alaus = rand(1, 5);
-$dar_alaus = 0;
-$kablys = 1;
-for ($x = 1; $x <= $po_alaus; $x++) {
-    $extra_alaus = floor($po_alaus / 2) + $kablys;
-    if ($po_alaus + $extra_alaus > 12) {
-        break;
+$kates = rand(1, 3);
+$sunys = rand(1, 3);
+$katasuniai = null;
+for ($i = 0; $i < $kates; $i++) {
+    for ($j = 0; $j < $sunys; $j++) {
+        $success = rand(0, 1);
+        if ($success) {
+            $katasuniai++;
+            break;
+        }
     }
-    $dar_alaus += $extra_alaus;
 }
 ?>
 <html>
@@ -15,6 +17,7 @@ for ($x = 1; $x <= $po_alaus; $x++) {
         <title>Alus</title>
     </head>
     <body>
-        
+        <h1>Evente dalyvavo <?php print "$kates ir $sunys" ?></h1>
+        <h2>Katasuniu iseiga: <?php print $katasuniai ?> </h2>
     </body>
 </html>
