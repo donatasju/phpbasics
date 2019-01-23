@@ -1,15 +1,15 @@
 <?php
-$kates = rand(1, 3);
-$sunys = rand(1, 3);
-$katasuniai = 0;
+$months = 12;
+$kisene = 1000;
+$alga = 700;
 
-for ($i = 1; $i <= $kates; $i++) {
-    for ($j = 1; $j <= $sunys; $j++) {
-        $success = rand(0, 1);
-        if ($success) {
-            $katasuniai++;
-            break;
-        }
+
+for ($i = 0; $i <= $months; $i++) {
+    $islaidos = rand(50, 2000);
+    $rezult = ($kisene + $alga) - $islaidos;
+    if ($rezult < 0) {
+        print "Bloga prognoze: $i menesi gali baigtis pinigai! Atsargiai";
+        break;
     }
 }
 
@@ -20,8 +20,7 @@ for ($i = 1; $i <= $kates; $i++) {
     </head>
     <body>
         <p>
-            Event'e dalyvavo <?php print $kates; ?> kates ir <?php print $sunys; ?> sunys.
-            Katasuniu iseiga: <?php print $katasuniai; ?>
+            Tavo kiseneje <?php print $rezult ?> euru.
         </p>
     </body>
 </html>
