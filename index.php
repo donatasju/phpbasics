@@ -1,22 +1,16 @@
 <?php
-$sunny = rand(0,1);
-if ($sunny) {
-    $class = 'sunny';
-    $text = 'Sauleta';
+$t = rand(1, 10);
+$text = 'N';
+for ($i = 0; $i < $t; $i++){
+    $text.= 'x';
 }
-else {
-    $class = 'shitty';
-    $text = 'Debesuota';
-};
-
 ?>
 <html>
     <head>
-        <title>Uzduotis 5</title>
-        <link rel="stylesheet" href="css/style.css">
+        <title>Nxx uzduotis</title>
     </head>
     <body>
-        <div class="<?php print $class; ?>"></div>
-         <h1><?php print $text; ?></h1>
+        <h1>As po <?php print $t ?> valandu praktikos..</h1>
+        <h2><?php print $text ?> koks pavarges..</h2>
     </body>
 </html>
