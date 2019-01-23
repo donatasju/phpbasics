@@ -21,7 +21,7 @@ for ($i = 1; $i <= $kates; $i++) {
     <body>
         <p>
             Event'e dalyvavo <?php print $kates; ?> kates ir <?php print $sunys; ?> sunys.
-            Katasuniu iseiga: <?php print $katasuniai ?>
+            Katasuniu iseiga: <?php print $katasuniai; ?>
         </p>
     </body>
 </html>
