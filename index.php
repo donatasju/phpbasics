@@ -11,7 +11,7 @@ for ($i = 0; $i < $days; $i++) {
     $cizos_fri = rand(10, 20);
     $cizos_sat_sun = rand(1, 3);
     $savaites_diena = date('N', strtotime("+$i day"));
-
+    
     if ($savaites_diena >= 1 && $savaites_diena <= 4) {
         $surukytos_cigaretes += $cizos_mon_thu;
         $pirm_ketv_cigaretes += $cizos_mon_thu;
@@ -34,11 +34,11 @@ $viso_hours = $surukytos_cigaretes * $rukymo_laikas / 60;
     <body>
         <p>Per metus surukysiu <?php print $surukytos_cigaretes; ?> cigareciu uz <?php print $viso_kaina; ?></p>
         <p>Nerukydamas Pirmadieni-ketvirtadieni sutaupyciau <?php print $pirm_ketv_cigareciu_kaina; ?> eur.</p>
-        <p>Per metus pastrovesiu traukdamas <?php print $viso_hours ?> valandu</p>
+        <p>Per metus pastrovesiu traukdamas <?php print $viso_hours; ?> valandu</p>
         <?php for ($i = 1; $i <= $surukytos_cigaretes; $i++): ?>
-            <div class="ciza">
-                <?php print $i ?>
-            </div>
+        <div class="ciza">
+             <?php print $i; ?>
+        </div>
         <?php endfor; ?>
     </body>
 </html>
