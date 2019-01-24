@@ -4,30 +4,27 @@ $array = [
     [
         'vardas' => 'Petras Pizdis',
         'daiktai' => [
-            'pavadinimas' => [
-                'telefonas' => [
-                    'busena' => 'prapistas'
-                ]
+            [
+                'pavadinimas' => 'telefonas',
+                'busena' => 'prapistas'
             ]
         ]
     ],
     [
         'vardas' => 'Tomas Ablomas',
         'daiktai' => [
-            'pavadinimas' => [
-                'buljonas' => [
-                    'busena' => 'naudojamas'
-                ]
+            [
+                'pavadinimas' => 'rulonas',
+                'busena' => 'naudojamas'
             ]
         ]
     ],
     [
         'vardas' => 'Ana Shitkova',
         'daiktai' => [
-            'pavadinimas' => [
-                'rulonas' => [
-                    'busena' => 'pasibaiges'
-                ]
+            [
+                'pavadinimas' => 'rulonas',
+                'busena' => 'pasibaiges'
             ]
         ]
     ]
