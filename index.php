@@ -1,17 +1,20 @@
 <?php
 $array = [
     'vardas1' => 'Petras Pizdzius', [
-        'daiktas' => 'telefonas', [
+        'daiktas' => [
+            'pavadinimas' => 'telefonas',
             'statusas' => 'prapistas'
         ]
     ],
     'vardas2' => 'Tomas Ablomas', [
-        'daiktas' => 'buljonas', [
+        'daiktas' => [
+            'pavadinimas' => 'buljonas',
             'statusas' => 'naudojamas'
         ]
     ],
     'vardas3' => 'Anos Shitkovos', [
-        'daiktas' => 'rulonas', [
+        'daiktas' => [
+            'pavadinimas' => 'rulonas',
             'statusas' => 'pasibaiges'
         ]
     ]
