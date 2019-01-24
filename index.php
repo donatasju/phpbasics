@@ -4,6 +4,7 @@ $pakelio_kaina = 3.50;
 $cigaretes_kaina = $pakelio_kaina / 20;
 $surukytos_cigaretes = 0;
 $pirm_ketv_cigaretes = 0;
+$rukymo_laikas = 5;
 
 for ($i = 0; $i < $days; $i++) {
     $cizos_mon_thu = rand(3, 4);
@@ -22,13 +23,21 @@ for ($i = 0; $i < $days; $i++) {
 
 $viso_kaina = $surukytos_cigaretes * $cigaretes_kaina;
 $pirm_ketv_cigareciu_kaina = $pirm_ketv_cigaretes * $cigaretes_kaina;
+$viso_hours = $surukytos_cigaretes * $rukymo_laikas / 60;
 ?>
 <html>
     <head>
         <title>Cigaretes</title>
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <p>Per metus surukysiu <?php print $surukytos_cigaretes; ?> cigareciu uz <?php print $viso_kaina; ?></p>
         <p>Nerukydamas Pirmadieni-ketvirtadieni sutaupyciau <?php print $pirm_ketv_cigareciu_kaina; ?> eur.</p>
+        <p>Per metus pastrovesiu traukdamas <?php print $viso_hours ?> valandu</p>
+        <?php for ($i = 1; $i <= $surukytos_cigaretes; $i++): ?>
+        <div class="ciza">
+             <?php print $i ?>
+        </div>
+        <?php endfor; ?>
     </body>
 </html>

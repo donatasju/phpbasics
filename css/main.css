@@ -1,12 +1,8 @@
-div {
+.ciza {
+    background-image: url('../images/ciza.jpg');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 400px;
-    height: 400px;
-}
-.debesuota {
-    background-image: url("../images/test.gif");
-}
-.sauleta {
-    background-image: url("../images/test2.gif");
+    width: 50px;
+    height: 50px;
+    display: inline-block;
 }
