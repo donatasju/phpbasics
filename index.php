@@ -1,13 +1,19 @@
 <?php
 $array = [
-    'kiausiniai' => [
-        'dideli' => 2
+    'vardas1' => 'Petras Pizdzius', [
+        'daiktas' => 'telefonas', [
+            'statusas' => 'prapistas'
+        ]
     ],
-    'baklazanas' => [
-        'mazas' => 1
+    'vardas2' => 'Tomas Ablomas', [
+        'daiktas' => 'buljonas', [
+            'statusas' => 'naudojamas'
+        ]
     ],
-    'grietines indelis' => [
-        'didelis' => 1
+    'vardas3' => 'Anos Shitkovos', [
+        'daiktas' => 'rulonas', [
+            'statusas' => 'pasibaiges'
+        ]
     ]
 ];
 
