@@ -1,32 +1,51 @@
 <?php
 
-$array = [
-    [
-        'vardas' => 'Petras Pizdis',
-        'daiktai' => [
+$lentynos = [
+    'pirma_lentyna' => [
+        'saldytuvas' => [
             [
-                'pavadinimas' => 'telefonas',
-                'busena' => 'prapistas'
+                'produktas' => 'kiausiniai',
+                'kiekis' => 3
+            ],
+            [
+                'produktas' => 'grietine',
+                'kiekis' => 1
+            ],
+            [
+                'produktas' => 'jogurtas',
+                'kiekis' => 2
+            ]
+        ],
+        'saldiklis' => [
+            [
+                'produktas' => 'zuvis',
+                'kiekis' => 0
             ]
         ]
     ],
-    [
-        'vardas' => 'Tomas Ablomas',
-        'daiktai' => [
+    'antra_lentyna' => [
+        'saldytuvas' => [
             [
-                'pavadinimas' => 'rulonas',
-                'busena' => 'naudojamas'
+                'produktas' => 'pienas',
+                'kiekis' => 1
+            ],
+            [
+                'produktas' => 'kefyras',
+                'kiekis' => 0
             ]
-        ]
-    ],
-    [
-        'vardas' => 'Ana Shitkova',
-        'daiktai' => [
+        ],
+        'ne_saldytuvas' => [
             [
-                'pavadinimas' => 'rulonas',
-                'busena' => 'pasibaiges'
+                [
+                    'produktas' => 'degtine',
+                    'kiekis' => 2
+                ],
+                [
+                    'produktas' => 'kecupas',
+                    'kiekis' => 2
+                ]
             ]
         ]
     ]
 ];
-var_dump($array);
+var_dump($lentynos);
