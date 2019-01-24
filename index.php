@@ -1,21 +1,31 @@
 <?php
+
 $array = [
-    'vardas1' => 'Petras Pizdzius', [
+    [
+        'vardas1' => 'Petras Pizdzius',
         'daiktas' => [
-            'pavadinimas' => 'telefonas',
-            'statusas' => 'prapistas'
+            [
+                'pavadinimas' => 'telefonas',
+                'statusas' => 'prapistas'
+            ]
         ]
     ],
-    'vardas2' => 'Tomas Ablomas', [
+    [
+        'vardas2' => 'Tomas Ablomas',
         'daiktas' => [
-            'pavadinimas' => 'buljonas',
-            'statusas' => 'naudojamas'
+            [
+                'pavadinimas' => 'buljonas',
+                'statusas' => 'naudojamas'
+            ]
         ]
     ],
-    'vardas3' => 'Anos Shitkovos', [
+    [
+        'vardas3' => 'Anos Shitkovos',
         'daiktas' => [
-            'pavadinimas' => 'rulonas',
-            'statusas' => 'pasibaiges'
+            [
+                'pavadinimas' => 'rulonas',
+                'statusas' => 'pasibaiges'
+            ]
         ]
     ]
 ];
