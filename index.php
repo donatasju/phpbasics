@@ -5,7 +5,7 @@ $rukau = 0;
 $nerukau = 0;
 $pakelio_kaina = 3.50;
 $cigaretes_kaina = $pakelio_kaina / 20;
-$rukymo_laikas =  5 * 60 / 3600;
+$rukymo_laikas = 5;
 $viso_hours = 0;
         
 for ($i = 0; $i <= $days; $i++) {
@@ -14,19 +14,17 @@ for ($i = 0; $i <= $days; $i++) {
         $cizos_mon_thu = rand(3, 10);
         $nerukau += $cizos_mon_thu;
         $rukau += $cizos_mon_thu;
-        $viso_hours += $cizos_mon_thu * $rukymo_laikas;
     } elseif ($date == 5) {
         $cizos_fri = rand(10, 20);
         $rukau += $cizos_fri;
-        $viso_hours += $cizos_fri * $rukymo_laikas;
     } else {
         $cizos_sat_sun = rand(1, 5);
         $rukau += $cizos_sat_sun;
-        $viso_hours += $cizos_sat_sun * $rukymo_laikas;
     }
 }
 $viso_kaina = $rukau * $cigaretes_kaina;
 $nerukau = ($rukau - $nerukau) * $cigaretes_kaina;
+$viso_hours += $rukau * $rukymo_laikas / 60
 
 ?>
 <html>
