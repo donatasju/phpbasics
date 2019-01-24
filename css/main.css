@@ -2,7 +2,13 @@
     background-image: url('../images/ciza.jpg');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
 }
+.paciokas {
+    border: 1px solid black; 
+    margin: 10px; 
+    display: inline-block;
+}
+
