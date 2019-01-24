@@ -4,7 +4,7 @@ $array = [
         'dideli' => 2
     ],
     'baklazanas' => [
-        'vienas' => 1
+        'mazas' => 1
     ],
     'grietines indelis' => [
         'didelis' => 1
