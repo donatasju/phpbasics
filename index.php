@@ -1,33 +1,58 @@
 <?php
 
-$array = [
-    [
-        'vardas1' => 'Petras Pizdzius',
-        'daiktas' => [
+$saldytuvas = [
+    'eile_1' => [
+        'vieta_1' => [
             [
-                'pavadinimas' => 'telefonas',
-                'statusas' => 'prapistas'
+            'produktas' => 'pienas',
+            'kiekis' => 1
+            ]
+        ],
+        'vieta_2' => [
+            [
+                'produktas' => 'kefyras',
+                'kiekis' => 0
+            ]
+        ],
+        'vieta_3' => [
+            [
+                'produktas' => 'degtine',
+                'kiekis' => 1
+            ]
+        ],
+        'vieta_4' => [
+            [
+                'produktas' => 'kecupas',
+                'kiekis' => 2
             ]
         ]
     ],
-    [
-        'vardas2' => 'Tomas Ablomas',
-        'daiktas' => [
+    'eile_2' => [
+        'vieta_1' => [
             [
-                'pavadinimas' => 'buljonas',
-                'statusas' => 'naudojamas'
+                'produktas' => 'kiausiniai',
+                'kiekis' => 3
+            ]
+        ],
+        'vieta_2' => [
+            [
+                'produktas' => 'grietine',
+                'kiekis' => 1
+            ]
+        ],
+        'vieta_3' => [
+            [
+                'produktas' => 'jogurtas',
+                'kiekis' => 2
+            ]
+        ],
+        'vieta_4' => [
+            [
+                'produktas' => 'zuvis',
+                'kiekis' => 0
             ]
         ]
-    ],
-    [
-        'vardas3' => 'Anos Shitkovos',
-        'daiktas' => [
-            [
-                'pavadinimas' => 'rulonas',
-                'statusas' => 'pasibaiges'
-            ]
-        ]
-    ]
+    ] 
 ];
 
-var_dump($array);
+var_dump($saldytuvas);
