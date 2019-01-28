@@ -1,51 +1,21 @@
 <?php
-
-$lentynos = [
-    'pirma_lentyna' => [
-        'saldytuvas' => [
-            [
-                'produktas' => 'kiausiniai',
-                'kiekis' => 3
-            ],
-            [
-                'produktas' => 'grietine',
-                'kiekis' => 1
-            ],
-            [
-                'produktas' => 'jogurtas',
-                'kiekis' => 2
-            ]
-        ],
-        'saldiklis' => [
-            [
-                'produktas' => 'zuvis',
-                'kiekis' => 0
-            ]
-        ]
-    ],
-    'antra_lentyna' => [
-        'saldytuvas' => [
-            [
-                'produktas' => 'pienas',
-                'kiekis' => 1
-            ],
-            [
-                'produktas' => 'kefyras',
-                'kiekis' => 0
-            ]
-        ],
-        'ne_saldytuvas' => [
-            [
-                [
-                    'produktas' => 'degtine',
-                    'kiekis' => 2
-                ],
-                [
-                    'produktas' => 'kecupas',
-                    'kiekis' => 2
-                ]
-            ]
-        ]
-    ]
-];
-var_dump($lentynos);
+$mano_atmintis = ['Penktadienis', '1 Alaus', '2 Alaus', 'Pamyzt', '3 Alaus', '4 Alaus', 'Pamyzt', '5 Alaus', 'Apipilta maike raudonu vynu', '6 Alaus su slapia maike'];
+?>
+<html>
+    <head>
+        <title>
+            Penktadienis...
+        </title>
+    </head>
+    <body>
+        <h1>WTF?!</h1>
+        <h2>Mano atmintis:</h2>
+        <ol>
+            <?php foreach ($mano_atmintis as $value): ?>
+                <li>
+                    <?php print $value ?>
+                </li>            
+            <?php endforeach ?>
+        </ol>
+    </body>
+</html>
