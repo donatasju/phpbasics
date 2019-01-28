@@ -1,4 +1,5 @@
 <?php
+$random_flashback = '';
 $mano_atmintis = [
     'Penktadienis',
     '1 Alaus',
@@ -11,7 +12,12 @@ $mano_atmintis = [
     'Apipilta maike raudonu vynu',
     '6 Alaus su slapia maike'
 ];
-$random = rand(1, count($mano_atmintis));
+$random = rand(0, count($mano_atmintis)-1);
+foreach ($mano_atmintis as $key => $value) {
+    if ($key == $random) {
+        $random_flashback = $value;
+    }
+};
 ?>
 <html>
     <head>
@@ -21,11 +27,14 @@ $random = rand(1, count($mano_atmintis));
     </head>
     <body>
         <h1>WTF?!</h1>
-        <h2>Mano atmintis:</h2>        
-        <?php foreach($mano_atmintis as $key => $value): ?>
-        <?php if($key == $random && $key != 0): ?>
-        <h3><?php print $value ?></h3>
-        <?php endif ?>
-        <?php endforeach ?>        
+        <h2>Mano atmintis:</h2>   
+        <h3><?php print $random_flashback ?></h3>
+        <ol>
+            <?php foreach ($mano_atmintis as $value): ?>
+                <li>
+                    <?php print $value ?>
+                </li>            
+            <?php endforeach ?>
+        </ol>
     </body>
 </html>
