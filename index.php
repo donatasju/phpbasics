@@ -25,10 +25,10 @@ $draugo_atmintis = [
 ];
 
 $counter = count($mano_atmintis);
-$rand_flashback = $mano_atmintis[rand(0, $counter -1)];
+$rand_flashback = $mano_atmintis[rand(0, $counter - 1)];
 
 foreach ($mano_atmintis as $value) {
-    if(in_array($value , $draugo_atmintis)) {
+    if (in_array($value, $draugo_atmintis)) {
         $bendra_atmintis [] = $value;
     }
 };
