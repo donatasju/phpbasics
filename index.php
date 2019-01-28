@@ -1,73 +1,37 @@
 <?php
-$mano_atmintis = [
-    'Penktadienis',
-    '1 Alaus',
-    '2 Alaus',
-    'Pamyzt',
-    '3 Alaus',
-    '4 Alaus',
-    'Pamyzt',
-    '5 Alaus',
-    'Apipilta maike raudonu vynu',
-    '6 Alaus su slapia maike'
-];
-$draugo_atmintis = [
-    'Penktadienis',
-    '1 Alaus',
-    '2 Alaus',
-    'Burgeris',
-    '3 Alaus',
-    '4 Alaus',
-    'Kepta duona',
-    '5 Alaus',
-    'Drauge apipyle Ernesta raudonu vynu',
-    'Prikolinam is slapios maikes'
-];
-foreach ($mano_atmintis as $value) {
-    if (in_array($value, $draugo_atmintis)) {
-        $bendra_atmintis[] = $value;
-    }
-}
-
-$random = rand(0, count($mano_atmintis) - 1);
-$random_flashback = $mano_atmintis[$random];
-
-if (!in_array($random_flashback, $bendra_atmintis)) {
-    $bendra_atmintis[] = $random_flashback;
-}
+$dishes = [
+    [
+        'name' => 'Nut salad',
+        'price' => 3.44,
+        'ingridients' => [
+            'Nuts',
+            'Joghurt'
+        ]
+    ],
+    [
+        'name' => 'Bulldish',
+        'price' => 4.77,
+        'ingridients' => [
+            'Rice',
+            'Soya'
+        ]
+    ]
+        ]
 ?>
 <html>
     <head>
-        <title>
-            Penktadienis...
-        </title>
+        <title>Dishes uzduotis</title>            
     </head>
     <body>
-        <h1>WTF?!</h1>
-        <h2>Mano atmintis:</h2>   
-        <h3><?php print $random_flashback ?></h3>
-        <ol>
-            <?php foreach ($mano_atmintis as $value): ?>
-                <li>
-                    <?php print $value ?>
-                </li>            
-            <?php endforeach ?>
-        </ol>
-        <h2>Draugo atmintis:</h2>   
-        <ol>
-            <?php foreach ($draugo_atmintis as $value): ?>
-                <li>
-                    <?php print $value ?>
-                </li>            
-            <?php endforeach ?>
-        </ol>
-        <h2>Bendra atmintis:</h2>   
-        <ol>
-            <?php foreach ($bendra_atmintis as $value): ?>
-                <li>
-                    <?php print $value ?>
-                </li>            
-            <?php endforeach ?>
-        </ol>
+        <div class="dishes">
+            <?php foreach ($dishes as $dish): ?>
+                <h2><?php print $dish['name'] . ': ' . $dish['price'] ?></h2>
+                <ul>
+                <?php foreach ($dish['ingridients'] as $ingridient): ?>
+                    <li><?php print $ingridient ?></li>
+                <?php endforeach; ?>
+                </ul>
+            <?php endforeach; ?>
+        </div>
     </body>
 </html>
