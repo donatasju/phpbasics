@@ -12,7 +12,19 @@ $mano_atmintis = [
     'Apipilta maike raudonu vynu',
     '6 Alaus su slapia maike'
 ];
-$random = rand(0, count($mano_atmintis)-1);
+$draugo_atmintis = [
+    'Penktadienis',
+    '1 Alaus',
+    '2 Alaus',
+    'Burgeris',
+    '3 Alaus',
+    '4 Alaus',
+    'Kepta duona',
+    '5 Alaus',
+    'Drauge apipyle Ernesta raudonu vynu',
+    'Prikolinam is slapios maikes'
+];
+$random = rand(0, count($mano_atmintis) - 1);
 foreach ($mano_atmintis as $key => $value) {
     if ($key == $random) {
         $random_flashback = $value;
@@ -31,6 +43,14 @@ foreach ($mano_atmintis as $key => $value) {
         <h3><?php print $random_flashback ?></h3>
         <ol>
             <?php foreach ($mano_atmintis as $value): ?>
+                <li>
+                    <?php print $value ?>
+                </li>            
+            <?php endforeach ?>
+        </ol>
+        <h2>Draugo atmintis:</h2>   
+        <ol>
+            <?php foreach ($draugo_atmintis as $value): ?>
                 <li>
                     <?php print $value ?>
                 </li>            
