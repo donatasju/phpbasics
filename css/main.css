@@ -1,0 +1,16 @@
+.dishes div {
+    color: white;
+    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    font-size: 20px;
+}
+.nutt {
+    background-image: url('/images/nutt.jpg');
+
+}
+.test {
+    background-image: url('/images/test.gif');
+}
