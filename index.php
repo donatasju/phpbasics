@@ -21,13 +21,11 @@ $random = rand(1, count($mano_atmintis));
     </head>
     <body>
         <h1>WTF?!</h1>
-        <h2>Mano atmintis:</h2>
-        <h3>
-            <?php foreach($mano_atmintis as $key => $value): ?>
-            <?php if($key == $random): ?>
-            <?php print $value ?>
-            <?php endif ?>
-            <?php endforeach ?>
-        </h3>
+        <h2>Mano atmintis:</h2>        
+        <?php foreach($mano_atmintis as $key => $value): ?>
+        <?php if($key == $random && $key != 0): ?>
+            <h3><?php print $value ?></h3>
+        <?php endif ?>
+        <?php endforeach ?>        
     </body>
 </html>
