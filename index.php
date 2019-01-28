@@ -23,8 +23,18 @@ $draugo_atmintis = [
     'neruko',
     'koma'
 ];
+
 $counter = count($mano_atmintis);
 $rand_flashback = $mano_atmintis[rand(0, $counter -1)];
+
+foreach ($mano_atmintis as $value) {
+    if(in_array($value , $draugo_atmintis)) {
+        $bendra_atmintis [] = $value;
+    }
+};
+if (!in_array($rand_flashback, $bendra_atmintis)) {
+    $bendra_atmintis [] = $rand_flashback;
+}
 ?>
 <html>
     <head>
@@ -42,6 +52,12 @@ $rand_flashback = $mano_atmintis[rand(0, $counter -1)];
         <h2>Draugo atmintis:</h2>
         <ul>
             <?php foreach ($draugo_atmintis as $value): ?>
+                <li><?php print $value; ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <h2>Bendra atmintis:</h2>
+        <ul>
+            <?php foreach ($bendra_atmintis as $value): ?>
                 <li><?php print $value; ?></li>
             <?php endforeach; ?>
         </ul>
