@@ -23,8 +23,18 @@ $draugo_atmintis = [
     'Drauge apipyle Ernesta raudonu vynu',
     'Prikolinam is slapios maikes'
 ];
+foreach ($mano_atmintis as $value) {
+    if (in_array($value, $draugo_atmintis)) {
+        $bendra_atmintis[] = $value;
+    }
+}
+
 $random = rand(0, count($mano_atmintis) - 1);
-$random_flashback = $mano_atmintis[$random];    
+$random_flashback = $mano_atmintis[$random];
+
+if (!in_array($random_flashback, $bendra_atmintis)) {
+    $bendra_atmintis[] = $random_flashback;
+}
 ?>
 <html>
     <head>
@@ -46,6 +56,14 @@ $random_flashback = $mano_atmintis[$random];
         <h2>Draugo atmintis:</h2>   
         <ol>
             <?php foreach ($draugo_atmintis as $value): ?>
+                <li>
+                    <?php print $value ?>
+                </li>            
+            <?php endforeach ?>
+        </ol>
+        <h2>Bendra atmintis:</h2>   
+        <ol>
+            <?php foreach ($bendra_atmintis as $value): ?>
                 <li>
                     <?php print $value ?>
                 </li>            
