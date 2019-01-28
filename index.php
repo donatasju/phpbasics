@@ -1,5 +1,4 @@
 <?php
-$random_flashback = '';
 $mano_atmintis = [
     'Penktadienis',
     '1 Alaus',
@@ -25,11 +24,7 @@ $draugo_atmintis = [
     'Prikolinam is slapios maikes'
 ];
 $random = rand(0, count($mano_atmintis) - 1);
-foreach ($mano_atmintis as $key => $value) {
-    if ($key == $random) {
-        $random_flashback = $value;
-    }
-};
+$random_flashback = $mano_atmintis[$random];    
 ?>
 <html>
     <head>
