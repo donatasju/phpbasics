@@ -12,7 +12,7 @@ $mano_atmintis = [
     'bbz'
 ];
 $counter = count($mano_atmintis);
-$rand_flashback = $mano_atmintis[rand(0, $counter)];
+$rand_flashback = $mano_atmintis[rand(0, $counter -1)];
 ?>
 <html>
     <head>
