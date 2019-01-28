@@ -11,7 +11,8 @@ $mano_atmintis = [
     'parukyt',
     'bbz'
 ];
-$rand_flashback = $mano_atmintis[rand(0, 9)];
+$counter = count($mano_atmintis);
+$rand_flashback = $mano_atmintis[rand(0, $counter)];
 ?>
 <html>
     <head>
