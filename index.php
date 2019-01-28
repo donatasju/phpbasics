@@ -26,7 +26,7 @@ $dishes = [
     <body>
         <div class="dishes">
             <?php foreach ($dishes as $value): ?>
-                <h2><?php print "{$value['name']} - {$value['price']}"; ?></h2>
+                <h2><?php print "{$value['name']} - {$value['price']}$"; ?></h2>
                 <ol>
                     <?php foreach ($value['ingredients'] as $ingredient): ?>
                         <li>
