@@ -1,58 +1,25 @@
 <?php
-
-$saldytuvas = [
-    'eile_1' => [
-        'vieta_1' => [
-            [
-                'produktas' => 'kiausiniai',
-                'kiekis' => 3
-            ]
-        ],
-        'vieta_2' => [
-            [
-                'produktas' => 'grietine',
-                'kiekis' => 1
-            ]
-        ],
-        'vieta_3' => [
-            [
-                'produktas' => 'jogurtas',
-                'kiekis' => 2
-            ]
-        ],
-        'vieta_4' => [
-            [
-                'produktas' => 'zuvis',
-                'kiekis' => 0
-            ]
-        ]
-    ],
-    'eile_2' => [
-        'vieta_1' => [
-            [
-                'produktas' => 'pienas',
-                'kiekis' => 1
-            ]
-        ],
-        'vieta_2' => [
-            [
-                'produktas' => 'kefyras',
-                'kiekis' => 0
-            ]
-        ],
-        'vieta_3' => [
-            [
-                'produktas' => 'degtine',
-                'kiekis' => 1
-            ]
-        ],
-        'vieta_4' => [
-            [
-                'produktas' => 'kecupas',
-                'kiekis' => 2
-            ]
-        ]
-    ]
+$mano_atmintis = [
+    'Penktadienis',
+    'Alaus',
+    'Degtine',
+    'GinTonic',
+    'Viskis',
+    'Parukyt',
+    'degtine',
+    'kokteilis',
+    'parukyt',
+    'bbz'
 ];
-
-var_dump($saldytuvas);
+$rand_flashback = $mano_atmintis[rand(0, 9)];
+?>
+<html>
+    <head>
+        <title>uzd 2</title>
+    </head>
+    <body>
+        <h1>WTF?!</h1>
+        <h2>Mano atmintis:</h2>
+        <h3>Flashback: <?php print $rand_flashback; ?></h3>
+    </body>
+</html>
