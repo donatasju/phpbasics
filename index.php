@@ -10,12 +10,12 @@ $dishes = [
         ]
     ],
     [
-        'name' => 'Bulldish',
-        'price' => 4.77,
+        'name' => 'Broken ass bone',
+        'price' => 420,
         'foto' => 'test',
         'ingridients' => [
-            'Rice',
-            'Soya',
+            'Guy',
+            'Frozzen pool',
         ]
     ]
 ];
@@ -28,13 +28,16 @@ $dishes = [
     <body>
         <div class="dishes">
             <?php foreach ($dishes as $dish): ?>
-                <div class="<?php print $dish['foto']; ?>"><?php print "{$dish['name']}: {$dish['price']}$" ?></div>
-                <p>Ingridients:</p>
-                <ul>                    
-                    <?php foreach ($dish['ingridients'] as $ingridient): ?>                        
-                        <li><?php print $ingridient; ?></li>
-                    <?php endforeach; ?>
-                </ul>
+                <div class="dish">
+                    <h3><?php print "{$dish['name']}: {$dish['price']}$" ?></h3>
+                    <div class="<?php print $dish['foto']; ?>"></div>
+                    <p>Ingridients:</p>
+                    <ul>                    
+                        <?php foreach ($dish['ingridients'] as $ingridient): ?>                        
+                            <li><?php print $ingridient; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             <?php endforeach; ?>
         </div>
     </body>
