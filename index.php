@@ -1,5 +1,16 @@
 <?php
-$mano_atmintis = ['Penktadienis', '1 Alaus', '2 Alaus', 'Pamyzt', '3 Alaus', '4 Alaus', 'Pamyzt', '5 Alaus', 'Apipilta maike raudonu vynu', '6 Alaus su slapia maike'];
+$mano_atmintis = [
+    'Penktadienis',
+    '1 Alaus',
+    '2 Alaus',
+    'Pamyzt',
+    '3 Alaus',
+    '4 Alaus',
+    'Pamyzt',
+    '5 Alaus',
+    'Apipilta maike raudonu vynu',
+    '6 Alaus su slapia maike'
+];
 ?>
 <html>
     <head>
