@@ -11,6 +11,7 @@ $mano_atmintis = [
     'Apipilta maike raudonu vynu',
     '6 Alaus su slapia maike'
 ];
+$random = rand(1, count($mano_atmintis));
 ?>
 <html>
     <head>
@@ -21,12 +22,12 @@ $mano_atmintis = [
     <body>
         <h1>WTF?!</h1>
         <h2>Mano atmintis:</h2>
-        <ol>
-            <?php foreach ($mano_atmintis as $value): ?>
-                <li>
-                    <?php print $value ?>
-                </li>            
+        <h3>
+            <?php foreach($mano_atmintis as $key => $value): ?>
+            <?php if($key == $random): ?>
+            <?php print $value ?>
+            <?php endif ?>
             <?php endforeach ?>
-        </ol>
+        </h3>
     </body>
 </html>
