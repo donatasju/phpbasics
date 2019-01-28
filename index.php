@@ -25,9 +25,10 @@ $dishes = [
     <body>
         <div class="dishes">
             <?php foreach ($dishes as $dish): ?>
-                <h2><?php print "{$dish['name']} : {$dish['price']}$" ?></h2>
-                <ul>
-                    <?php foreach ($dish['ingridients'] as $ingridient): ?>
+                <h2><?php print "{$dish['name']}: {$dish['price']}$" ?></h2>
+                <p>Ingridients:</p>
+                <ul>                    
+                    <?php foreach ($dish['ingridients'] as $ingridient): ?>                        
                         <li><?php print $ingridient; ?></li>
                     <?php endforeach; ?>
                 </ul>
