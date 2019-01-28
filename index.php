@@ -24,7 +24,7 @@ $random = rand(1, count($mano_atmintis));
         <h2>Mano atmintis:</h2>        
         <?php foreach($mano_atmintis as $key => $value): ?>
         <?php if($key == $random && $key != 0): ?>
-            <h3><?php print $value ?></h3>
+        <h3><?php print $value ?></h3>
         <?php endif ?>
         <?php endforeach ?>        
     </body>
