@@ -4,8 +4,6 @@ function add($x, $y) {
     $sum = $x + $y;
     print "$x + $y suma: $sum";
 }
-
-$suma = add(5, 4)
 ?>
 <html>
     <head>
@@ -13,6 +11,6 @@ $suma = add(5, 4)
 
     </head>
     <body>
-        <h1><?php print $suma; ?> </h1>
+        <h1><?php print add(5, 4); ?> </h1>
     </body>
 </html>
