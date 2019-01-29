@@ -2,7 +2,7 @@
 
 function add($x, $y) {
     $sum = $x + $y;
-    print $sum;
+    print "$x + $y suma: $sum";
 }
 
 $suma = add(5, 4)
