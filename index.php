@@ -18,22 +18,26 @@ for ($i = 0; $i < $rankinuko_dydis; $i++) {
     $size = rand(10, 50);
     $is_dark = rand(0, 1);
     $rankinuko_turis += $size;
-    $daikto_tikimybe = round($size/$rankinuko_turis *100);
-    
+
     if ($is_dark) {
         $spalva = 'Sviesus';
     } else {
         $spalva = 'Tamsus';
-        $daikto_tikimybe / 2;
     }
 
     $rankinukas[] = [
         'name' => $random_vardas,
         'spalva' => $spalva,
         'size' => $size,
-        'tikimybe' => $daikto_tikimybe,
-        'info' => "$random_vardas Uzima: $size cm3. Daikto spalva: $spalva, Tikimybe: $daikto_tikimybe %"
+        'info' => "$random_vardas Uzima: $size cm3. Daikto spalva: $spalva"
     ];
+}
+
+foreach ($rankinukas as &$value) {
+    $value['info'] .= round($value['size'] / $rankinuko_turis * 100);
+    if ($spalva == 'Tamsus') {
+        $daikto_tikimybe / 2;
+    }
 }
 ?>
 <html>
@@ -42,7 +46,7 @@ for ($i = 0; $i < $rankinuko_dydis; $i++) {
     </head>
     <body>
         <?php foreach ($rankinukas as $daiktas): ?>
-            <p><?php print $daiktas['info']; ?></p>
+            <p><?php print $daiktas['info'] ?></p>
         <?php endforeach; ?>
     </body>
 </html>
