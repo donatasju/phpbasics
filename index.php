@@ -3,8 +3,8 @@ $name = ['Slapios serveteles', 'Telefonas', 'Pinigine', 'Plyta', 'Elektrosokas',
 $rankinuko_dydis = rand(1, 20);
 
 for ($i = 0; $i < $rankinuko_dydis; $i++) {
-    $name_masyvo_dydis = rand(0, count($name) - 1);
-    $random_vardas = $name[$name_masyvo_dydis];
+    $name_indexas = rand(0, count($name) - 1);
+    $random_vardas = $name[$name_indexas];
     $size = rand(10, 50);
     $is_dark = rand(0, 1);
 
