@@ -1,9 +1,10 @@
 <?php
 $name = ['Slapios serveteles', 'Telefonas', 'Pinigine', 'Plyta', 'Elektrosokas', 'Duju balionelis', 'Belenkas', 'Baklazanas'];
-$rankinuko_dydis = rand(0, 20);
+$rankinuko_dydis = rand(1, 20);
 
 for ($i = 0; $i < $rankinuko_dydis; $i++) {
     $name_masyvo_dydis = rand(0, count($name) - 1);
+    $random_vardas = $name[$name_masyvo_dydis];
     $size = rand(10, 50);
     $is_dark = rand(0, 1);
     if ($is_dark) {
@@ -12,11 +13,13 @@ for ($i = 0; $i < $rankinuko_dydis; $i++) {
         $spalva = 'Tamsus';
     }
     $rankinukas[] = [
-        'name' => $name[$name_masyvo_dydis],
+        'name' => $random_vardas,
         'spalva' => $spalva,
-        'size' => $size
+        'size' => $size,
+        'info' => "$random_vardas Uzima: $size cm3. Daikto spalva: $spalva"
     ];
 }
+
 ?>
 <html>
     <head>
@@ -24,8 +27,7 @@ for ($i = 0; $i < $rankinuko_dydis; $i++) {
     </head>
     <body>
         <?php foreach ($rankinukas as $daiktas): ?>
-            <p><?php print $daiktas['name']; ?> Uzima: <?php print $daiktas['size']; ?>cm3</p>
-            <p>Daiktas uzima: <?php print $daiktas['spalva']; ?> </p>
+            <p><?php print $daiktas['info']; ?>
         <?php endforeach; ?>
     </body>
 </html>
