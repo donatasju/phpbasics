@@ -34,10 +34,11 @@ for ($i = 0; $i < $rankinuko_dydis; $i++) {
 }
 
 foreach ($rankinukas as &$value) {
+    $daikto_tikimybe = round($value['size'] / $rankinuko_turis * 100);
     if ($spalva == 'Tamsus') {
-        $value['size'] / 2;
+        $daikto_tikimybe / 2;
     }
-    $value['info'] .= round($value['size'] / $rankinuko_turis * 100) . ' %';
+    $value['info'] .= $daikto_tikimybe . '%';
 }
 ?>
 <html>
