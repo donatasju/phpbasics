@@ -1,45 +1,31 @@
 <?php
-$dishes = [
-    [
-        'name' => 'Nut salad',
-        'price' => 3.44,
-        'foto' => 'nutt',
-        'ingridients' => [
-            'Nuts',
-            'Joghurt'
-        ]
-    ],
-    [
-        'name' => 'Broken ass bone',
-        'price' => 420,
-        'foto' => 'test',
-        'ingridients' => [
-            'Guy',
-            'Frozzen pool',
-        ]
-    ]
-];
+$name = ['Slapios serveteles', 'Telefonas', 'Pinigine', 'Plyta', 'Elektrosokas', 'Duju balionelis', 'Belenkas', 'Baklazanas'];
+$rankinuko_dydis = rand(0, 20);
+
+for ($i = 0; $i < $rankinuko_dydis; $i++) {
+    $name_masyvo_dydis = rand(0, count($name) - 1);
+    $size = rand(10, 50);
+    $is_dark = rand(0, 1);
+    if ($is_dark) {
+        $spalva = 'Sviesus';
+    } else {
+        $spalva = 'Tamsus';
+    }
+    $rankinukas[] = [
+        'name' => $name[$name_masyvo_dydis],
+        'spalva' => $spalva,
+        'size' => $size
+    ];
+}
 ?>
 <html>
     <head>
-        <title>Dishes uzduotis</title>
-        <link rel="stylesheet" href="css/main.css">
+        <title>Random Rankinukas</title>
     </head>
     <body>
-        <div class="dishes">
-            <?php foreach ($dishes as $dish): ?>
-                <div class="dish">
-                    <h2><?php print $dish['name'] ?></h2>
-                    <div class="<?php print $dish['foto']; ?>"></div>
-                    <p>Ingridients:</p>
-                    <ul>                    
-                        <?php foreach ($dish['ingridients'] as $ingridient): ?>                        
-                            <li><?php print $ingridient; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <p>Kaina: <?php print $dish['price'] ?>$</p>
-                </div>
-            <?php endforeach; ?>
-        </div>
+        <?php foreach ($rankinukas as $daiktas): ?>
+            <p><?php print $daiktas['name']; ?> Uzima: <?php print $daiktas['size']; ?>cm3</p>
+            <p>Daiktas uzima: <?php print $daiktas['spalva']; ?> </p>
+        <?php endforeach; ?>
     </body>
 </html>
