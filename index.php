@@ -29,15 +29,15 @@ for ($i = 0; $i < $rankinuko_dydis; $i++) {
         'name' => $random_vardas,
         'spalva' => $spalva,
         'size' => $size,
-        'info' => "$random_vardas Uzima: $size cm3. Daikto spalva: $spalva"
+        'info' => "$random_vardas Uzima: $size cm3. Daikto spalva: $spalva "
     ];
 }
 
 foreach ($rankinukas as &$value) {
-    $value['info'] .= round($value['size'] / $rankinuko_turis * 100);
     if ($spalva == 'Tamsus') {
-        $daikto_tikimybe / 2;
+        $value['size'] / 2;
     }
+    $value['info'] .= round($value['size'] / $rankinuko_turis * 100) . ' %';
 }
 ?>
 <html>
