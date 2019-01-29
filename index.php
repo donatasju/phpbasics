@@ -5,6 +5,7 @@ $kiekis = 0;
 
 function kelinta_valanda_bus_pizda($x, $y) {
     $uzduotys = [
+        '0 lygis' => 0,
         '1 lygis' => 12,
         '2 lygis' => 24,
         '3 lygis' => 36,
@@ -16,8 +17,13 @@ function kelinta_valanda_bus_pizda($x, $y) {
         '9 lygis' => 108,
         '10 lygis' => 120
     ];
-    $minutes_uzduociai_atlikti = $uzduotys["$x lygis"] * $y;
-    $bus_pizda = date('H:i', strtotime("+$minutes_uzduociai_atlikti minutes"));
+
+    if ($uzduotys["$x lygis"] == 0) {
+        $bus_pizda = 'Paziurekim kada tau bus pizda...';
+    } else {
+        $minutes_uzduociai_atlikti = $uzduotys["$x lygis"] * $y;
+        $bus_pizda = 'Tau bus pizda: ' . date('H:i', strtotime("+$minutes_uzduociai_atlikti minutes"));
+    }
     return $bus_pizda;
 }
 
@@ -40,7 +46,7 @@ if (isset($_POST['kiekis'])) {
             <p>Iveskite kiek uzduociu norite spresti:</p> 
             <input name="kiekis" type="number"/><br>
             <input type="submit"/>
-            <p>Tau pizda bus: <?php print kelinta_valanda_bus_pizda($lygis, $kiekis) ?> </p>
+            <p><?php print kelinta_valanda_bus_pizda($lygis, $kiekis) ?></p>
         </form>
     </body>
 </html>
