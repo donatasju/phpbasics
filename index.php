@@ -18,13 +18,13 @@ for ($i = 0; $i < $rankinuko_dydis; $i++) {
     $size = rand(10, 50);
     $is_dark = rand(0, 1);
     $rankinuko_turis += $size;
-    $daikto_tikimybe = $size/$rankinuko_turis *100;
+    $daikto_tikimybe = round($size/$rankinuko_turis *100);
     
     if ($is_dark) {
         $spalva = 'Sviesus';
     } else {
         $spalva = 'Tamsus';
-        round($daikto_tikimybe / 2);
+        $daikto_tikimybe / 2;
     }
 
     $rankinukas[] = [
