@@ -29,7 +29,7 @@ $dishes = [
         <div class="dishes">
             <?php foreach ($dishes as $dish): ?>
                 <div class="dish">
-                    <h3><?php print $dish['name'] ?></h3>
+                    <h2><?php print $dish['name'] ?></h2>
                     <div class="<?php print $dish['foto']; ?>"></div>
                     <p>Ingridients:</p>
                     <ul>                    
