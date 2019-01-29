@@ -1,7 +1,15 @@
 <?php
 function sum($x, $y){
     $suma = $x +$y;
-    return print $suma;
+    print $tekstas = "$x + $y suma: $suma";
 }
-sum(9, 5);
+
 ?>
+<html>
+    <head>
+        <title>Funkcijos</title>
+    </head>
+    <body>
+        <h1><?php sum(9, 5);?> </h1>
+    </body>
+</html>
