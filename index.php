@@ -29,7 +29,7 @@ $dishes = [
         <div class="dishes">
             <?php foreach ($dishes as $dish): ?>
                 <div class="dish">
-                    <h3><?php print "{$dish['name']}: {$dish['price']}$" ?></h3>
+                    <h3><?php print $dish['name'] ?></h3>
                     <div class="<?php print $dish['foto']; ?>"></div>
                     <p>Ingridients:</p>
                     <ul>                    
@@ -37,6 +37,7 @@ $dishes = [
                             <li><?php print $ingridient; ?></li>
                         <?php endforeach; ?>
                     </ul>
+                    <p>Kaina: <?php print $dish['price'] ?>$</p>
                 </div>
             <?php endforeach; ?>
         </div>

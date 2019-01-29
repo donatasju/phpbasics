@@ -24,3 +24,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+ul {
+    list-style: none;
+    padding: 0px;
+}
