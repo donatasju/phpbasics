@@ -2,18 +2,18 @@
 
 $balius = [
     [
-        'daiktas' => 'zuvis',
+        'daiktas' => 'Zuvis',
         'kiekis' => 1,
         'matas' => 'kibiras',
         'owneris' => 'Laura'        
     ],
     [
-        'daiktas' => 'baklazanai',
+        'daiktas' => 'Zaklazanai',
         'kiekis' => 18,
         'matas' => 'kg',
         'owneris' => 'Tomas'
     ],
-        'daiktas' => 'aliejus',
+        'daiktas' => 'Zliejus',
         'kiekis' => 0.7,
         'matas' => 'litras',
         'owneris' => 'Monika'
