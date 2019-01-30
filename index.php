@@ -37,13 +37,14 @@ for (; strlen($rasinys) < 300;) {
     }
     $zodziai_like_sakiny--;
 }
+
 ?>
 <html>
     <head>
         <title>Rasinys</title>
     </head>
     <body>
-        <p><?php print $rasinys ?></p>
+        <p><?php print $rasinys . '.' ?></p>
     </body>
 </html>
 
