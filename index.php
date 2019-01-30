@@ -3,7 +3,12 @@ Date_default_timezone_set('Europe/Vilnius');
 
 $lygis = $_POST['lygis'] ?? false;
 $kiekis = $_POST['kiekis'] ?? false;
-
+/**
+ * 
+ * @param type $lygis
+ * @param type $kiekis
+ * @return string
+ */
 function kelinta_valanda_bus_pizda($lygis, $kiekis) {
     $uzduotys = [
         '1 lygis' => 12,
@@ -18,10 +23,10 @@ function kelinta_valanda_bus_pizda($lygis, $kiekis) {
         '10 lygis' => 120
     ];
 
-    if ($uzduotys["$x lygis"] == 0) {
+    if ($uzduotys["$lygis lygis"] == 0) {
         $bus_pizda = 'Paziurekim kada tau bus pizda...';
     } else {
-        $minutes_uzduociai_atlikti = $uzduotys["{$x} lygis"] * $y;
+        $minutes_uzduociai_atlikti = $uzduotys["$lygis lygis"] * $kiekis;
         $bus_pizda = 'Tau bus pizda: ' . date('H:i', strtotime("+$minutes_uzduociai_atlikti minutes"));
     }
     return $bus_pizda;
