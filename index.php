@@ -1,41 +1,49 @@
 <?php
-
-$masinos = [
-    [
-        'gamintojas' => 'Fiat',
-        'modelis' => '126p',
-        'metai' => [
-            'from_metai' => 1972,
-            'to_metai' => 2000
-        ],
-        'gamyklos' => [
-            'Kasinas',
-            'Termini imereze',
-            'Kragujevacas',
-            'Belsko-Biala',
-            'Tychos'
-        ],
-        'klase' => 'Miesto autombilis',
-        'kebulo tipas' => [
-            '2 duru sedanas',
-            '2 duru hecbekas'
-        ],
-        'variklis' => [
-            [
-                'turis' => '594 cm3',
-                'cilindrai' => 2,
-            ],
-            [
-                'turis' => '652 cm3',
-                'cilindrai' => 2,
-            ],
-            [
-                'turis' => '704 cm3',
-                'cilindrai' => 2,
-            ]
-        ],
-        'dizaineris' => 'Sergio Sarotrelli'
-    ],
+$words = [
+    'pizda',
+    'zopa',
+    'vapse',
+    'alus',
+    'ejau',
+    'gerti',
+    'nepavyko',
+    'kelmas',
+    'baxuras',
+    'taskyti',
+    'velnias',
+    'miegoti',
+    'pisam_slides!',
+    'panos',
+    'belenkas vyksta'
 ];
-var_dump($masinos);
+$rasinys = '';
+
+$zodziai_like_sakiny = 0;
+
+for (; strlen($rasinys) < 300;) {
+    $random_zodzio_idx = rand(0, count($words) - 1);
+
+    if ($zodziai_like_sakiny == 0) {
+        if (strlen($rasinys) > 0) {
+            $rasinys .= '. ';
+        }
+        $rasinys .= ' ' . ucfirst($words[$random_zodzio_idx]);
+    } else {
+        $rasinys .= ' ' . $words[$random_zodzio_idx];
+    }
+
+    if (!$zodziai_like_sakiny) {
+        $zodziai_like_sakiny = rand(4, 12);
+    }
+    $zodziai_like_sakiny--;
+}
+?>
+<html>
+    <head>
+        <title>Rasinys</title>
+    </head>
+    <body>
+        <p><?php print $rasinys ?></p>
+    </body>
+</html>
 
