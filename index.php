@@ -1,11 +1,11 @@
 <?php
 Date_default_timezone_set('Europe/Vilnius');
-$lygis = 0;
-$kiekis = 0;
+
+$lygis = $_POST['lygis'] ?? false;
+$kiekis = $_POST['kiekis'] ?? false;
 
 function kelinta_valanda_bus_pizda($x, $y) {
     $uzduotys = [
-        '0 lygis' => 0,
         '1 lygis' => 12,
         '2 lygis' => 24,
         '3 lygis' => 36,
@@ -21,17 +21,16 @@ function kelinta_valanda_bus_pizda($x, $y) {
     if ($uzduotys["$x lygis"] == 0) {
         $bus_pizda = 'Paziurekim kada tau bus pizda...';
     } else {
-        $minutes_uzduociai_atlikti = $uzduotys["$x lygis"] * $y;
+        $minutes_uzduociai_atlikti = $uzduotys["{$x} lygis"] * $y;
         $bus_pizda = 'Tau bus pizda: ' . date('H:i', strtotime("+$minutes_uzduociai_atlikti minutes"));
     }
     return $bus_pizda;
 }
 
-if (isset($_POST['lygis'])) {
-    $lygis = $_POST['lygis'];
-}
-if (isset($_POST['kiekis'])) {
-    $kiekis = $_POST['kiekis'];
+if ($lygis && $kiekis) {
+    $text = kelinta_valanda_bus_pizda($lygis, $kiekis);
+} else {
+    $text = 'Ivesk duomenis';
 }
 ?>
 <html>
@@ -46,7 +45,7 @@ if (isset($_POST['kiekis'])) {
             <p>Iveskite kiek uzduociu norite spresti:</p> 
             <input name="kiekis" type="number"/><br>
             <input type="submit"/>
-            <p><?php print kelinta_valanda_bus_pizda($lygis, $kiekis) ?></p>
+            <p><?php print $text; ?></p>
         </form>
     </body>
 </html>
