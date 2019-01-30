@@ -1,5 +1,4 @@
 <?php
-
 $balius = [
     [
         'daiktas' => 'Zuvis',
@@ -20,7 +19,6 @@ $balius = [
         'matas' => 'litras'
     ]
 ];
-
 ?>
 
 <html>
@@ -39,6 +37,6 @@ $balius = [
                 </tr>
             </table>
         <?php endforeach; ?>
-        
+
     </body>
 </html>
