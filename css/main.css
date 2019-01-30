@@ -21,7 +21,9 @@
 }
 .inventorius {
     display: flex;
+    border: 1px solid black;
+    margin: 10px;
 }
-p {
+span {
     margin: 10px;
 }
