@@ -8,12 +8,12 @@ $balius = [
         'owneris' => 'Laura'        
     ],
     [
-        'daiktas' => 'Zaklazanai',
+        'daiktas' => 'Baklazanai',
         'kiekis' => 18,
         'matas' => 'kg',
         'owneris' => 'Tomas'
     ],
-        'daiktas' => 'Zliejus',
+        'daiktas' => 'Aliejus',
         'kiekis' => 0.7,
         'matas' => 'litras',
         'owneris' => 'Monika'
