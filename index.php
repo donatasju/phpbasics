@@ -1,6 +1,6 @@
 <?php
 
-$balius = [
+$masinos = [
     [
         'gamintojas' => 'Fiat',
         'modelis' => '126p',
@@ -21,12 +21,21 @@ $balius = [
             '2 duru hecbekas'
         ],
         'variklis' => [
-            '594 cm3 2 cilindru',
-            '652 cm3 2 cilindru',
-            '704 cm3 2 cilindru',
+            [
+                'turis' => '594 cm3',
+                'cilindrai' => 2,
+            ],
+            [
+                'turis' => '652 cm3',
+                'cilindrai' => 2,
+            ],
+            [
+                'turis' => '704 cm3',
+                'cilindrai' => 2,
+            ]
         ],
         'dizaineris' => 'Sergio Sarotrelli'
     ],
 ];
-var_dump($balius);
+var_dump($masinos);
 
