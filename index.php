@@ -4,7 +4,7 @@ Date_default_timezone_set('Europe/Vilnius');
 $lygis = $_POST['lygis'] ?? false;
 $kiekis = $_POST['kiekis'] ?? false;
 
-function kelinta_valanda_bus_pizda($x, $y) {
+function kelinta_valanda_bus_pizda($lygis, $kiekis) {
     $uzduotys = [
         '1 lygis' => 12,
         '2 lygis' => 24,
