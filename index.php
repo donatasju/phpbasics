@@ -4,7 +4,8 @@ $balius = [
     [
         'gamintojas' => 'Fiat',
         'modelis' => '126p',
-        'metai' => range(1972, 2000),
+        'from_metai' => 1972,
+        'to_metai' => 2000,
         'gamyklos' => [
             'Kasinas',
             'Termini imereze',
