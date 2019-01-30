@@ -16,14 +16,23 @@ $masina = [
             'Tychos'
         ],
         'klase' => 'Miesto automobilis',
-        'kebulo tips' => [
+        'kebulo_tipas' => [
             '2 duru sedanas',
             '2 duru hecbekas'
         ],
-        'variklis' => [
-            '594 cm3 2 cilindru',
-            '652 cm3 2 cilindru',
-            '704 cm3 2 cilindru'
+        'varikliai' => [
+            [
+                'turis_cm3' => 594,
+                'cilindrai' => 2
+            ],
+            [
+                'turis_cm3' => 594,
+                'cilindrai' => 2
+            ],
+            [
+                'turis_cm3' => 594,
+                'cilindrai' => 2
+            ]
         ],
         'dizaineris' => 'Sergio Sartorelli'
     ]
