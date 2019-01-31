@@ -1,50 +1,14 @@
 <?php
-$words = [
-    'pizda',
-    'zopa',
-    'vapse',
-    'alus',
-    'ejau',
-    'gerti',
-    'nepavyko',
-    'kelmas',
-    'baxuras',
-    'taskyti',
-    'velnias',
-    'miegoti',
-    'pisam_slides!',
-    'panos',
-    'belenkas vyksta'
-];
-$rasinys = '';
 
-$zodziai_like_sakiny = 0;
-
-for (; strlen($rasinys) < 300;) {
-    $random_zodzio_idx = rand(0, count($words) - 1);
-
-    if ($zodziai_like_sakiny == 0) {
-        if (strlen($rasinys) > 0) {
-            $rasinys .= '. ';
-        }
-        $rasinys .= ' ' . ucfirst($words[$random_zodzio_idx]);
-    } else {
-        $rasinys .= ' ' . $words[$random_zodzio_idx];
+function slot_run() {
+    for ($i = 0; $i < 3; $i++) {
+        $random_skaicius = rand(0, 1);
+        $array[] = $random_skaicius;
     }
-
-    if (!$zodziai_like_sakiny) {
-        $zodziai_like_sakiny = rand(4, 12);
+    for ($i = 0; $i < 3; $i++) {
+        $array_3_skaiciu[] = $array;
     }
-    $zodziai_like_sakiny--;
+    return $array_3_skaiciu;
 }
 
-?>
-<html>
-    <head>
-        <title>Rasinys</title>
-    </head>
-    <body>
-        <p><?php print $rasinys . '.' ?></p>
-    </body>
-</html>
-
+var_dump(slot_run());
