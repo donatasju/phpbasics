@@ -1,17 +1,20 @@
 .main {
+    display: inline-block;
+}
+.kubas-win {
+    border: solid 1px black;
     display: flex;
 }
-.class-1 {
-    background-image: url("https://m.media-amazon.com/images/M/MV5BMjJmYTNkNmItYjYyZC00MGUxLWJhNWMtZDY4Nzc1MDAwMzU5XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg");
+.class-0, .class-1 {
+    display: inline-block;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+}
+.class-1 {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg");
 }
 .class-0 {
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
+   background-image: url("https://m.media-amazon.com/images/M/MV5BMjJmYTNkNmItYjYyZC00MGUxLWJhNWMtZDY4Nzc1MDAwMzU5XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg");
 }
