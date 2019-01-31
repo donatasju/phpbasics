@@ -21,5 +21,22 @@ function slot_check($array) {
 }
 
 $game = slot_run(3, 3);
-var_dump(slot_check($game));
+$laimetojai = slot_check($game);
 ?>
+<html>
+    <head>
+        <title>Slot mashine</title>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <?php foreach ($game as $key => $row): ?>
+                <div class="kubas-<?php print (in_array($key, $laimetojai) ? 'win' : 'loose'); ?>">
+                    <?php foreach ($row as $skaicius): ?>
+                        <div class="stulpelis klase_<?php print $skaicius ?>"></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </body>
+</html>
