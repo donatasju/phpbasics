@@ -1,17 +1,29 @@
 <?php
-$words = ['ne', 'nebegeriu', 'rukau', 'nerukau', 'geriu', 'telefonas', 'ekranas', 'programming', 'php', 'netbeans'];
-$text = '';
 
-for ($i = 0; $i < 300; $i++) {
-    $text .= ' ' . $words[rand(0, count($words) - 1)];
-    $i = strlen($text);
+function slot_run($rows, $cols) {
+    $slots = [];
+    for ($i = 0; $i < $rows; $i++) {
+        for ($j = 0; $j < $cols; $j++) {
+            $slots[$i][$j] = rand(0, 1);
+        }
+    }
+    return $slots;
 }
+
+$slotai = slot_run(3, 3);
 ?>
 <html>
     <head>
-        <title></title>
+        <title>Bybis</title>
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <p><?php print "$i $text"; ?></p>
+        <?php foreach ($slotai as $eile): ?>
+            <div class="main">
+                <?php foreach ($eile as $stulpelis): ?>
+                    <div class="class-<?php print $stulpelis; ?>"></div>
+                <?php endforeach; ?>
+            </div>
+        <?php endforeach; ?>
     </body>
 </html>
