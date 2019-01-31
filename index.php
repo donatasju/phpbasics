@@ -10,20 +10,16 @@ function slot_run($rows, $cols) {
     return $array;
 }
 
-$slot_mashine = slot_run(3, 3);
+function slot_check($array) {
+    $winners = [];
+    foreach ($array as $key => $value) {
+        if (array_sum($value) == count($value)) {
+            $winners[] = $key;
+        }
+    }
+    return $winners;
+}
+
+$game = slot_run(3, 3);
+var_dump(slot_check($game));
 ?>
-<html>
-    <head>
-        <title>Slot mashine</title>
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
-        <?php foreach ($slot_mashine as $row): ?>
-            <div class="kubas">
-                <?php foreach ($row as $skaicius): ?>
-                    <div class="stulpelis klase_<?php print $skaicius ?>"></div>
-                <?php endforeach; ?>
-            </div>
-        <?php endforeach; ?>
-    </body>
-</html>
