@@ -27,6 +27,8 @@ function pzdamat($bbd, $l) {
         if ($key > $l) {
             $daiktas['color'] = 'grey';
         }
+        $daiktas['show_text'] = true;
+        var_dump($daiktas);
     }
 
     return $bbd;
