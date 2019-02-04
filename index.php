@@ -1,20 +1,26 @@
 <?php
+
 $array = [
-    'spalva' => [
-        'green',
-        'orange',
-        'red'
+    [
+        'tekstas' => 'As',
+        'color' => 'green',
+        'form' => 'apskritimas'
     ],
-    'figura' => [
-        'kvadratas',
-        'rutulys'
+    [
+        'tekstas' => 'B',
+        'color' => 'green',
+        'form' => 'kvadratas'
     ],
-    'raide' => [
-        'as',
-        'B',
-        'D'
+    [
+        'tekstas' => 'B',
+        'color' => 'orange',
+        'form' => 'kvadratas'
+    ],
+    [
+        'tekstas' => 'D',
+        'color' => 'red',
+        'form' => 'kvadratas'
     ]
 ];
 var_dump($array);
-
 ?>
