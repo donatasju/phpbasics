@@ -48,7 +48,7 @@ $bbd = pzdamat($bbd, $l);
             <?php foreach ($bbd as $daiktas): ?>
                 <div class="block <?php print $daiktas['color'] . ' ' . $daiktas['form']; ?>">
                         <?php if($daiktas['show_text']): ?>
-                        <span><?php print $daiktas['tekstas']; ?></span>
+                            <span><?php print $daiktas['tekstas']; ?></span>
                         <?php endif; ?>
                 </div>
             <?php endforeach; ?>
