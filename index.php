@@ -27,7 +27,10 @@ function pzdamat($bbd, $l) {
         if ($key > $l) {
             $dalis['spalva'] = 'gray';
         }
-        $dalis['show_text'] = true;
+        $dalis['show_text'] = false;
+        if ($key == $l) {
+            $dalis['show_text'] = true;
+        }
     }
     return $bbd;
 }
