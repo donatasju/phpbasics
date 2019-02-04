@@ -1,0 +1,27 @@
+.flex {
+    display: flex;
+}
+.green {
+    background-color: green;
+}
+.red {
+    background-color: red;
+}
+.orange {
+    background-color: orange;
+}
+.block {
+    display: flex;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.kvadratas {
+    border: solid 1px black;
+}
+.apskritimas {
+    border: 1px solid black;
+    border-radius: 50%;
+}
