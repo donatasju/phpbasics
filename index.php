@@ -22,9 +22,9 @@ $bbd = [
     ]
 ];
 
-function pzdamat($bbd){
-    foreach($bbd as &$dalis){
-        $dalis['spalva'] = 'red';
+function pzdamat($bbd) {
+    foreach ($bbd as $key =>$dalis) {
+        $bbd[$key]['spalva'] = 'red';
     }
     return $bbd;
 }
