@@ -28,7 +28,6 @@ function pzdamat($bbd, $l) {
             $daiktas['color'] = 'grey';
         }
         $daiktas['show_text'] = true;
-        var_dump($daiktas);
     }
 
     return $bbd;
