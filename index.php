@@ -28,7 +28,11 @@ function pzdamat($bbd, $l) {
             $daiktas['color'] = 'grey';
         }
         
-        $daiktas['show_text'] = true;
+        $daiktas['show_text'] = false;
+        
+        if($key == $l) {
+            $daiktas['show_text'] = true;
+        }
     }
 
     return $bbd;
@@ -40,13 +44,13 @@ $bbd = pzdamat($bbd, $l);
 ?>
 <html>
     <head>
-        <title>pzdamatas</title>
+        <title>bbdmatas</title>
         <link rel="stylesheet" href="/css/main.css">
     </head>
     <body>
         <div class="flex">
             <?php foreach ($bbd as $daiktas): ?>
-                <div class="block <?php print $daiktas['color'] . ' ' . $daiktas['form']; ?>">
+                <div class="block <?php print "{$daiktas['color']} {$daiktas['form']}" ?>">
                         <?php if($daiktas['show_text']): ?>
                             <span><?php print $daiktas['tekstas']; ?></span>
                         <?php endif; ?>
