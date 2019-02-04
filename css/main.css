@@ -10,6 +10,9 @@
 .orange {
     background-color: orange;
 }
+.grey {
+    background-color: grey;
+}
 .block {
     display: flex;
     height: 100px;

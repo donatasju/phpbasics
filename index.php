@@ -22,15 +22,17 @@ $bbd = [
     ]
 ];
 
-function pzdamat($bbd) {
+function pzdamat($bbd, $l) {
     foreach ($bbd as &$daiktas) {
-        $daiktas['color'] = 'red';
+        $daiktas['color'] = 'grey';
     }
+    $bbd[$l]['color'] = 'red';
     
     return $bbd;
 }
 
-$bbd = pzdamat($bbd);
+$l = rand(0, 3);
+$bbd = pzdamat($bbd, $l);
 ?>
 
 <html>
