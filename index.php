@@ -44,8 +44,8 @@ $bbd = pzdamat($bbd, $l);
         <div class="flex">
             <?php foreach ($bbd as $dalis): ?>
                 <div class="block <?php print $dalis['forma'] . ' ' . $dalis['spalva']; ?>">
-                    <?php if($dalis['show_text']): ?>
-                    <span><?php print $dalis['textas']; ?></span>
+                    <?php if ($dalis['show_text']): ?>
+                        <span><?php print $dalis['textas']; ?></span>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
