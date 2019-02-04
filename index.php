@@ -21,6 +21,14 @@ $bbd = [
         'textas' => 'D'
     ]
 ];
+
+function pzdamat($bbd){
+    foreach($bbd as &$daiktas){
+        $daiktas['spalva'] = 'red';
+    }
+    return $bbd;
+}
+$bbd = pzdamat($bbd);
 ?>
 <html>
     <head>
@@ -29,9 +37,9 @@ $bbd = [
     </head>
     <body>
         <div class="flex">
-            <?php foreach ($bbd as $key => $value): ?>
-                <div class="block <?php print $value['forma'] . ' ' . $value['spalva'] ?>">
-                    <span><?php print $value['textas'] ?></span>
+            <?php foreach ($bbd as $dalis): ?>
+                <div class="block <?php print $dalis['forma'] . ' ' . $dalis['spalva'] ?>">
+                    <span><?php print $dalis['textas'] ?></span>
                 </div>
             <?php endforeach; ?>
         </div>
