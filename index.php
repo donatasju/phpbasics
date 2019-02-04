@@ -22,26 +22,46 @@ $bbd = [
     ]
 ];
 
+$istorijos = [
+    'Dienos pradzia',
+    'Pirmos lygio istorija',
+    'Antro lygio istorija',
+    'Trecio lygio istorija'
+];
+
 function pzdamat($bbd, $l) {
     foreach ($bbd as $key => &$daiktas) {
         if ($key > $l) {
             $daiktas['color'] = 'grey';
         }
-        
+
         $daiktas['show_text'] = false;
-        
-        if($key == $l) {
+
+        if ($key == $l) {
             $daiktas['show_text'] = true;
         }
     }
 
     return $bbd;
-    
 }
 
+function stories($istorijos, $l) {
+    $text = [];
+    
+    foreach ($istorijos as $key => $istorija) {
+        if ($key <= $l) {
+            $text[] = $istorija;
+        }
+    }
+
+    return $text;
+}
 $l = rand(0, 3);
 $bbd = pzdamat($bbd, $l);
+$storiesnx = stories($istorijos, $l);
+var_dump($storiesnx);
 ?>
+
 <html>
     <head>
         <title>bbdmatas</title>
@@ -49,13 +69,13 @@ $bbd = pzdamat($bbd, $l);
     </head>
     <body>
         <div class="flex">
-            <?php foreach ($bbd as $daiktas): ?>
+<?php foreach ($bbd as $daiktas): ?>
                 <div class="block <?php print "{$daiktas['color']} {$daiktas['form']}" ?>">
-                        <?php if($daiktas['show_text']): ?>
-                            <span><?php print $daiktas['tekstas']; ?></span>
-                        <?php endif; ?>
+    <?php if ($daiktas['show_text']): ?>
+                        <span><?php print $daiktas['tekstas']; ?></span>
+                <?php endif; ?>
                 </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
         </div>
     </body>
 </html>
