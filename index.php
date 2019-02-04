@@ -1,5 +1,5 @@
 <?php
-$array = [
+$bbd = [
     [
         'tekstas' => 'As',
         'color' => 'green',
@@ -21,6 +21,14 @@ $array = [
         'form' => 'kvadratas'
     ]
 ];
+
+function pzdamat($bbd) {
+    foreach($bbd as &$daiktas) {
+        $daiktas['color'] = 'red';
+    }
+    return $bbd;
+}
+$bbd = pzdamat($bbd);
 ?>
 
 <html>
@@ -30,9 +38,9 @@ $array = [
     </head>
     <body>
         <div class="flex">
-            <?php foreach ($array as $value): ?>
-                <div class="block <?php print $value['color'] . ' ' . $value['form']; ?>">
-                    <span><?php print $value['tekstas']; ?></span>
+            <?php foreach ($bbd as $daiktas): ?>
+                <div class="block <?php print $daiktas['color'] . ' ' . $daiktas['form']; ?>">
+                    <span><?php print $daiktas['tekstas']; ?></span>
                 </div>
             <?php endforeach; ?>
         </div>
