@@ -1,5 +1,4 @@
 <?php
-
 $bbd = [
     [
         'forma' => 'apskritimas',
@@ -22,7 +21,6 @@ $bbd = [
         'textas' => 'D'
     ]
 ];
-
 ?>
 <html>
     <head>
@@ -30,9 +28,11 @@ $bbd = [
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div>
-            <?php foreach($bbd as $key => $value): ?>
-            <div class="block <?php print $value['forma'] . ' ' . $value['spalva'] ?>"><?php print $value['textas'] ?></div>
+        <div class="flex">
+            <?php foreach ($bbd as $key => $value): ?>
+                <div class="block <?php print $value['forma'] . ' ' . $value['spalva'] ?>">
+                    <span><?php print $value['textas'] ?></span>
+                </div>
             <?php endforeach; ?>
         </div>
     </body>

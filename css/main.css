@@ -1,11 +1,16 @@
 body {
     color: white;
 }
-.block{
-    display: inline-block;
+.flex {
+    display: flex;
+}
+.block {
+    display: flex;
     height: 100px;
     width: 100px;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 .apskritimas {
     border: 1px solid black;
