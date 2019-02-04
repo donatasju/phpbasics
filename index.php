@@ -23,11 +23,12 @@ $bbd = [
 ];
 
 function pzdamat($bbd){
-    foreach($bbd as &$daiktas){
-        $daiktas['spalva'] = 'red';
+    foreach($bbd as &$dalis){
+        $dalis['spalva'] = 'red';
     }
     return $bbd;
 }
+
 $bbd = pzdamat($bbd);
 ?>
 <html>
@@ -38,8 +39,8 @@ $bbd = pzdamat($bbd);
     <body>
         <div class="flex">
             <?php foreach ($bbd as $dalis): ?>
-                <div class="block <?php print $dalis['forma'] . ' ' . $dalis['spalva'] ?>">
-                    <span><?php print $dalis['textas'] ?></span>
+                <div class="block <?php print $dalis['forma'] . ' ' . $dalis['spalva']; ?>">
+                    <span><?php print $dalis['textas']; ?></span>
                 </div>
             <?php endforeach; ?>
         </div>
