@@ -22,40 +22,51 @@ $bbd = [
     ]
 ];
 
-$array = [
-    'Dienos pradzia',
-    'Pirmo levelio istorija',
-    'Antro levelio istorija',
-    'Trecio levelio istorija'
+$stories = [
+    [
+        'text' => 'Plyta nesijuoke is mano medinio bajerio',
+        'spalva' => 'green'
+    ],
+    [
+        'text' => 'Kalbejau su plyta - ji neatsake atgal',
+        'spalva' => 'green'
+    ],
+    [
+        'text' => 'Kostiumas per mazas pasimatymui su plyta',
+        'spalva' => 'orange'
+    ],
+    [
+        'text' => 'Skauda b*b* atsiremus i plyta',
+        'spalva' => 'red'
+    ]
 ];
 
-function spausdinam($array, $l) {
-    $tekstas = [];
-    foreach ($array as $key => $istorija) {
-        if ($key <= $l) {
-            $tekstas[] = $istorija;
+function build_storyline($stories, $level) {
+    $new_story = [];
+    foreach ($stories as $key => $istorija) {
+        if ($key <= $level) {
+            $new_story[] = $istorija;
         }
     }
-    return $tekstas;
+    return $new_story;
 }
 
-function pzdamat($bbd, $l) {
+function pzdamat($bbd, $level) {
     foreach ($bbd as $key => &$dalis) {
-        if ($key > $l) {
+        if ($key > $level) {
             $dalis['spalva'] = 'gray';
         }
         $dalis['show_text'] = false;
-        if ($key == $l) {
+        if ($key <= $level) {
             $dalis['show_text'] = true;
         }
     }
     return $bbd;
 }
 
-$l = rand(0, 3);
-$bbd = pzdamat($bbd, $l);
-$nuotykiai = spausdinam($array, $l);
-var_dump($nuotykiai);
+$level = rand(0, 3);
+$bbd = pzdamat($bbd, $level);
+$storyline = build_storyline($stories, $level);
 ?>
 <html>
     <head>
@@ -71,6 +82,17 @@ var_dump($nuotykiai);
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
+        </div>
+        <div class="stories">
+            <ul>
+                <?php foreach ($stories as $key => $story): ?>
+                    <?php if ($key <= $level): ?> 
+                        <li class="<?php print $story['spalva']; ?>">
+                            <?php print $story['text']; ?>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </body>
 </html>

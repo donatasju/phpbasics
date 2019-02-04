@@ -1,6 +1,3 @@
-body {
-    color: white;
-}
 .flex {
     display: flex;
 }
@@ -30,4 +27,7 @@ body {
 }
 .gray {
     background-color: gray;
+}
+.stories {
+    display: inline-block;
 }
