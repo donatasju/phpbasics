@@ -23,11 +23,12 @@ $bbd = [
 ];
 
 function pzdamat($bbd, $l) {
-    foreach ($bbd as &$daiktas) {
-        $daiktas['color'] = 'grey';
+    foreach ($bbd as $key => &$daiktas) {
+        if ($key > $l) {
+            $daiktas['color'] = 'grey';
+        }
     }
-    $bbd[$l]['color'] = 'red';
-    
+
     return $bbd;
 }
 
