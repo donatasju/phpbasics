@@ -56,6 +56,7 @@ function stories($istorijos, $l) {
 
     return $text;
 }
+
 $l = rand(0, 3);
 $bbd = pzdamat($bbd, $l);
 $storiesnx = stories($istorijos, $l);
