@@ -70,13 +70,13 @@ var_dump($storiesnx);
     </head>
     <body>
         <div class="flex">
-<?php foreach ($bbd as $daiktas): ?>
+            <?php foreach ($bbd as $daiktas): ?>
                 <div class="block <?php print "{$daiktas['color']} {$daiktas['form']}" ?>">
-    <?php if ($daiktas['show_text']): ?>
+                    <?php if ($daiktas['show_text']): ?>
                         <span><?php print $daiktas['tekstas']; ?></span>
-                <?php endif; ?>
+                    <?php endif; ?>
                 </div>
-                <?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
     </body>
 </html>
