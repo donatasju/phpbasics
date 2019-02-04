@@ -1,21 +1,26 @@
-.klase_0 {
-    background-image: url('../images/test.gif');
+body {
+    color: white;
 }
-.klase_1 {
-    background-image: url('../images/test2.gif');
-}
-.stulpelis {
-    display:inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
-}
-.container {
+.block{
     display: inline-block;
-    border: 1px solid black;
-    padding: 10px;
+    height: 100px;
+    width: 100px;
+    text-align: center;
 }
-.kubas-win {
+.apskritimas {
     border: 1px solid black;
+    border-radius: 50%;
+}
+.kvadratas {
+    border: 1px solid black;
+}
+.orange {
+    background-color: orange;
+}
+.red {
+    background-color: red;
+}
+.green {
+    background-color: green;
+
 }

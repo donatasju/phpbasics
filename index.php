@@ -2,13 +2,13 @@
 
 $bbd = [
     [
-        'forma' => 'apvali',
-        'spalva' => 'zalia',
+        'forma' => 'apskritimas',
+        'spalva' => 'green',
         'textas' => 'AS'
     ],
     [
         'forma' => 'kvadratas',
-        'spalva' => 'zalia',
+        'spalva' => 'green',
         'textas' => 'B'
     ],
     [
@@ -18,9 +18,22 @@ $bbd = [
     ],
     [
         'forma' => 'kvadratas',
-        'spalva' => 'raudona',
+        'spalva' => 'red',
         'textas' => 'D'
     ]
 ];
-var_dump($bbd);
+
 ?>
+<html>
+    <head>
+        <title>BBD mat</title>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div>
+            <?php foreach($bbd as $key => $value): ?>
+            <div class="block <?php print $value['forma'] . ' ' . $value['spalva'] ?>"><?php print $value['textas'] ?></div>
+            <?php endforeach; ?>
+        </div>
+    </body>
+</html>
