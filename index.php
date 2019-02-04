@@ -22,14 +22,17 @@ $bbd = [
     ]
 ];
 
-function pzdamat($bbd) {
-    foreach ($bbd as $key =>$dalis) {
-        $bbd[$key]['spalva'] = 'red';
+function pzdamat($bbd, $l) {
+    foreach ($bbd as $key => $dalis) {
+        if ($key > $l) {
+            $bbd[$key]['spalva'] = 'gray';
+        }
     }
     return $bbd;
 }
 
-$bbd = pzdamat($bbd);
+$l = rand(0, 3);
+$bbd = pzdamat($bbd, $l);
 ?>
 <html>
     <head>
