@@ -30,12 +30,12 @@ function pzdamat($bbd, $l) {
     }
 
     return $bbd;
+    
 }
 
 $l = rand(0, 3);
 $bbd = pzdamat($bbd, $l);
 ?>
-
 <html>
     <head>
         <title>pzdamatas</title>
