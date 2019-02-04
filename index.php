@@ -22,6 +22,23 @@ $bbd = [
     ]
 ];
 
+$array = [
+    'Dienos pradzia',
+    'Pirmo levelio istorija',
+    'Antro levelio istorija',
+    'Trecio levelio istorija'
+];
+
+function spausdinam($array, $l) {
+    $tekstas = [];
+    foreach ($array as $key => $istorija) {
+        if ($key <= $l) {
+            $tekstas[] = $istorija;
+        }
+    }
+    return $tekstas;
+}
+
 function pzdamat($bbd, $l) {
     foreach ($bbd as $key => &$dalis) {
         if ($key > $l) {
@@ -37,6 +54,8 @@ function pzdamat($bbd, $l) {
 
 $l = rand(0, 3);
 $bbd = pzdamat($bbd, $l);
+$nuotykiai = spausdinam($array, $l);
+var_dump($nuotykiai);
 ?>
 <html>
     <head>
