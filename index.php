@@ -1,17 +1,26 @@
 <?php
 
-$sheep = ['pizdaaa'];
+function drink_beer($kiekis) {
+    $gurksniu_kiekis = 0;
+    $gurksnio_dydis = $kiekis / 10;
+    if ($gurksnio_dydis < 20) {
+        $gurksnio_dydis = 20;
+    }
 
-for ($i = 1; $i < 5; $i++) {
-    $sheep[] = &$sheep[$i - 1];
+    if ($kiekis < 20) {
+        $kiekis = $gurksnio_dydis;
+    }
+
+    $kiekis -= $gurksnio_dydis;
+
+    $gurksniu_kiekis++;
+
+    if ($kiekis > 0) {
+        $gurksniu_kiekis += drink_beer($kiekis);
+    }
+
+    return $gurksniu_kiekis;
 }
 
-foreach ($sheep as $key => $value) {
-    unset ($sheep[$key]);
-    $sheep[$key] = $value;
-}
-
-$sheep[3] = 'zopaaa';
-
-var_dump($sheep);
+print drink_beer(500);
 ?>
