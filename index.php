@@ -1,8 +1,10 @@
 <?php
 
 function drink_beer($kiekis) {
+    
     $gurksniu_kiekis = 0;
     $gurksnio_dydis = $kiekis / 10;
+    
     if ($gurksnio_dydis < 20) {
         $gurksnio_dydis = 20;
     }
@@ -12,7 +14,6 @@ function drink_beer($kiekis) {
     }
 
     $kiekis -= $gurksnio_dydis;
-
     $gurksniu_kiekis++;
 
     if ($kiekis > 0) {
