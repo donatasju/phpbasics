@@ -1,18 +1,6 @@
 .flex {
     display: flex;
 }
-.green {
-    background-color: green;
-}
-.red {
-    background-color: red;
-}
-.orange {
-    background-color: orange;
-}
-.grey {
-    background-color: grey;
-}
 .block {
     display: flex;
     height: 100px;
@@ -27,4 +15,29 @@
 .apskritimas {
     border: 1px solid black;
     border-radius: 50%;
+}
+.istorijos ul {
+    list-style-type: none;
+    margin: 120px;
+}
+.green {
+    background-color: green;
+}
+.red {
+    background-color: red;
+}
+.orange {
+    background-color: orange;
+}
+.grey {
+    background-color: grey;
+}
+.kurwa-green {
+    color: green;
+}
+.kurwa-orange {
+    color: orange;
+}
+.kurwa-red {
+    color: red;
 }

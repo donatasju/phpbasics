@@ -23,10 +23,22 @@ $bbd = [
 ];
 
 $istorijos = [
-    'Dienos pradzia',
-    'Pirmos lygio istorija',
-    'Antro lygio istorija',
-    'Trecio lygio istorija'
+    [
+        'story' => 'ifas nahui bbd',
+        'color' => 'green',
+    ],
+    [
+        'story' => 'foras su eachu nahui pz bbd',
+        'color' => 'green',
+    ],
+    [
+        'story' => 'array nahui pzda vapse bbd',
+        'color' => 'orange',
+    ],
+    [
+        'story' => 'funkcijos zopa totali',
+        'color' => 'red',
+    ],
 ];
 
 function pzdamat($bbd, $l) {
@@ -45,9 +57,9 @@ function pzdamat($bbd, $l) {
     return $bbd;
 }
 
-function stories($istorijos, $l) {
+function build_storyline($istorijos, $l) {
     $text = [];
-    
+
     foreach ($istorijos as $key => $istorija) {
         if ($key <= $l) {
             $text[] = $istorija;
@@ -59,7 +71,7 @@ function stories($istorijos, $l) {
 
 $l = rand(0, 3);
 $bbd = pzdamat($bbd, $l);
-$storiesnx = stories($istorijos, $l);
+$storiesnx = build_storyline($istorijos, $l);
 var_dump($storiesnx);
 ?>
 
@@ -77,6 +89,17 @@ var_dump($storiesnx);
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
+        </div>
+        <div class="istorijos">
+            <ul>
+                <?php foreach ($istorijos as $key => $istorija): ?>
+                    <?php if ($key <= $l): ?> 
+                        <li class="kurwa-<?php print $istorija['color']; ?>">
+                            <?php print $istorija['story']; ?>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </body>
 </html>
