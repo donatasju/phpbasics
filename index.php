@@ -1,20 +1,36 @@
 <?php
-$skaicius = 0;
+$sertifikatas = 'Iveskite savo duomenis';
+$border = '';
 
-if (isset($_POST['mygtukas'])) {
-    $skaicius = $_POST['mygtukas'] + 1;
+$vardas = $_POST['vardas'] ?? false;
+$pavarde = $_POST['pavarde'] ?? false;
+$amzius = $_POST['amzius'] ?? false;
+$lygis = $_POST['lygis'] ?? false;
+
+if (!empty($vardas && $pavarde && $lygis)) {
+    $sertifikatas = "DUCHO SERTIFIKATAS: <br> Vardas Pavarde: $vardas $pavarde <br> Amzius: $amzius <br> Lygis: $lygis";
+    $border = 'border';
 }
 ?>
 <html>
     <head>
         <title>Formos</title>
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <form action="index.php" method="POST">
-            <button name="mygtukas" value="<?php print $skaicius ?>">Paspaudimo Nr. <?php print $skaicius ?></button>
-            <?php for ($i = 0; $i < $skaicius; $i++): ?>
-                <img src="images/test.gif" height="200" width="200">
-            <?php endfor; ?> 
+            Vardas: <br><input name="vardas" type="text" placeholder="pvz. Jonas" required/><br>
+            Pavarde: <br><input name="pavarde" type="text" placeholder="pvz. Petrauskas" required/><br>
+            Amzius: <br><input name="amzius" type="number" placeholder="pvz. 26"/><br>
+            Lygis: <br>
+            <select name="lygis">
+                <option value="pradedantysis" selected>Pradedantysis</option>
+                <option value="pazenges">Pazenges</option>
+                <option value="profas">Profas</option>
+            </select>
+            <button type="submit">Generuoti Ducho Sertifikata</button>
         </form>
-    </body>
+        <p class="<?php print $border ?>"><?php print $sertifikatas ?></p>
+    </form>        
+</body>
 </html>
