@@ -1,13 +1,20 @@
 <?php
-
-function babuska_kvepia($kvepalu_kiekis_ml) {
-    $atstumas_iki_babuskos = 1;
-    if ($kvepalu_kiekis_ml > 1) {
-        $kvepalu_kiekis_ml -= $kvepalu_kiekis_ml * 0.8;
-        $atstumas_iki_babuskos += babuska_kvepia($kvepalu_kiekis_ml);
-    }
-    return $atstumas_iki_babuskos;
+$suma = 0;
+if(isset($_POST['ka_pakelti'])){
+    $pakelti = $_POST['ka_pakelti'];
+    $suma = $pakelti * $pakelti;
 }
-
-print babuska_kvepia(100);
 ?>
+<html>
+    <head>
+        <title>Formos</title>
+    </head>
+    <body>
+        <form action="index.php" method="POST">
+            Ka pakelti kvadratu
+            <input name="ka_pakelti" type="number"/>
+            <input type="submit"/>
+            <p><?php print $suma ?></p>
+        </form>
+    </body>
+</html>
