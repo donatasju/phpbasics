@@ -11,7 +11,7 @@ if(isset($_POST['mygtukas'])){
     </head>
     <body>
         <form action="index.php" method="POST">
-            <button name="mygtukas" value="<?php print $skaicius ?>"><?php print $skaicius ?></button>
+            <button name="mygtukas" value="<?php print $skaicius ?>">Paspaudimo Nr. <?php print $skaicius ?></button>
         </form>
     </body>
 </html>
