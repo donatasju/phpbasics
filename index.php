@@ -1,6 +1,9 @@
 <?php
 $sertifikatas = 'Iveskite savo duomenis';
 $border = '';
+$ducho_sertifikatas = '';
+$lygis_text = '';
+$vardas_pavarde = '';
 
 $vardas = $_POST['vardas'] ?? false;
 $pavarde = $_POST['pavarde'] ?? false;
@@ -8,7 +11,9 @@ $amzius = $_POST['amzius'] ?? false;
 $lygis = $_POST['lygis'] ?? false;
 
 if (!empty($vardas && $pavarde && $lygis)) {
-    $sertifikatas = "DUCHO SERTIFIKATAS: <br> Vardas Pavarde: <br> $vardas $pavarde <br> Amzius: $amzius <br> Lygis: $lygis";
+    $ducho_sertifikatas = 'DUCHO SERTIFIKATAS:';
+    $vardas_pavarde = 'Vardas ir Pavarde:';
+    $lygis_text = 'Lygis:';
     $border = 'border';
 }
 ?>
@@ -32,6 +37,11 @@ if (!empty($vardas && $pavarde && $lygis)) {
             </p>
             <button type="submit">Generuoti Ducho Sertifikata</button>
         </form>
-        <p class="<?php print $border ?>"><?php print $sertifikatas ?></p> 
+        <div class="<?php print $border ?>">
+            <h2><?php print $ducho_sertifikatas ?></h2>
+            <h3><?php print $vardas_pavarde ?></h3>
+            <h3><?php print $vardas . ' ' . $pavarde ?></h3>
+            <h3><?php print $lygis_text . ' ' . $lygis ?></h3>
+        </div> 
     </body>
 </html>
