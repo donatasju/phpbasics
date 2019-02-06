@@ -1,27 +1,13 @@
 <?php
 
-function drink_beer($kiekis) {
-    
-    $gurksniu_kiekis = 0;
-    $gurksnio_dydis = $kiekis / 10;
-    
-    if ($gurksnio_dydis < 20) {
-        $gurksnio_dydis = 20;
+function babuska_kvepia($kvepalu_kiekis_ml) {
+    $atstumas_iki_babuskos = 1;
+    if ($kvepalu_kiekis_ml > 1) {
+        $kvepalu_kiekis_ml -= $kvepalu_kiekis_ml * 0.8;
+        $atstumas_iki_babuskos += babuska_kvepia($kvepalu_kiekis_ml);
     }
-
-    if ($kiekis < 20) {
-        $kiekis = $gurksnio_dydis;
-    }
-
-    $kiekis -= $gurksnio_dydis;
-    $gurksniu_kiekis++;
-
-    if ($kiekis > 0) {
-        $gurksniu_kiekis += drink_beer($kiekis);
-    }
-
-    return $gurksniu_kiekis;
+    return $atstumas_iki_babuskos;
 }
 
-print drink_beer(500);
+print babuska_kvepia(100);
 ?>
