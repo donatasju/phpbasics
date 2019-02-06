@@ -1,14 +1,8 @@
 <?php
-$text = 'Iveskite skaiciu';
+$skaicius = 0;
 
-if (isset($_POST['ka_pakelti'])) {
-    $pakelti = $_POST['ka_pakelti'];
-    $text = empty($pakelti) ? 'Neivedei' : suma($pakelti);
-}
-
-function suma($x) {
-    $suma = $x ** 2;
-    return $suma;
+if(isset($_POST['mygtukas'])){
+    $skaicius = $_POST['mygtukas'] +1;
 }
 ?>
 <html>
@@ -17,10 +11,7 @@ function suma($x) {
     </head>
     <body>
         <form action="index.php" method="POST">
-            Ka pakelti kvadratu
-            <input name="ka_pakelti" type="number"/>
-            <input type="submit"/>
-            <p><?php print $text ?></p>
+            <button name="mygtukas" value="<?php print $skaicius ?>"><?php print $skaicius ?></button>
         </form>
     </body>
 </html>
