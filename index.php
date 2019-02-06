@@ -1,9 +1,6 @@
 <?php
-$sertifikatas = 'Iveskite savo duomenis';
 $border = '';
-$ducho_sertifikatas = '';
-$lygis_text = '';
-$vardas_pavarde = '';
+$sertifikato_array = [];
 
 $vardas = $_POST['vardas'] ?? false;
 $pavarde = $_POST['pavarde'] ?? false;
@@ -11,10 +8,15 @@ $amzius = $_POST['amzius'] ?? false;
 $lygis = $_POST['lygis'] ?? false;
 
 if (!empty($vardas && $pavarde && $lygis)) {
-    $ducho_sertifikatas = 'DUCHO SERTIFIKATAS:';
-    $vardas_pavarde = 'Vardas ir Pavarde:';
-    $lygis_text = 'Lygis:';
     $border = 'border';
+
+    $sertifikato_array = [
+        'tipas' => 'DUCHO SERTIFIKATAS',
+        'vardas' => $vardas,
+        'pavarde' => $pavarde,
+        'amzius' => $amzius,
+        'lygis' => $lygis
+    ];
 }
 ?>
 <html>
@@ -38,10 +40,9 @@ if (!empty($vardas && $pavarde && $lygis)) {
             <button type="submit">Generuoti Ducho Sertifikata</button>
         </form>
         <div class="<?php print $border ?>">
-            <h2><?php print $ducho_sertifikatas ?></h2>
-            <h3><?php print $vardas_pavarde ?></h3>
-            <h3><?php print $vardas . ' ' . $pavarde ?></h3>
-            <h3><?php print $lygis_text . ' ' . $lygis ?></h3>
+            <?php foreach ($sertifikato_array as $key => $value): ?>
+                <?php print $key . ': ' . $value; ?><br>
+            <?php endforeach; ?>
         </div> 
     </body>
 </html>
