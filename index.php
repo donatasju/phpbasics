@@ -1,5 +1,4 @@
 <?php
-$border = '';
 $sertifikato_array = [];
 
 $vardas = $_POST['vardas'] ?? false;
@@ -8,8 +7,6 @@ $amzius = $_POST['amzius'] ?? false;
 $lygis = $_POST['lygis'] ?? false;
 
 if (!empty($vardas && $pavarde && $lygis)) {
-    $border = 'border';
-
     $sertifikato_array = [
         'tipas' => 'DUCHO SERTIFIKATAS',
         'vardas' => $vardas,
@@ -39,9 +36,11 @@ if (!empty($vardas && $pavarde && $lygis)) {
             </p>
             <button type="submit">Generuoti Ducho Sertifikata</button>
         </form>
-        <div class="<?php print $border ?>">
+        <div class="<?php !empty($sertifikato_array) ? print 'border' : ''; ?>">            
             <?php foreach ($sertifikato_array as $key => $value): ?>
-                <?php print $key . ': ' . $value; ?><br>
+                <span class="blokas">
+                    <?php $value == $sertifikato_array['tipas'] ? print $value : print $key . ': ' . $value; ?>
+                </span>
             <?php endforeach; ?>
         </div> 
     </body>
