@@ -1,13 +1,9 @@
 <?php
+$text = 'Iveskite skaiciu';
 
 if (isset($_POST['ka_pakelti'])) {
     $pakelti = $_POST['ka_pakelti'];
-}
-
-if (empty($pakelti)) {
-    $text = 'Iveskite skaiciu';
-} else {
-    $text = suma($pakelti);
+    $text = empty($pakelti) ? 'Neivedei' : suma($pakelti);
 }
 
 function suma($x) {
