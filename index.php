@@ -1,19 +1,17 @@
 <?php
 $dir = 'uploaded/photos';
 $file = $_FILES['photo'] ?? false;
-
+var_dump($file);
 function save_file($file, $dir) {
     if ($file['error'] == 0) {
         $target_fname = time() . ' ' . $file['name'];
         $target_path = $dir . '/' . $target_fname;
         if (move_uploaded_file($file['tmp_name'], $target_path)) {
-            $success = true;
+            return true;
         }
-    } else {
-        $success = false;
     }
 
-    return $success;
+    return true;
 }
 
 if (!empty($_FILES)) {
