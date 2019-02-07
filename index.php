@@ -1,5 +1,6 @@
 <?php
 $file = $_FILES['file'] ?? false;
+$teisingi_atsakymai = 0;
 
 $masyvas = [
     [
@@ -42,7 +43,19 @@ function save_file($file, $dir = 'uploads', $allowed_types = ['image/jpeg', 'ima
 }
 
 if (!empty($file)) {
-    save_file($file, $dir);
+    save_file($file);
+}
+
+if (!empty($_POST)) {
+    $action = $_POST['action'] ?? false;
+    if ($action != 'reset') {
+        foreach ($_POST as $key => $ats) {
+            if ($ats == $masyvas[$key]['teisingas']) {
+                $teisingi_atsakymai++;
+            }
+        }
+        $atsakymas = 100 / count($masyvas) * $teisingi_atsakymai;
+    }
 }
 ?>
 <html>
@@ -65,6 +78,11 @@ if (!empty($file)) {
                 </div>
             <?php endforeach; ?>
             <input type="submit" value="Duok Rezultata!">
+            <?php if (isset($atsakymas)): ?>
+                <p><?php print $atsakymas . '%' ?></p>
+                <button name="action" value="reset">RESET</button>
+            <?php endif; ?>
+
         </form>
     </body>
 </html>
