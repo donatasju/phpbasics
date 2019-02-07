@@ -2,6 +2,64 @@
 $dir = 'uploaded';
 $file = $_FILES['photo'] ?? false;
 
+$klausimynas = [
+    [
+        'klausimas' => [
+            'kas duhas?'
+        ],
+        'atsakymai' => [
+            'bybis',
+            'kiausai',
+            'vista'
+        ],
+        'teisingas' => 2
+    ],
+    [
+        'klausimas' => [
+            'hujova masina'
+        ],
+        'atsakymai' => [
+            'Silke',
+            'Betmenas',
+            'Zopelis'
+        ],
+        'teisingas' => 2
+    ],
+    [
+        'klausimas' => [
+            'Whos the best'
+        ],
+        'atsakymai' => [
+            'PHP',
+            'JAVA',
+            'Nieko'
+        ],
+        'teisingas' => 0
+    ],
+    [
+        'klausimas' => [
+            'Lauki penktadienio?'
+        ],
+        'atsakymai' => [
+            'Nihuje',
+            'Alaus',
+            'Jop'
+        ],
+        'teisingas' => 1
+    ],
+    [
+        'klausimas' => [
+            'Nieko gero?'
+        ],
+        'atsakymai' => [
+            'gero',
+            'aha',
+            'nieko'
+        ],
+        'teisingas' => 1
+    ]
+];
+var_dump($klausimynas);
 /**
  * Saves file from a superglobal $_FILES
  * 
