@@ -10,14 +10,14 @@ function save_file($file, $dir) {
         if (move_uploaded_file($file['tmp_name'], $target_path)) {
             return true;
         }
-       return false; 
-    }    
+        return false;
+    }
 }
 
-    if (!empty($file)) {
-        save_file($file, $dir);
-    }
-    ?>
+if (!empty($file)) {
+    save_file($file, $dir);
+}
+?>
 <html>
     <head>
         <title>Formos</title>
