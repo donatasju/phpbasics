@@ -4,37 +4,27 @@ $file = $_FILES['file'] ?? false;
 $masyvas = [
     [
         'klausimas' => 'Ar sasalini sasyska?',
-        [
-            'atsakymas' => ['taip', 'Xujnia', 'nebepisk proto']
-        ],
+        'atsakymas' => ['taip', 'Xujnia', 'nebepisk proto'],
         'teisingas' => 2
     ],
     [
         'klausimas' => 'Ar bybis kiausai?',
-        [
-            'atsakymas' => ['zopa', 'pizdiec', 'taskau ir lapnoju']
-        ],
+        'atsakymas' => ['zopa', 'pizdiec', 'taskau ir lapnoju'],
         'teisingas' => 0
     ],
     [
         'klausimas' => 'Ar myli burokus?',
-        [
-            'atsakymas' => ['taip', 'visiskai', 'sikna']
-        ],
+        'atsakymas' => ['taip', 'visiskai', 'sikna'],
         'teisingas' => 1
     ],
     [
         'klausimas' => 'Ar kartais atsimeki?',
-        [
-            'atsakymas' => ['saules akiniai = cool guy', 'ne', 'bijau nes pamatysiu Donata']
-        ],
+        'atsakymas' => ['saules akiniai = cool guy', 'ne', 'bijau nes pamatysiu Donata'],
         'teisingas' => 2
     ],
     [
         'klausimas' => 'Ar pizda vapse?',
-        [
-            'atsakymas' => ['neviltis...', 'soksiu pro langa be parasiuto', 'laukiu penktadienio ir alaus']
-        ],
+        'atsakymas' => ['neviltis...', 'soksiu pro langa be parasiuto', 'laukiu penktadienio ir alaus'],
         'teisingas' => 2
     ]
 ];
@@ -61,8 +51,19 @@ if (!empty($file)) {
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <form enctype="multipart/form-data" method="POST">
-            Tavo foto:<input name="file" type="file">
+        <form enctype="multipart/form-data" method="POST" action="index.php">
+            Tavo foto:<input name="file" type="file">            
+            <?php foreach ($masyvas as $key => $klausimas): ?>
+                <div>
+                    <h3><?php print $klausimas['klausimas'] ?></h3>
+                    <?php foreach ($klausimas['atsakymas'] as $ats): ?>
+                        <label>
+                            <span><?php print $ats ?></span>
+                            <input type="radio" name="ats" value="<?php $key ?>">
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
             <input type="submit" value="upload">
         </form>
     </body>
