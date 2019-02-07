@@ -62,6 +62,7 @@ if (!empty($_POST)) {
     <head>
         <title>Formos</title>
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/circle.css">
     </head>
     <body>
         <form enctype="multipart/form-data" method="POST" action="index.php">
@@ -77,12 +78,19 @@ if (!empty($_POST)) {
                     <?php endforeach; ?>
                 </div>
             <?php endforeach; ?>
-            <input type="submit" value="Duok Rezultata!">
+            <button type="submit">Duok Rezultata!</button>
             <?php if (isset($atsakymas)): ?>
-                <p><?php print $atsakymas . '%' ?></p>
-                <button name="action" value="reset">RESET</button>
+                <h3>Tavo rezultatas:</h3>
+                <div class="c100 p<?php print $atsakymas; ?>">
+                    <span><?php print $atsakymas ?>%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <p><?php print $atsakymas . '% ' ?>Duchas</p>
+                <button name="action" value="reset">Start Over</button>
             <?php endif; ?>
-
         </form>
     </body>
 </html>
