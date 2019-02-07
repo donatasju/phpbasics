@@ -8,8 +8,6 @@ function save_file($file, $dir) {
         $target_path = $dir . '/' . $target_fname;
         if (move_uploaded_file($file['tmp_name'], $target_path)) {
             $success = true;
-        } else {
-            $success = false;
         }
     } else {
         $success = false;
