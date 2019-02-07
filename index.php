@@ -6,22 +6,18 @@ function save_file($file, $dir) {
     if ($file['error'] == 0) {
         $target_file_name = time() . '-' . $file['name'];
         $target_path = $dir . '/' . $target_file_name;
-        $errors = false;
 
         if (move_uploaded_file($file['tmp_name'], $target_path)) {
-            $success = true;
-        } else {
-            $success = false;
+            return true;
         }
-    } else {
-        $errors = true;
-    }
+       return false; 
+    }    
 }
 
-if (!empty($file)) {
-    save_file($file, $dir);
-}
-?>
+    if (!empty($file)) {
+        save_file($file, $dir);
+    }
+    ?>
 <html>
     <head>
         <title>Formos</title>
