@@ -12,7 +12,7 @@ function save_file($file, $dir) {
         }
     }
 
-    return true;
+    return false;
 }
 
 if (!empty($_FILES)) {
