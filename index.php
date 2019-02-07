@@ -2,11 +2,12 @@
 $file = $_FILES['file'] ?? false;
 $dir = 'uploads';
 
-function save_file($file, $dir) {    
+function save_file($file, $dir) {
     if ($file['error'] == 0) {
-        $target_file_name = time() . $file['name'];
+        $target_file_name = time() . '-' . $file['name'];
         $target_path = $dir . '/' . $target_file_name;
-        
+        $errors = false;
+
         if (move_uploaded_file($file['tmp_name'], $target_path)) {
             $success = true;
         } else {
