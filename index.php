@@ -52,19 +52,19 @@ if (!empty($file)) {
     </head>
     <body>
         <form enctype="multipart/form-data" method="POST" action="index.php">
-            Tavo foto:<input name="file" type="file">            
-            <?php foreach ($masyvas as $key => $klausimas): ?>
+            <label>Tavo foto:<input name="file" type="file"></label>            
+            <?php foreach ($masyvas as $klausimo_id => $klausimas): ?>
                 <div>
                     <h3><?php print $klausimas['klausimas'] ?></h3>
-                    <?php foreach ($klausimas['atsakymas'] as $ats): ?>
+                    <?php foreach ($klausimas['atsakymas'] as $atsakymo_id => $ats): ?>
                         <label>
                             <span><?php print $ats ?></span>
-                            <input type="radio" name="ats" value="<?php $key ?>">
+                            <input type="radio" name="<?php print $klausimo_id; ?>" value="<?php print $atsakymo_id ?>">
                         </label>
                     <?php endforeach; ?>
                 </div>
             <?php endforeach; ?>
-            <input type="submit" value="upload">
+            <input type="submit" value="Duok Rezultata!">
         </form>
     </body>
 </html>
