@@ -1,43 +1,16 @@
-.flex {
-    display: flex;
-}
-.block {
-    display: flex;
-    height: 100px;
-    width: 100px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-.kvadratas {
-    border: solid 1px black;
-}
-.apskritimas {
+.border {
+    display: inline-block;
     border: 1px solid black;
-    border-radius: 50%;
+    background-image: url('../images/test.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 331px;
+    height: 400px;
+    color: white;
+    font-size: 25px;
+    text-align: center;
 }
-.istorijos ul {
-    list-style-type: none;
-    margin: 20px 120px;
-}
-.green {
-    background-color: green;
-}
-.red {
-    background-color: red;
-}
-.orange {
-    background-color: orange;
-}
-.grey {
-    background-color: grey;
-}
-.kurwa-green {
-    color: green;
-}
-.kurwa-orange {
-    color: orange;
-}
-.kurwa-red {
-    color: red;
+.blokas, label {
+    display: block;
+    margin: 10px;
 }

@@ -1,11 +1,36 @@
 <?php
+$dir = 'uploaded/photos';
+$file = $_FILES['photo'] ?? false;
 
-$roll_joints = true;
+function save_file($file, $dir) {
+    if ($file['error'] == 0) {
+        $target_fname = time() . ' ' . $file['name'];
+        $target_path = $dir . '/' . $target_fname;
+        if (move_uploaded_file($file['tmp_name'], $target_path)) {
+            $success = true;
+        } else {
+            $success = false;
+        }
+    } else {
+        $success = false;
+    }
 
-$joint1 = $$roll_joints;
-$joint2 = &$joint1;
-$joint3 = &$joint2;
+    return $success;
+}
 
-print $joint1;
-print $joint2;
-print $joint3;
+if (!empty($_FILES)) {
+    save_file($file, $dir);
+}
+?>
+
+<html>
+    <head>
+        <title>Files</title>
+    </head>
+    <body>
+        <form enctype="multipart/form-data" method="POST">
+            Tavo foto: <input name="photo" type="file">
+            <input type="submit" value="Gauti rezultata">
+        </form>
+    </body>
+</html>
