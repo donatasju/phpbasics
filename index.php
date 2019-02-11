@@ -1,99 +1,19 @@
 <?php
-$file = $_FILES['file'] ?? false;
-$teisingi_atsakymai = 0;
-
-$masyvas = [
-    [
-        'klausimas' => 'Ar sasalini sasyska?',
-        'atsakymas' => ['taip', 'Xujnia', 'nebepisk proto'],
-        'teisingas' => 2
-    ],
-    [
-        'klausimas' => 'Ar bybis kiausai?',
-        'atsakymas' => ['zopa', 'pizdiec', 'taskau ir lapnoju'],
-        'teisingas' => 0
-    ],
-    [
-        'klausimas' => 'Ar myli burokus?',
-        'atsakymas' => ['taip', 'visiskai', 'sikna'],
-        'teisingas' => 1
-    ],
-    [
-        'klausimas' => 'Ar kartais atsimeki?',
-        'atsakymas' => ['saules akiniai = cool guy', 'ne', 'bijau nes pamatysiu Donata'],
-        'teisingas' => 2
-    ],
-    [
-        'klausimas' => 'Ar pizda vapse?',
-        'atsakymas' => ['neviltis...', 'soksiu pro langa be parasiuto', 'laukiu penktadienio ir alaus'],
-        'teisingas' => 2
-    ]
-];
-
-function save_file($file, $dir = 'uploads', $allowed_types = ['image/jpeg', 'image/png']) {
-    if ($file['error'] == 0 && in_array($file['type'], $allowed_types)) {
-        $target_file_name = microtime() . '-' . strtolower($file['name']);
-        $target_path = $dir . '/' . $target_file_name;
-
-        if (move_uploaded_file($file['tmp_name'], $target_path)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-if (!empty($file)) {
-    save_file($file);
-}
-
-if (!empty($_POST)) {
-    $action = $_POST['action'] ?? false;
-    if ($action != 'reset') {
-        foreach ($_POST as $key => $ats) {
-            if ($ats == $masyvas[$key]['teisingas']) {
-                $teisingi_atsakymai++;
-            }
-        }
-        $atsakymas = 100 / count($masyvas) * $teisingi_atsakymai;
-    }
-}
+$input = filter_input_array(INPUT_POST, [
+    'vardas' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ]);
 ?>
 <html>
     <head>
-        <title>Formos</title>
+        <title>Hack me</title>
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/circle.css">
     </head>
     <body>
-        <?php if (!isset($atsakymas)): ?>
-            <form enctype="multipart/form-data" method="POST" action="index.php">
-                <label>Tavo foto:<input name="file" type="file"></label>            
-                <?php foreach ($masyvas as $klausimo_id => $klausimas): ?>
-                    <div>
-                        <h3><?php print $klausimas['klausimas'] ?></h3>
-                        <?php foreach ($klausimas['atsakymas'] as $atsakymo_id => $ats): ?>
-                            <label>
-                                <span><?php print $ats ?></span>
-                                <input type="radio" name="<?php print $klausimo_id; ?>" value="<?php print $atsakymo_id ?>">
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endforeach; ?>
-                <button type="submit">Duok Rezultata!</button>
-            </form>
-        <?php else: ?>
-            <form enctype="multipart/form-data" method="POST" action="index.php">
-                <h3>Tavo rezultatas:</h3>
-                <div class="c100 p<?php print $atsakymas; ?>">
-                    <span><?php print $atsakymas ?>%</span>
-                    <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </div>
-                <p><?php print $atsakymas . '% ' ?>Duchas</p>
-                <button name="action" value="reset">Start Over</button>            
-            </form>
-        <?php endif; ?>
+        <h1><?php print $input['vardas'] ?? ''; ?></h1>
+        <h2>Hack this page</h2>
+        <form method="POST">
+            <input type="text" name="vardas">
+            <input type="submit">
+        </form>
     </body>
 </html>
