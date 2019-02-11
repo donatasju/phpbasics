@@ -30,9 +30,11 @@ $array = [
 
 function get_safe_input($form) {
     $filtro_parametrai = [];
+    
     foreach ($form['input'] as $key => $value) {
         $filtro_parametrai[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
+    
     $filtro_parametrai['action'] = FILTER_SANITIZE_SPECIAL_CHARS;     
 
     return filter_input_array(INPUT_POST, $filtro_parametrai);
