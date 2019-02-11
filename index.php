@@ -29,13 +29,13 @@ $array = [
 ];
 
 function get_safe_input($form) {
-    $input = [];
+    $filtro_parametrai = [];
     foreach ($form['input'] as $key => $value) {
-        $input[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
+        $filtro_parametrai[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
-    $saugu = filter_input_array(INPUT_POST, $input);
+    $filtro_parametrai['action'] = FILTER_SANITIZE_SPECIAL_CHARS;     
 
-    return $saugu;
+    return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
 var_dump(get_safe_input($array));
