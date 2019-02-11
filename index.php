@@ -31,7 +31,7 @@ $array = [
 ?>
 <html>
     <head>
-        <title>Hack me</title>
+        <title>Forma is array</title>
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
@@ -45,7 +45,11 @@ $array = [
                 </label>
             <?php endforeach; ?>
             <?php foreach ($array['button'] as $value): ?>
-                <button name="<?php print $value['name']; ?>" value="<?php print $value['value']; ?>"><?php print $value['label']; ?></button>
+                <button 
+                    name="<?php print $value['name']; ?>" 
+                    value="<?php print $value['value']; ?>">
+                        <?php print $value['label']; ?>
+                </button>
             <?php endforeach; ?>
         </form>
     </body>
