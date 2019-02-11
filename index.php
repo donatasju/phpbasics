@@ -1,4 +1,7 @@
 <?php
+//$input =  filter_input_array(INPUT_POST, [
+//    'vardas' => FILTER_SANITIZE_SPECIAL_CHARS,
+//        ]);
 $array = [
     'input' => [
         [
@@ -38,12 +41,12 @@ $array = [
         <h1></h1>
         <h2>Hack this page</h2>
         <form method="POST">
-            <label>
-                <?php foreach ($array['input'] as $input): ?>
+            <?php foreach ($array['input'] as $input): ?>
+                <label>
                     <span><?php print $input['text']; ?></span>
                     <input type="<?php print $input['type']; ?>" name="<?php print $input['id']; ?>" placeholder="<?php print $input['placeholder']; ?>">
-                <?php endforeach; ?>
-            </label>
+                </label>
+            <?php endforeach; ?>
             <?php foreach ($array['button'] as $button): ?>
                 <button name="<?php print $button['name']; ?>" value="<?php print $button['value']; ?>"><?php print $button['text']; ?></button>
             <?php endforeach; ?>
