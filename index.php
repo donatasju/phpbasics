@@ -65,21 +65,24 @@ if (!empty($_POST)) {
         <link rel="stylesheet" href="css/circle.css">
     </head>
     <body>
-        <form enctype="multipart/form-data" method="POST" action="index.php">
-            <label>Tavo foto:<input name="file" type="file"></label>            
-            <?php foreach ($masyvas as $klausimo_id => $klausimas): ?>
-                <div>
-                    <h3><?php print $klausimas['klausimas'] ?></h3>
-                    <?php foreach ($klausimas['atsakymas'] as $atsakymo_id => $ats): ?>
-                        <label>
-                            <span><?php print $ats ?></span>
-                            <input type="radio" name="<?php print $klausimo_id; ?>" value="<?php print $atsakymo_id ?>">
-                        </label>
-                    <?php endforeach; ?>
-                </div>
-            <?php endforeach; ?>
-            <button type="submit">Duok Rezultata!</button>
-            <?php if (isset($atsakymas)): ?>
+        <?php if (!isset($atsakymas)): ?>
+            <form enctype="multipart/form-data" method="POST" action="index.php">
+                <label>Tavo foto:<input name="file" type="file"></label>            
+                <?php foreach ($masyvas as $klausimo_id => $klausimas): ?>
+                    <div>
+                        <h3><?php print $klausimas['klausimas'] ?></h3>
+                        <?php foreach ($klausimas['atsakymas'] as $atsakymo_id => $ats): ?>
+                            <label>
+                                <span><?php print $ats ?></span>
+                                <input type="radio" name="<?php print $klausimo_id; ?>" value="<?php print $atsakymo_id ?>">
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endforeach; ?>
+                <button type="submit">Duok Rezultata!</button>
+            </form>
+        <?php else: ?>
+            <form enctype="multipart/form-data" method="POST" action="index.php">
                 <h3>Tavo rezultatas:</h3>
                 <div class="c100 p<?php print $atsakymas; ?>">
                     <span><?php print $atsakymas ?>%</span>
@@ -89,8 +92,8 @@ if (!empty($_POST)) {
                     </div>
                 </div>
                 <p><?php print $atsakymas . '% ' ?>Duchas</p>
-                <button name="action" value="reset">Start Over</button>
-            <?php endif; ?>
-        </form>
+                <button name="action" value="reset">Start Over</button>            
+            </form>
+        <?php endif; ?>
     </body>
 </html>
