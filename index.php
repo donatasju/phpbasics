@@ -27,17 +27,18 @@ $array = [
         ]
     ]
 ];
-function get_safe_input($form){
-    $input = filter_input_array(INPUT_POST,[
-        'name' => FILTER_SANITIZE_SPECIAL_CHARS,
-        'zirniai' => FILTER_SANITIZE_SPECIAL_CHARS,
-        'reason' => FILTER_SANITIZE_SPECIAL_CHARS,
-    ]);
-    return $input;
+
+function get_safe_input($form) {
+    $input = [];
+    foreach ($form['input'] as $key => $value) {
+        $input[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
+    }
+    $saugu = filter_input_array(INPUT_POST, $input);
+
+    return $saugu;
 }
 
-var_dump(get_safe_input($_POST));
-
+var_dump(get_safe_input($array));
 ?>
 <html>
     <head>
