@@ -1,29 +1,28 @@
 <?php
 $array = [
     'input' => [
+        'name' =>
         [
             'type' => 'text',
-            'name' => 'name',
             'placeholder' => 'Vardas',
             'label' => 'Mano Vardas'
         ],
+        'zirniai' =>
         [
             'type' => 'text',
-            'name' => 'zirniai',
             'placeholder' => '1-100',
             'label' => 'Kiek turiu zirniu?'
         ],
+        'reason' =>
         [
-            'name' => 'action',
             'placeholder' => 'issipasakok',
             'label' => 'Paslaptis',
             'type' => 'password',
         ],
     ],
     'button' => [
+        'do_zirniai' =>
         [
-            'name' => 'action',
-            'value' => 'do_zirniai',
             'label' => 'paberti'
         ]
     ]
@@ -36,18 +35,18 @@ $array = [
     </head>
     <body>
         <form method="POST">
-            <?php foreach ($array['input'] as $input): ?>
+            <?php foreach ($array['input'] as $input_index => $input): ?>
                 <label>
                     <span><?php print $input['label']; ?></span>
                     <input type="<?php print $input['type']; ?>" 
-                           name="<?php print $input['name']; ?>" 
+                           name="<?php print $input_index; ?>" 
                            placeholder="<?php print $input['placeholder']; ?>">
                 </label>
             <?php endforeach; ?>
-            <?php foreach ($array['button'] as $value): ?>
-                <button 
-                    name="<?php print $value['name']; ?>" 
-                    value="<?php print $value['value']; ?>">
+            <?php foreach ($array['button'] as $key => $value): ?>
+                <button
+                    name="action" 
+                    value="<?php print $key; ?>">
                         <?php print $value['label']; ?>
                 </button>
             <?php endforeach; ?>
