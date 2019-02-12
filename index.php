@@ -40,8 +40,8 @@ function validate_not_empty($safe_input, &$form) {
 
 function validate_form($input, &$form) {
     foreach($form['fields'] as $field) {
-        foreach($field['validators'] as $kurwa)
-        if(is_callable($kurwa)) {
+        foreach($field['validators'] as $validator)
+        if(is_callable($validator)) {
             var_dump('lol');
         } else {
             throw new Exception("noriu valgyt");
