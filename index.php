@@ -38,13 +38,24 @@ function validate_not_empty($safe_input, &$form) {
     return $form;
 }
 
+function validate_form($input, &$form) {
+    foreach($form['fields'] as $field) {
+        foreach($field['validators'] as $kurwa)
+        if(is_callable($kurwa)) {
+            var_dump('lol');
+        } else {
+            throw new Exception("noriu valgyt");
+        }
+    }
+}
+
 $form = [
     'fields' => [
         'vardas' => [
             'label' => 'Mano vardas',
             'type' => 'text',
             'placeholder' => 'Vardas',
-            'validate' => [
+            'validators' => [
                 'validate_not_empty',
             ]
         ],
@@ -52,7 +63,7 @@ $form = [
             'label' => 'Kiek turiu zirniu?',
             'type' => 'text',
             'placeholder' => '1-100',
-            'validate' => [
+            'validators' => [
                 'validate_not_empty',
             ]
         ],
@@ -60,7 +71,7 @@ $form = [
             'label' => 'Paslaptis, kodel turiu zirniu',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
-            'validate' => [
+            'validators' => [
                 'validate_not_empty',
             ]
         ]
