@@ -47,7 +47,7 @@ function validate_is_number($field_input, &$field) {
 }
 
 function validate_form($input, &$form) {
-    foreach ($form['fields'] as $field_id => $field) {
+    foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validators'] as $validator) {
             if (is_callable($validator)) {
                 if(!$validator($input[$field_id], $field)) {
@@ -102,6 +102,7 @@ $form = [
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
+    validate_form($safe_input, $form);
 }
 ?>
 
