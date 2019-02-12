@@ -24,19 +24,27 @@ function get_safe_input($form) {
  * @throws Exception
  */
 function validate_form($input, &$form) {
-    foreach ($form['fields'] as $field_id => $field) {
+    $success = true;
+
+    foreach ($form['fields'] as $field_id => &$field) {
+
         foreach ($field['validate'] as $validator) {
+
             if (is_callable($validator)) {
+
                 if (!$validator($input[$field_id], $field)) {
+                    $success = false;
                     break;
                 }
             } else {
+                $success = false;
                 throw new Exception(strtr('Not callable @validator function', [
                     '@validator' => $validator
                 ]));
             }
         }
     }
+    return $success;
 }
 
 /**
@@ -48,7 +56,7 @@ function validate_form($input, &$form) {
 function validate_not_empty($field_input, &$field) {
     if (strlen($field_input) == 0) {
         $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'kad palika @field tuscia!', ['@field' => $field['label']
+                . 'kad palikai @field tuscia!', ['@field' => $field['label']
         ]);
     } else {
         return true;
@@ -111,7 +119,7 @@ $form = [
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
-    validate_form($input, $form);
+    validate_form($safe_input, $form);
 }
 ?>
 <html>
