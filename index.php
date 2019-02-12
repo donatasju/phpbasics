@@ -19,13 +19,15 @@ function get_safe_input($form) {
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
-function validate_form($input, &$form){
-    foreach($form['fields'] as $field){
-        $validate_not_empty = $field['validate'];
-        if(is_callable($validate_not_empty)){
-            var_dump('is callable');
-        } else {
-            throw new Exception('Not callable function');
+function validate_form($input, &$form) {
+    foreach ($form['fields'] as $field) {
+        $validate_not_empty[] = $field['validate'];
+        foreach ($validate_not_empty as $one_validation) {
+            if (is_callable($one_validation)) {
+                var_dump('is callable');
+            } else {
+                throw new Exception('Not callable function');
+            }
         }
     }
 }
