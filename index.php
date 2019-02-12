@@ -28,10 +28,9 @@ function get_safe_input($form) {
  */
 function validate_not_empty($safe_input, &$form) {
     foreach ($form['fields'] as $field_id => &$field) {
-        if ($safe_input[$field_id] == '' && $field['validate']) {
+        if ($field['validate'] && $safe_input[$field_id] == '') {
             $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                    . 'kad palika @field tuscia!',
-                    ['@field' => $field['label']
+                    . 'kad palika @field tuscia!', ['@field' => $field['label']
             ]);
         }
     }
@@ -43,21 +42,30 @@ $form = [
     'fields' => [
         'vardas' => [
             'label' => 'Mano vardas',
-            'validate' => true,
             'type' => 'text',
-            'placeholder' => 'Vardas'
+            'placeholder' => 'Vardas',
+            'validate' =>
+            [
+                'validate_not_empty'
+            ],
         ],
         'zirniu_kiekis' => [
             'label' => 'Kiek turiu zirniu?',
             'type' => 'text',
             'placeholder' => '1-100',
-            'validate' => false,
+            'validate' =>
+            [
+                'validate_not_empty'
+            ],
         ],
         'paslaptis' => [
             'label' => 'Paslaptis, kodel turiu zirniu',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
-            'validate' => true,
+            'validate' =>
+            [
+                'validate_not_empty'
+            ],
         ]
     ],
     'buttons' => [
@@ -72,7 +80,6 @@ if (!empty($_POST)) {
     validate_not_empty($safe_input, $form);
 }
 ?>
-
 <html>
     <head>
         <title>02/11/2019</title>
