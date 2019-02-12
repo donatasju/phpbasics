@@ -25,7 +25,7 @@ function validate_form($input, &$form) {
     foreach ($form['fields'] as $field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
-                $validator();
+                $validator($field_input, &$field);
             } else {
                 throw new Exception(strtr('Not callable @validator function', [
                     '@validator' => $validator
@@ -82,6 +82,7 @@ $form = [
             'placeholder' => '1-100',
             'validate' =>
             [
+                'validate_not_empty',
                 'validate_is_number'
             ],
         ],
@@ -91,7 +92,7 @@ $form = [
             'placeholder' => 'Issipasakok',
             'validate' =>
             [
-                'validate_not_empty'
+                'validate_not_empty',
             ],
         ]
     ],
