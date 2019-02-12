@@ -27,7 +27,7 @@ function get_safe_input($form) {
  */
 function validate_not_empty($safe_input, &$form) {
     foreach ($form['fields'] as $field_id => &$field) {
-        if ($field['validate'] && $safe_input[$field_id] == '') {
+        if ($safe_input[$field_id] == '') {
             $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
                     . 'kad palika @field tuscia!',
                     ['@field' => $field['label']
