@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Prevents HTML/JS/MYSQL injection
  * for all $form fields
@@ -25,8 +26,8 @@ function get_safe_input($form) {
  * @param array $form
  * @return type
  */
-function validate_not_empty($safe_input, &$field) {
-    if (strlen($safe_input) == 0) {
+function validate_not_empty($field_input, &$field) {
+    if (strlen($field_input) == 0) {
         $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
                 . 'kad palika @field tuscia!', ['@field' => $field['label']
         ]);
@@ -35,13 +36,26 @@ function validate_not_empty($safe_input, &$field) {
     }
 }
 
+function validate_is_number($field_input, &$field) {
+    if (!is_numeric($field_input)) {
+        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'nes @field nera skaicius!', ['@field' => $field['label']
+        ]);
+    } else {
+        return true;
+    }
+}
+
 function validate_form($input, &$field) {
-    foreach($form['fields'] as $field) {
-        foreach($field['validators'] as $validator)
-        if(is_callable($validator)) {
-            var_dump('lol');
-        } else {
-            throw new Exception("Not found validate_not_empty function");
+    foreach ($form['fields'] as $field) {
+        foreach ($field['validators'] as $validator) {
+            if (is_callable($validator)) {
+                $validator($input[$field_id], $field);
+            } else {
+                throw new Exception("Not found validate_not_empty function", [
+            '@validator' => $validator
+                ]);
+            }
         }
     }
 }
@@ -54,6 +68,7 @@ $form = [
             'placeholder' => 'Vardas',
             'validators' => [
                 'validate_not_empty',
+                'validate_is_number',
             ]
         ],
         'zirniu_kiekis' => [
@@ -62,6 +77,7 @@ $form = [
             'placeholder' => '1-100',
             'validators' => [
                 'validate_not_empty',
+                'validate_is_number',
             ]
         ],
         'paslaptis' => [
@@ -70,6 +86,7 @@ $form = [
             'placeholder' => 'Issipasakok',
             'validators' => [
                 'validate_not_empty',
+                'validate_is_number',
             ]
         ]
     ],
