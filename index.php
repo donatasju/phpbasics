@@ -46,7 +46,7 @@ function validate_is_number($field_input, &$field) {
     }
 }
 
-function validate_form($input, &$field) {
+function validate_form($input, &$form) {
     foreach ($form['fields'] as $field_id => $field) {
         foreach ($field['validators'] as $validator) {
             if (is_callable($validator)) {
