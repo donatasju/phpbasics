@@ -22,10 +22,11 @@ function get_safe_input($form) {
  * @throws Exception
  */
 function validate_form($input, &$form) {
-    foreach ($form['fields'] as $field) {
+    foreach ($form['fields'] as $field_id => $field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
-                $validator($field_input, &$field);
+                if(!$validator($input[$field_id], $field)){
+                    break;
             } else {
                 throw new Exception(strtr('Not callable @validator function', [
                     '@validator' => $validator
@@ -105,7 +106,6 @@ $form = [
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
-    validate_not_empty($safe_input, $form);
     validate_form($input, $form);
 }
 ?>
