@@ -25,7 +25,9 @@ function validate_form($input, &$form) {
             if (is_callable($validator)) {
                 var_dump('is callable');
             } else {
-                throw new Exception('Not callable function');
+                throw new Exception(strtr('Not callable @validator function', [
+                    '@validator' => $validator
+                ]));
             }
         }
     }
@@ -38,16 +40,14 @@ function validate_form($input, &$form) {
  * @param array $form
  * @return type
  */
-function validate_not_empty($safe_input, &$form) {
-    foreach ($form['fields'] as $field_id => &$field) {
-        if ($field['validate'] && $safe_input[$field_id] == '') {
-            $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                    . 'kad palika @field tuscia!', ['@field' => $field['label']
-            ]);
-        }
+function validate_not_empty($safe_input, &$field) {
+    if (strlen($safe_input) == 0) {
+        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'kad palika @field tuscia!', ['@field' => $field['label']
+        ]);
+    } else {
+        return true;
     }
-
-    return $form;
 }
 
 $form = [
@@ -90,6 +90,7 @@ $form = [
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     validate_not_empty($safe_input, $form);
+    validate_form($input, $form);
 }
 ?>
 <html>
