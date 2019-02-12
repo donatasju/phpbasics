@@ -21,9 +21,8 @@ function get_safe_input($form) {
 
 function validate_form($input, &$form) {
     foreach ($form['fields'] as $field) {
-        $validate_not_empty[] = $field['validate'];
-        foreach ($validate_not_empty as $one_validation) {
-            if (is_callable($one_validation)) {
+        foreach ($field['validate'] as $validator) {
+            if (is_callable($validator)) {
                 var_dump('is callable');
             } else {
                 throw new Exception('Not callable function');
