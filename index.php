@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 
  * @param type $form
@@ -15,6 +16,7 @@ function get_safe_input($form) {
 
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
+
 /**
  * 
  * @param type $input
@@ -25,16 +27,18 @@ function validate_form($input, &$form) {
     foreach ($form['fields'] as $field_id => $field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
-                if(!$validator($input[$field_id], $field)){
+                if (!$validator($input[$field_id], $field)) {
                     break;
-            } else {
-                throw new Exception(strtr('Not callable @validator function', [
-                    '@validator' => $validator
-                ]));
+                } else {
+                    throw new Exception(strtr('Not callable @validator function', [
+                        '@validator' => $validator
+                    ]));
+                }
             }
         }
     }
 }
+
 /**
  * 
  * @param type $field_input
@@ -50,6 +54,7 @@ function validate_not_empty($field_input, &$field) {
         return true;
     }
 }
+
 /**
  * 
  * @param type $field_input
@@ -118,22 +123,22 @@ if (!empty($_POST)) {
         <h1>Generuojam forma is array</h1>
         <form method="POST">
             <!-- Input Fields -->
-            <?php foreach ($form['fields'] as $field_id => $field): ?>
+                <?php foreach ($form['fields'] as $field_id => $field): ?>
                 <label>
                     <p><?php print $field['label']; ?></p>
                     <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
-                    <?php if (isset($field['error_msg'])): ?>
+                <?php if (isset($field['error_msg'])): ?>
                         <p class="error"><?php print $field['error_msg']; ?></p>
-                    <?php endif; ?>
+                <?php endif; ?>
                 </label>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
 
             <!-- Buttons -->
             <?php foreach ($form['buttons'] as $button_id => $button): ?>
                 <button name="action" value="<?php print $button_id; ?>">
-                    <?php print $button['text']; ?>
+    <?php print $button['text']; ?>
                 </button>
-            <?php endforeach; ?>
+<?php endforeach; ?>
         </form>
     </body>
 </html>
