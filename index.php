@@ -19,6 +19,17 @@ function get_safe_input($form) {
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
+function validate_form($input, &$form){
+    foreach($form['fields'] as $field){
+        $validate_not_empty = $field['validate'];
+        if(is_callable($validate_not_empty)){
+            var_dump('is callable');
+        } else {
+            throw new Exception('Not callable function');
+        }
+    }
+}
+
 /**
  * Check all form fields if they are not empty
  * & adds error messages if so
