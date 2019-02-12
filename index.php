@@ -1,11 +1,8 @@
 <?php
-
 /**
- * Prevents HTML/JS/MYSQL injection
- * for all $form fields
- * & adds error messages if so
- * @param array $form
- * @return array Safe Input
+ * 
+ * @param type $form
+ * @return type
  */
 function get_safe_input($form) {
     $filtro_parametrai = [
@@ -18,12 +15,17 @@ function get_safe_input($form) {
 
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
-
+/**
+ * 
+ * @param type $input
+ * @param type $form
+ * @throws Exception
+ */
 function validate_form($input, &$form) {
     foreach ($form['fields'] as $field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
-                var_dump('is callable');
+                $validator();
             } else {
                 throw new Exception(strtr('Not callable @validator function', [
                     '@validator' => $validator
@@ -32,13 +34,11 @@ function validate_form($input, &$form) {
         }
     }
 }
-
 /**
- * Check all form fields if they are not empty
- * & adds error messages if so
- * @param array $safe_input
- * @param array $form
- * @return type
+ * 
+ * @param type $field_input
+ * @param type $field
+ * @return boolean
  */
 function validate_not_empty($field_input, &$field) {
     if (strlen($field_input) == 0) {
@@ -49,7 +49,12 @@ function validate_not_empty($field_input, &$field) {
         return true;
     }
 }
-
+/**
+ * 
+ * @param type $field_input
+ * @param type $field
+ * @return boolean
+ */
 function validate_is_number($field_input, &$field) {
     if (!is_numeric($field_input)) {
         $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
@@ -77,7 +82,7 @@ $form = [
             'placeholder' => '1-100',
             'validate' =>
             [
-                'validate_not_empty'
+                'validate_is_number'
             ],
         ],
         'paslaptis' => [
