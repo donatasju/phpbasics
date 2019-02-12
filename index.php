@@ -27,18 +27,19 @@ function get_safe_input($form) {
  */
 function validate_not_empty($safe_input, &$form) {
     foreach ($form['fields'] as $field_id => &$field) {
-        if ($safe_input[$field_id] == '') {
+        if (strlen($safe_input == 0)) {
             $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
                     . 'kad palika @field tuscia!',
                     ['@field' => $field['label']
             ]);
+        } else {
+            
+            return true;
         }
     }
-
-    return $form;
 }
 
-function validate_form($input, &$form) {
+function validate_form($input, &$field) {
     foreach($form['fields'] as $field) {
         foreach($field['validators'] as $validator)
         if(is_callable($validator)) {
