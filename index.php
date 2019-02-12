@@ -52,7 +52,7 @@ function validate_form($input, &$field) {
             if (is_callable($validator)) {
                 $validator($input[$field_id], $field);
             } else {
-                throw new Exception("Not found validate_not_empty function", [
+                throw new Exception("Not found @validator function", [
             '@validator' => $validator
                 ]);
             }
