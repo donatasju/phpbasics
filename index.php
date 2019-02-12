@@ -50,7 +50,10 @@ function validate_form($input, &$form) {
     foreach ($form['fields'] as $field_id => $field) {
         foreach ($field['validators'] as $validator) {
             if (is_callable($validator)) {
-                $validator($input[$field_id], $field);
+                if(!$validator($input[$field_id], $field)) {
+                    
+                    break;
+                }
             } else {
                 throw new Exception("Not found @validator function", [
             '@validator' => $validator
@@ -99,7 +102,6 @@ $form = [
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
-    validate_not_empty($safe_input, $form);
 }
 ?>
 
