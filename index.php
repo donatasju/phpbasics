@@ -44,7 +44,7 @@ function validate_form($input, &$form) {
         if(is_callable($validator)) {
             var_dump('lol');
         } else {
-            throw new Exception("noriu valgyt");
+            throw new Exception("Not found validate_not_empty function");
         }
     }
 }
