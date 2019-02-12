@@ -1,5 +1,28 @@
 <?php
-$array = [
+
+function validate_not_empty($input, &$forma) {
+
+    foreach ($forma['input'] as $key => &$fields) {
+        if ($input[$key] == '') {
+            $fields['error_msg'] = 'Iveskite duomenis';
+        }
+    }
+    return $forma;
+}
+
+function get_safe_input($form) {
+    $filtro_parametrai = [];
+
+    foreach ($form['input'] as $key => $value) {
+        $filtro_parametrai[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
+    }
+
+    $filtro_parametrai['action'] = FILTER_SANITIZE_SPECIAL_CHARS;
+
+    return filter_input_array(INPUT_POST, $filtro_parametrai);
+}
+
+$form = [
     'input' => [
         'name' =>
         [
@@ -28,19 +51,11 @@ $array = [
     ]
 ];
 
-function get_safe_input($form) {
-    $filtro_parametrai = [];
-    
-    foreach ($form['input'] as $key => $value) {
-        $filtro_parametrai[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
-    }
-    
-    $filtro_parametrai['action'] = FILTER_SANITIZE_SPECIAL_CHARS;     
-
-    return filter_input_array(INPUT_POST, $filtro_parametrai);
+if (!empty($_POST)) {
+    $input = get_safe_input($form);
+    validate_not_empty($input, $form);
 }
 
-var_dump(get_safe_input($array));
 ?>
 <html>
     <head>
@@ -49,15 +64,18 @@ var_dump(get_safe_input($array));
     </head>
     <body>
         <form method="POST">
-            <?php foreach ($array['input'] as $input_index => $input): ?>
+            <?php foreach ($form['input'] as $input_index => $input): ?>
                 <label>
-                    <span><?php print $input['label']; ?></span>
+                    <p><?php print $input['label']; ?></p>
                     <input type="<?php print $input['type']; ?>" 
                            name="<?php print $input_index; ?>" 
                            placeholder="<?php print $input['placeholder']; ?>">
+                           <?php if (isset($input['error_msg'])): ?>
+                        <p><?php print $input['error_msg']; ?></p>
+                    <?php endif; ?>
                 </label>
             <?php endforeach; ?>
-            <?php foreach ($array['button'] as $key => $value): ?>
+            <?php foreach ($form['button'] as $key => $value): ?>
                 <button
                     name="action" 
                     value="<?php print $key; ?>">
