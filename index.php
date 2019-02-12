@@ -48,14 +48,17 @@ function validate_is_number($field_input, &$field) {
 
 function validate_form($input, &$form) {
     $no_errors = true;
+    
     foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validators'] as $validator) {
             if (is_callable($validator)) {
                 if (!$validator($input[$field_id], $field)) {
+                    
                     $no_errors = false;
                     break;
                 }
             } else {
+                
                 $no_errors = false;
                 throw new Exception("Not found @validator function", [
             '@validator' => $validator
@@ -63,6 +66,7 @@ function validate_form($input, &$form) {
             }
         }
     }
+    
     return $no_errors;
 }
 
