@@ -45,7 +45,7 @@ function validate_form($input, &$form) {
     }
     
     if($success) {
-        foreach($form['callbacks'] as $funkcija) {
+        foreach($form['callbacks']['success'] as $funkcija) {
             if(is_callable($funkcija)) {
                 $funkcija();
             } else {
