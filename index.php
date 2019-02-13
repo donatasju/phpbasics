@@ -1,6 +1,12 @@
 <?php
 require_once 'functions/form.php';
 
+function array_to_file($array, $file) {
+    $stringas = json_encode($array);
+    
+    return file_put_contents($file, $stringas);
+}
+
 $form = [
     'fields' => [
         'vardas' => [

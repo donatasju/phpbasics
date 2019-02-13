@@ -1,7 +1,7 @@
 <?php
 /**
- * Filters $_POST
- * to form accordingly
+ * Filters $_POST to sanitize code to not be able fuck up code. <br>
+ * Sukuria nauja array ir i jy sudeda isfiltruota user inputa.
  * 
  * @param array $form
  * @return array safe input
@@ -20,7 +20,9 @@ function get_safe_input($form) {
 
 /**
  * Validates form
- * 
+ * first part validates if function was written correctly <br>
+ * second part calls callback_function if success <br>
+ * else calls callback_fail function <br>
  * @param array $input
  * @param array $form
  * @throws Exception
