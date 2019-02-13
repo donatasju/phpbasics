@@ -1,5 +1,20 @@
 <?php
+define('STORAGE_FILE', 'files/form_input.txt');
 require_once 'functions/form.php';
+
+function array_to_file($array, $file) {
+    $json_array = json_encode($array);
+
+    return file_put_contents($file, $json_array);
+}
+
+function form_success($safe_input, $form) {
+    return array_to_file($safe_input, STORAGE_FILE);
+}
+
+function form_fail($safe_input, $form) {
+    return false;
+}
 
 $form = [
     'fields' => [
@@ -34,10 +49,10 @@ $form = [
     ],
     'callbacks' => [
         'success' => [
-            'dummy_success'
+            'form_success'
         ],
         'fail' => [
-            'dummy_false'
+            'form_fail'
         ]
     ],
     'buttons' => [
@@ -46,13 +61,6 @@ $form = [
         ]
     ]
 ];
-
-function array_to_file($array, $file) {
-    $json_array = json_encode($array);
-    return file_put_contents($file, $json_array);
-}
-
-var_dump(array_to_file($form, $file));
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);

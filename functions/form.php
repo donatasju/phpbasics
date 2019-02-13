@@ -19,7 +19,7 @@ function get_safe_input($form) {
 }
 
 /**
- * Patikriname ar formoje esancios validacijos funkcijos yra teisingos ir iskvieciame jas(not empty, not a number).
+ * Patikriname ar formoje esancios validacijos funkcijos yra teisingos ir iskvieciame ju funkcijas(not empty, not a number).
  * 
  * @param type $input
  * @param type $form
@@ -46,7 +46,7 @@ function validate_form($input, &$form) {
     if ($success) {
         foreach ($form['callbacks']['success'] as $callback) {
             if (is_callable($callback)) {
-                $callback();
+                $callback($input, $form);
             } else {
                 throw new Exception(strtr('Not callable @function function', [
                     '@function' => $callback
@@ -56,7 +56,7 @@ function validate_form($input, &$form) {
     } else {
         foreach ($form['callbacks']['fail'] as $callback) {
             if (is_callable($callback)) {
-                $callback();
+                $callback($input, $form);
             } else {
                 throw new Exception(strtr('Not callable @function function', [
                     '@function' => $callback
