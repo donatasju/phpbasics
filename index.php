@@ -53,6 +53,15 @@ function validate_form($input, &$form) {
                 ]));
             }
         }
+        foreach ($form['callbacks']['fail'] as $callback) {
+            if (is_callable($callback)) {
+                $callback();
+            } else {
+                throw new Exception(strtr('Not callable @function function', [
+                    '@function' => $callback
+                ]));
+            }
+        }
     }
     return $success;
 }
