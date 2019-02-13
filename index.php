@@ -117,8 +117,10 @@ foreach ($file_data_arr as $user_input) {
             <?php endforeach; ?>
         </form>
         <?php if ($validation): ?>
-            <?php foreach ($stored_data as $fields): ?>
-                <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
+            <?php foreach ($stored_data as $user_data): ?>
+                <?php foreach ($user_data as $fields): ?>       
+                    <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
+                <?php endforeach; ?>
             <?php endforeach; ?>
         <?php endif; ?>
     </body>
