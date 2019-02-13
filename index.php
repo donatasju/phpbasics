@@ -16,6 +16,15 @@ function form_fail($safe_input, $form) {
     return false;
 }
 
+function file_to_array($file){
+    $masyvas = file_get_contents($file);
+    if($masyvas !=false){
+        return $masyvas;
+    }
+}
+
+var_dump(file_to_array(STORAGE_FILE));
+
 $form = [
     'fields' => [
         'vardas' => [
