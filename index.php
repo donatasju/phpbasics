@@ -1,35 +1,22 @@
 <?php
 define('STORAGE_FILE', 'files/form_input.txt');
 require_once 'functions/form.php';
-
-function array_to_file($array, $file) {
-    $json_array = json_encode($array);
-
-    return file_put_contents($file, $json_array);
-}
+require_once 'functions/file.php';
 
 function form_success($safe_input, $form) {
-    return array_to_file($safe_input, STORAGE_FILE);
+    if (file_exists(STORAGE_FILE)) {
+        $existing_array = file_to_array(STORAGE_FILE);
+        $existing_array[] = $safe_input;
+    } else {
+        $existing_array = [$safe_input];
+    }
+    
+    return array_to_file($existing_array, STORAGE_FILE);
 }
 
 function form_fail($safe_input, $form) {
     return false;
 }
-
-function file_to_array($file) {
-    $decoded_array = [];
-    if (file_exists($file)) {
-        if (file_get_contents($file, true)) {
-            return $decoded_array = json_decode(file_get_contents($file, true));
-        } else {
-            throw new Exception('Cannot open file');
-        }
-    } else {
-        throw new Exception('No file found');
-    }
-}
-
-var_dump(file_to_array(STORAGE_FILE));
 
 $form = [
     'fields' => [
