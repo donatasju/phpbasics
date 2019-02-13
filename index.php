@@ -69,6 +69,26 @@ if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $validation = validate_form($safe_input, $form);
 }
+
+$file_data_arr = file_to_array(STORAGE_FILE);
+$stored_data = [];
+
+foreach ($file_data_arr as $user_input) {
+    $stored_data[] = [
+        [
+            'title' => 'Kažkieno vardas',
+            'value' => $user_input['vardas']
+        ],
+        [
+            'title' => 'Turėjo žirnių',
+            'value' => $user_input['zirniu_kiekis']
+        ],
+        [
+            'title' => 'Jo paslaptis',
+            'value' => $user_input['paslaptis']
+        ]
+    ];
+}
 ?>
 <html>
     <head>
@@ -97,10 +117,8 @@ if (!empty($_POST)) {
             <?php endforeach; ?>
         </form>
         <?php if ($validation): ?>
-            <?php foreach (file_to_array(STORAGE_FILE) as $user_input_array): ?>
-                <p><?php print 'Tavo vardas: ' . $user_input_array['vardas']; ?></p>
-                <p><?php print 'Turi zirniu: ' . $user_input_array['zirniu_kiekis']; ?></p>
-                <p><?php print 'Tavo paslaptis: ' . $user_input_array['paslaptis']; ?></p>
+            <?php foreach ($stored_data as $fields): ?>
+                <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
             <?php endforeach; ?>
         <?php endif; ?>
     </body>
