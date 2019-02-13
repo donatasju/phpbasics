@@ -16,12 +16,12 @@ function form_fail($safe_input, $form) {
     return false;
 }
 
-function file_to_array($file){
-    $decoded_file = json_decode($file);
-    $masyvas = file_get_contents($decoded_file);
-    if($masyvas !=false){
-        return $masyvas;
+function file_to_array($file) {
+    if (file_exists(STORAGE_FILE)) {
+        $decoded_file = json_decode($file);
+        $masyvas = file_get_contents($decoded_file, true);
     }
+    return $masyvas;
 }
 
 var_dump(file_to_array(STORAGE_FILE));
