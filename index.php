@@ -22,7 +22,7 @@ function file_to_array($input, $file) {
     if (file_exists($file)) {
         $string = file_get_contents($file, true);
         
-        if ($string) {
+        if ($string !== false) {
             return json_decode($string);
         } else {
             throw new Exception('KRW nedekodino ble, nes neatidare normaliai');
