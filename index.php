@@ -43,6 +43,17 @@ function validate_form($input, &$form) {
             }
         }
     }
+    if ($success) {
+        foreach ($form['callbacks'] as $parameters) {
+            if (is_callable($parameters)) {
+                $parameters();                
+            } else {
+                throw new Exception(strtr('Not callable @validator function', [
+                    '@validator' => $parameters
+                ]));
+            }
+        }
+    }
     return $success;
 }
 
@@ -111,8 +122,7 @@ $form = [
             ],
         ]
     ],
-    'callbacks' =>
-    [
+    'callbacks' => [
         'success' => [
             'dummy_success'
         ],
@@ -120,8 +130,7 @@ $form = [
             'dummy_false'
         ]
     ],
-    'buttons' =>
-    [
+    'buttons' => [
         'do_zirniai' => [
             'text' => 'Paberti...'
         ]
