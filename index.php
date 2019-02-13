@@ -44,9 +44,9 @@ function validate_form($input, &$form) {
         }
     }
     if ($success) {
-        foreach ($form['callbacks'] as $parameters) {
+        foreach ($form['callbacks']['success'] as $parameters) {
             if (is_callable($parameters)) {
-                $parameters();                
+                $parameters();
             } else {
                 throw new Exception(strtr('Not callable @validator function', [
                     '@validator' => $parameters
