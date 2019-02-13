@@ -53,6 +53,7 @@ function validate_form($input, &$form) {
                     '@funkcija' => $callback]));
             }
         }
+    } else {
         foreach ($form['callbacks']['fail'] as $callback) {
             if (is_callable($callback)) {
                 $callback();
