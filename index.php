@@ -21,6 +21,8 @@ function file_to_array($file) {
     if (file_exists($file)) {
         if (file_get_contents($file, true)) {
             $decoded_array = json_decode(file_get_contents($file, true));
+        } else {
+            throw new Exception('Cannot open file');
         }
     } else {
         throw new Exception('No file found');
