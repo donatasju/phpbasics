@@ -17,10 +17,11 @@ function form_fail($safe_input, $form) {
 }
 
 function file_to_array($file) {
+    $decoded_array = [];
     if (file_exists($file)) {
-        $string = file_get_contents($file, true);
-        $decoded_array = json_decode($string);
-        
+        if (file_get_contents($file, true)) {
+            $decoded_array = json_decode(file_get_contents($file, true));
+        }
     } else {
         throw new Exception('No file found');
     }
