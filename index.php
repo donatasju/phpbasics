@@ -2,6 +2,7 @@
 define('STORAGE_FILE', 'files/form_input.txt');
 require_once 'functions/form.php';
 require_once 'functions/file.php';
+$validation = '';
 
 function form_success($safe_input, $form) {
     if (file_exists(STORAGE_FILE)) {
@@ -10,7 +11,7 @@ function form_success($safe_input, $form) {
     } else {
         $existing_array = [$safe_input];
     }
-    
+
     return array_to_file($existing_array, STORAGE_FILE);
 }
 
@@ -66,7 +67,7 @@ $form = [
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
-    validate_form($safe_input, $form);
+    $validation = validate_form($safe_input, $form);
 }
 ?>
 <html>
@@ -95,5 +96,12 @@ if (!empty($_POST)) {
                 </button>
             <?php endforeach; ?>
         </form>
+        <?php if ($validation): ?>
+            <?php foreach (file_to_array(STORAGE_FILE) as $user_input_array): ?>
+                <p><?php print 'Tavo vardas: ' . $user_input_array['vardas']; ?></p>
+                <p><?php print 'Turi zirniu: ' . $user_input_array['zirniu_kiekis']; ?></p>
+                <p><?php print 'Tavo paslaptis: ' . $user_input_array['paslaptis']; ?></p>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </body>
 </html>
