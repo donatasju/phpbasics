@@ -17,11 +17,14 @@ function form_fail($safe_input, $form) {
 }
 
 function file_to_array($file) {
-    if (file_exists(STORAGE_FILE)) {
-        $decoded_file = json_decode($file);
-        $masyvas = file_get_contents($decoded_file, true);
+    if (file_exists($file)) {
+        $string = file_get_contents($file, true);
+        $decoded_array = json_decode($string);
+        
+    } else {
+        throw new Exception('No file found');
     }
-    return $masyvas;
+    return $decoded_array;
 }
 
 var_dump(file_to_array(STORAGE_FILE));
