@@ -17,7 +17,8 @@ function form_fail($safe_input, $form) {
 }
 
 function file_to_array($file){
-    $masyvas = file_get_contents($file);
+    $decoded_file = json_decode($file);
+    $masyvas = file_get_contents($decoded_file);
     if($masyvas !=false){
         return $masyvas;
     }
