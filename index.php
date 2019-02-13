@@ -113,8 +113,12 @@ $form = [
     ],
     'callbacks' =>
     [
-        'success' => 'dummy_success',
-        'false' => 'dummy_false',
+        'success' => [
+            'dummy_success'
+        ],
+        'fail' => [
+            'dummy_false'
+        ]
     ],
     'buttons' =>
     [
