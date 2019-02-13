@@ -1,10 +1,23 @@
 <?php
+define('STORAGE_FILE', 'files/file.txt');
+
 require_once 'functions/form.php';
 
 function array_to_file($array, $file) {
     $stringas = json_encode($array);
     
     return file_put_contents($file, $stringas);
+}
+
+function form_success($input, $form) {
+    
+    return array_to_file($input, STORAGE_FILE);
+    
+}
+
+function form_fail($input, $form) {
+    
+    return false;
 }
 
 $form = [
@@ -40,10 +53,10 @@ $form = [
     ],
     'callbacks' => [
         'success' => [
-            'success_funkcija'
+            'form_success'
         ],
         'fail' => [
-            'failu_funkcija'
+            'form_fail'
         ]
     ],
     'buttons' => [
