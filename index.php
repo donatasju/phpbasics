@@ -44,6 +44,16 @@ function validate_form($input, &$form) {
         }
     }
     
+    if($success) {
+        foreach($form['callbacks'] as $funkcija) {
+            if(is_callable($funkcija)) {
+                $funkcija();
+            } else {
+                throw new Exception(strtr('Not callable @funkcija function', [
+                    '@funkcija' => $funkcija]));
+        }
+    }
+    
     return $success;
 }
 
