@@ -47,6 +47,13 @@ $form = [
     ]
 ];
 
+function array_to_file($array, $file) {
+    $json_array = json_encode($array);
+    return $success = file_put_contents($file, $json_array);
+}
+
+var_dump(array_to_file($form, $file));
+
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     validate_form($safe_input, $form);
