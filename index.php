@@ -1,9 +1,11 @@
 <?php
 
 /**
+ * Filters $_POST
+ * to form accordingly
  * 
- * @param type $form
- * @return type
+ * @param array $form
+ * @return array safe input
  */
 function get_safe_input($form) {
     $filtro_parametrai = [
@@ -18,26 +20,23 @@ function get_safe_input($form) {
 }
 
 /**
+ * Validates form
  * 
- * @param type $input
- * @param type $form
+ * @param array $input
+ * @param array $form
  * @throws Exception
  */
 function validate_form($input, &$form) {
     $success = true;
 
     foreach ($form['fields'] as $field_id => &$field) {
-
         foreach ($field['validate'] as $validator) {
-
             if (is_callable($validator)) {
-
                 if (!$validator($input[$field_id], $field)) {
                     $success = false;
                     break;
                 }
             } else {
-                $success = false;
                 throw new Exception(strtr('Not callable @validator function', [
                     '@validator' => $validator
                 ]));
@@ -48,9 +47,10 @@ function validate_form($input, &$form) {
 }
 
 /**
+ * Checks if field is empty
  * 
- * @param type $field_input
- * @param type $field
+ * @param string $field_input
+ * @param array $field $form Field
  * @return boolean
  */
 function validate_not_empty($field_input, &$field) {
@@ -64,9 +64,10 @@ function validate_not_empty($field_input, &$field) {
 }
 
 /**
+ * Checks if field is a number
  * 
- * @param type $field_input
- * @param type $field
+ * @param string $field_input
+ * @param array $field $form Field
  * @return boolean
  */
 function validate_is_number($field_input, &$field) {
@@ -110,13 +111,18 @@ $form = [
             ],
         ]
     ],
-    'buttons' => [
+    'callbacks' =>
+    [
+        'success' => 'dummy_success',
+        'false' => 'dummy_false',
+    ],
+    'buttons' =>
+    [
         'do_zirniai' => [
             'text' => 'Paberti...'
         ]
     ]
 ];
-
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     validate_form($safe_input, $form);
