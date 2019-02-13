@@ -11,11 +11,11 @@ function get_safe_input($form) {
     $filtro_parametrai = [
         'action' => FILTER_SANITIZE_SPECIAL_CHARS
     ];
-    
+
     foreach ($form['fields'] as $field_id => $value) {
         $filtro_parametrai[$field_id] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
-    
+
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
@@ -28,7 +28,7 @@ function get_safe_input($form) {
  */
 function validate_form($input, &$form) {
     $success = true;
-    
+
     foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
@@ -43,17 +43,26 @@ function validate_form($input, &$form) {
             }
         }
     }
-    
-    if($success) {
-        foreach($form['callbacks']['success'] as $funkcija) {
-            if(is_callable($funkcija)) {
-                $funkcija();
+
+    if ($success) {
+        foreach ($form['callbacks']['success'] as $callback) {
+            if (is_callable($callback)) {
+                $callback();
             } else {
                 throw new Exception(strtr('Not callable @funkcija function', [
-                    '@funkcija' => $funkcija]));
+                    '@funkcija' => $callback]));
+            }
+        }
+        foreach ($form['callbacks']['fail'] as $callback) {
+            if (is_callable($callback)) {
+                $callback();
+            } else {
+                throw new Exception(strtr('Not callable @funkcija function', [
+                    '@funkcija' => $callback]));
+            }
         }
     }
-    
+
     return $success;
 }
 
@@ -98,7 +107,7 @@ $form = [
             'type' => 'text',
             'placeholder' => 'Vardas',
             'validate' =>
-                [
+            [
                 'validate_not_empty'
             ],
         ],
@@ -107,7 +116,7 @@ $form = [
             'type' => 'text',
             'placeholder' => '1-100',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
                 'validate_is_number'
             ],
@@ -117,14 +126,17 @@ $form = [
             'type' => 'password',
             'placeholder' => 'Issipasakok',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
             ],
         ],
     ],
     'callbacks' => [
         'success' => [
-            'belekokia_funkcija'
+            'success_funkcija'
+        ],
+        'fail' => [
+            'failu_funkcija'
         ]
     ],
     'buttons' => [
