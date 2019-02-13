@@ -18,6 +18,20 @@ function form_fail($input, $form) {
     return false;
 }
 
+function file_to_array($input, $file) {
+    if (file_exists($file)) {
+        $string = file_get_contents($file, true);
+        
+        if ($string) {
+            return json_decode($string);
+        } else {
+            throw new Exception('KRW nedekodino ble, nes neatidare normaliai');
+        }
+    } else {
+        throw new Exception('nachui viskas nachui');
+    }
+}
+
 $form = [
     'fields' => [
         'vardas' => [
