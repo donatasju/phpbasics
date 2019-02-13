@@ -10,13 +10,11 @@ function array_to_file($array, $file) {
 }
 
 function form_success($input, $form) {
-    
     return array_to_file($input, STORAGE_FILE);
     
 }
 
 function form_fail($input, $form) {
-    
     return false;
 }
 
