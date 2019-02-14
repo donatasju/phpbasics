@@ -64,7 +64,7 @@ $form = [
             'placeholder' => 'Vardas',
             'validate' => [
                 'validate_not_empty'
-            ],
+            ]
         ],
         'sasyska' => [
             'label' => 'Kiek sasysku suguldytum ant raskladuskes?',
@@ -74,7 +74,7 @@ $form = [
             [
                 'validate_not_empty',
                 'validate_is_number'
-            ],
+            ]
         ],
         'paslaptis' => [
             'label' => 'Kokia sasyska megstamiausia? Nebijok, niekas nepamatys...',
@@ -83,7 +83,7 @@ $form = [
             'validate' =>
             [
                 'validate_not_empty'
-            ],
+            ]
         ],
         'koja' => [
             'label' => 'Ar valgytum daktariska desra, jeigu ji butu tavo pedos formos?',
@@ -92,7 +92,7 @@ $form = [
             'validate' =>
             [
                 'validate_not_empty'
-            ],
+            ]
         ],
         'ismintis' => [
             'label' => 'Narsolio ismintis byloja...pvz: ',
@@ -101,7 +101,7 @@ $form = [
             'validate' =>
             [
                 'validate_not_empty'
-            ],
+            ]
         ]
     ],
     'buttons' => [
