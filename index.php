@@ -107,7 +107,9 @@ $form = [
     'buttons' => [
         'do_zirniai' => [
             'text' => 'Ejaculate and Evacuate'
-        ],
+        ]
+    ],
+    'delete_button' => [
         'delete_file' => [
             'text' => 'Sutarsyti'
         ]
@@ -126,6 +128,12 @@ $show_form = true;
 
 if (!isset($_COOKIE['form'])) {
     if (!empty($_POST)) {
+        $delete_file = $_POST['action'] ?? false;
+
+        if ($delete_file == 'delete_file') {
+            unlink(STORAGE_FILE);
+            $show_form = true;
+        }
         $safe_input = get_safe_input($form);
         $form_success = validate_form($safe_input, $form);
 
@@ -138,12 +146,9 @@ if (!isset($_COOKIE['form'])) {
     $show_form = false;
 }
 
-$stored_data = load_form_data();
 
-$delete_file = $_POST['action'] ?? false;
-if ($delete_file == 'delete_file') {
-    unlink(STORAGE_FILE);
-}
+$stored_data = load_form_data();
+var_dump($_POST);
 ?>
 <html>
     <head>
@@ -153,7 +158,7 @@ if ($delete_file == 'delete_file') {
     <body>
         <h1>Generuojam forma is array</h1>
         <?php if ($show_form): ?>
-            <form method="POST">
+            <form method="POST" id="form1">
                 <!-- Input Fields -->
                 <?php foreach ($form['fields'] as $field_id => $field): ?>
                     <label>
@@ -171,12 +176,22 @@ if ($delete_file == 'delete_file') {
                         <?php print $button['text']; ?>
                     </button>
                 <?php endforeach; ?>
-            </form>
-        <?php else: ?>
-            <?php foreach ($stored_data as $user_data): ?>
-                <?php foreach ($user_data as $fields): ?>       
-                    <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
+                <?php foreach ($form['delete_button'] as $delete_button_id => $button): ?>
+                    <button name="action" value="<?php print $delete_button_id; ?>">
+                        <?php print $button['text']; ?>
+                    </button>
                 <?php endforeach; ?>
+            <?php else: ?>
+                <?php foreach ($stored_data as $user_data): ?>
+                    <?php foreach ($user_data as $fields): ?>       
+                        <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            </form>
+            <?php foreach ($form['delete_button'] as $delete_button_id => $button): ?>
+                <button form="form1" name="action" value="<?php print $delete_button_id; ?>">
+                    <?php print $button['text']; ?>
+                </button>
             <?php endforeach; ?>
         <?php endif; ?>
     </body>

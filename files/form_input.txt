@@ -1,1 +1,1 @@
-[{"action":"do_zirniai","vardas":"Ernestas","sasyska":"44","paslaptis":"asdas","koja":"asda","ismintis":"asda"}]
+[{"action":"do_zirniai","vardas":"Ernestas","sasyska":"555","paslaptis":"asd","koja":"asd","ismintis":"asd"},{"action":"do_zirniai","vardas":"Ernestas","sasyska":"555","paslaptis":"asd","koja":"asd","ismintis":"sd"}]
