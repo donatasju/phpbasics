@@ -77,7 +77,7 @@ $form = [
         'duhas/e' => [
             'label' => 'Duhas ar duhe ?',
             'type' => 'text',
-            'placeholder' => 'Vardas',
+            'placeholder' => 'Sakai greitai',
             'validate' => [
                 'validate_not_empty'
             ],
@@ -85,7 +85,7 @@ $form = [
         'ugis' => [
             'label' => 'Tavo ugis ?',
             'type' => 'text',
-            'placeholder' => '1-100',
+            'placeholder' => '1-200',
             'validate' =>
             [
                 'validate_not_empty',
