@@ -31,16 +31,24 @@ function load_form_data() {
     foreach ($file_data_arr as $user_input) {
         $stored_data[] = [
             [
-                'title' => 'Kažkieno vardas',
+                'title' => 'Narsolio klycka',
                 'value' => $user_input['vardas']
             ],
             [
-                'title' => 'Turėjo žirnių',
+                'title' => 'Sasyskos ant raskladuskes',
                 'value' => $user_input['sasyska']
             ],
             [
-                'title' => 'Jo paslaptis',
+                'title' => 'Sasysku paslaptis',
                 'value' => $user_input['paslaptis']
+            ],
+            [
+                'title' => 'Daktariska desra kojos formos',
+                'value' => $user_input['koja']
+            ],
+            [
+                'title' => 'Tavo ismintis kalba',
+                'value' => $user_input['ismintis']
             ]
         ];
     }
