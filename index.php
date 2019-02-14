@@ -1,8 +1,8 @@
 <?php
 define('STORAGE_FILE', 'files/form_input.txt');
+
 require_once 'functions/form.php';
 require_once 'functions/file.php';
-$validation = '';
 
 function form_success($safe_input, $form) {
     if (file_exists(STORAGE_FILE)) {
@@ -16,7 +16,36 @@ function form_success($safe_input, $form) {
 }
 
 function form_fail($safe_input, $form) {
-    return false;
+    // TO DO
+}
+
+function load_form_data() {
+    $stored_data = [];
+
+    if (file_exists(STORAGE_FILE)) {
+        $file_data_arr = file_to_array(STORAGE_FILE);
+    } else {
+        return $stored_data;
+    }
+    // Build renderable array
+    foreach ($file_data_arr as $user_input) {
+        $stored_data[] = [
+            [
+                'title' => 'Kažkieno vardas',
+                'value' => $user_input['vardas']
+            ],
+            [
+                'title' => 'Turėjo žirnių',
+                'value' => $user_input['zirniu_kiekis']
+            ],
+            [
+                'title' => 'Jo paslaptis',
+                'value' => $user_input['paslaptis']
+            ]
+        ];
+    }
+
+    return $stored_data;
 }
 
 $form = [
@@ -25,8 +54,7 @@ $form = [
             'label' => 'Mano vardas',
             'type' => 'text',
             'placeholder' => 'Vardas',
-            'validate' =>
-            [
+            'validate' => [
                 'validate_not_empty'
             ],
         ],
@@ -50,6 +78,11 @@ $form = [
             ],
         ]
     ],
+    'buttons' => [
+        'do_zirniai' => [
+            'text' => 'Paberti...'
+        ]
+    ],
     'callbacks' => [
         'success' => [
             'form_success'
@@ -58,11 +91,6 @@ $form = [
             'form_fail'
         ]
     ],
-    'buttons' => [
-        'do_zirniai' => [
-            'text' => 'Paberti...'
-        ]
-    ]
 ];
 
 if (!empty($_POST)) {
@@ -70,25 +98,7 @@ if (!empty($_POST)) {
     $validation = validate_form($safe_input, $form);
 }
 
-$file_data_arr = file_to_array(STORAGE_FILE);
-$stored_data = [];
-
-foreach ($file_data_arr as $user_input) {
-    $stored_data[] = [
-        [
-            'title' => 'Kažkieno vardas',
-            'value' => $user_input['vardas']
-        ],
-        [
-            'title' => 'Turėjo žirnių',
-            'value' => $user_input['zirniu_kiekis']
-        ],
-        [
-            'title' => 'Jo paslaptis',
-            'value' => $user_input['paslaptis']
-        ]
-    ];
-}
+$stored_data = load_form_data();
 ?>
 <html>
     <head>
@@ -116,12 +126,10 @@ foreach ($file_data_arr as $user_input) {
                 </button>
             <?php endforeach; ?>
         </form>
-        <?php if ($validation): ?>
-            <?php foreach ($stored_data as $user_data): ?>
-                <?php foreach ($user_data as $fields): ?>       
-                    <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
-                <?php endforeach; ?>
+        <?php foreach ($stored_data as $user_data): ?>
+            <?php foreach ($user_data as $fields): ?>       
+                <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
             <?php endforeach; ?>
-        <?php endif; ?>
+        <?php endforeach; ?>
     </body>
 </html>

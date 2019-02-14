@@ -1,1 +1,1 @@
-[{"action":"do_zirniai","vardas":"Ernestas","zirniu_kiekis":"100","paslaptis":"taskom"},{"action":"do_zirniai","vardas":"Belenkas","zirniu_kiekis":"999","paslaptis":"kapojam"}]
+[{"action":"do_zirniai","vardas":"Ernestas","zirniu_kiekis":"555555","paslaptis":"asdasd"}]
