@@ -48,7 +48,7 @@ function load_form_data() {
             ],
             [
                 'title' => 'Banano ilgio paslaptis',
-                'value' => $user_input['bananas']
+                'value' => $user_input['bananas'] . ' cm'
             ]
         ];
     }
