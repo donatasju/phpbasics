@@ -36,7 +36,7 @@ function load_form_data() {
             ],
             [
                 'title' => 'Turėjo žirnių',
-                'value' => $user_input['zirniu_kiekis']
+                'value' => $user_input['sasyska']
             ],
             [
                 'title' => 'Jo paslaptis',
@@ -51,15 +51,15 @@ function load_form_data() {
 $form = [
     'fields' => [
         'vardas' => [
-            'label' => 'Mano vardas',
+            'label' => 'Narsolio klycka',
             'type' => 'text',
             'placeholder' => 'Vardas',
             'validate' => [
                 'validate_not_empty'
             ],
         ],
-        'zirniu_kiekis' => [
-            'label' => 'Kiek turiu zirniu?',
+        'sasyska' => [
+            'label' => 'Kiek sasysku suguldytum ant raskladuskes?',
             'type' => 'text',
             'placeholder' => '1-100',
             'validate' =>
@@ -69,18 +69,36 @@ $form = [
             ],
         ],
         'paslaptis' => [
-            'label' => 'Paslaptis, kodel turiu zirniu',
+            'label' => 'Kokia sasyska megstamiausia? Nebijok, niekas nepamatys...',
             'type' => 'password',
-            'placeholder' => 'Issipasakok',
+            'placeholder' => 'Pieniskos sasyskos baravyku skonio',
             'validate' =>
             [
-                'validate_not_empty',
+                'validate_not_empty'
+            ],
+        ],
+        'koja' => [
+            'label' => 'Ar valgytum daktariska desra, jeigu ji butu tavo pedos formos?',
+            'type' => 'text',
+            'placeholder' => 'Suvalgyciau ir apsilaizyciau',
+            'validate' =>
+            [
+                'validate_not_empty'
+            ],
+        ],
+        'ismintis' => [
+            'label' => 'Narsolio ismintis byloja...pvz: ',
+            'type' => 'text',
+            'placeholder' => 'Taskyk netaskes, vis tiek bybis kiausai',
+            'validate' =>
+            [
+                'validate_not_empty'
             ],
         ]
     ],
     'buttons' => [
         'do_zirniai' => [
-            'text' => 'Paberti...'
+            'text' => 'Ejaculate and Evacuate'
         ]
     ],
     'callbacks' => [
@@ -90,7 +108,7 @@ $form = [
         'fail' => [
             'form_fail'
         ]
-    ],
+    ]
 ];
 
 if (!empty($_POST)) {
@@ -103,7 +121,7 @@ $stored_data = load_form_data();
 <html>
     <head>
         <title>02/11/2019</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <h1>Generuojam forma is array</h1>
