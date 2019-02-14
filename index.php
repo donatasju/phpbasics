@@ -107,6 +107,9 @@ $form = [
     'buttons' => [
         'do_zirniai' => [
             'text' => 'Ejaculate and Evacuate'
+        ],
+        'delete_file' => [
+            'text' => 'Sutarsyti'
         ]
     ],
     'callbacks' => [
@@ -136,6 +139,11 @@ if (!isset($_COOKIE['form'])) {
 }
 
 $stored_data = load_form_data();
+
+$delete_file = $_POST['action'] ?? false;
+if ($delete_file == 'delete_file') {
+    unlink(STORAGE_FILE);
+}
 ?>
 <html>
     <head>
