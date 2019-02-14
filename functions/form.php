@@ -1,35 +1,29 @@
 <?php
 /**
- * Filters $_POST to sanitize code to not be able fuck up code. <br>
- * Sukuria nauja array ir i jy sudeda isfiltruota user inputa.
+ * Gauname saugu patikrinta user input.
  * 
- * @param array $form
- * @return array safe input
+ * @param type $form
+ * @return type
  */
 function get_safe_input($form) {
     $filtro_parametrai = [
         'action' => FILTER_SANITIZE_SPECIAL_CHARS
     ];
-
     foreach ($form['fields'] as $field_id => $value) {
         $filtro_parametrai[$field_id] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
-
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
-
 /**
- * Validates form
- * first part validates if function was written correctly <br>
- * second part calls callback_function if success <br>
- * else calls callback_fail function <br>
- * @param array $input
- * @param array $form
+ * Patikriname ar formoje esancios validacijos funkcijos yra teisingos ir iskvieciame ju funkcijas(not empty, not a number).
+ * 
+ * @param type $input
+ * @param type $form
+ * @return boolean
  * @throws Exception
  */
 function validate_form($input, &$form) {
     $success = true;
-
     foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
@@ -44,14 +38,14 @@ function validate_form($input, &$form) {
             }
         }
     }
-
     if ($success) {
         foreach ($form['callbacks']['success'] as $callback) {
             if (is_callable($callback)) {
                 $callback($input, $form);
             } else {
-                throw new Exception(strtr('Not callable @funkcija function', [
-                    '@funkcija' => $callback]));
+                throw new Exception(strtr('Not callable @function function', [
+                    '@function' => $callback
+                ]));
             }
         }
     } else {
@@ -59,15 +53,14 @@ function validate_form($input, &$form) {
             if (is_callable($callback)) {
                 $callback($input, $form);
             } else {
-                throw new Exception(strtr('Not callable @funkcija function', [
-                    '@funkcija' => $callback]));
+                throw new Exception(strtr('Not callable @function function', [
+                    '@function' => $callback
+                ]));
             }
         }
     }
-
     return $success;
 }
-
 /**
  * Checks if field is empty
  * 
@@ -84,7 +77,6 @@ function validate_not_empty($field_input, &$field) {
         return true;
     }
 }
-
 /**
  * Checks if field is a number
  * 

@@ -2,34 +2,46 @@
 define('STORAGE_FILE', 'files/file.txt');
 
 require_once 'functions/form.php';
+require_once 'functions/files.php';
 
-function array_to_file($array, $file) {
-    $stringas = json_encode($array);
-    
-    return file_put_contents($file, $stringas);
-}
-
-function form_success($input, $form) {
-    return array_to_file($input, STORAGE_FILE);
-    
-}
-
-function form_fail($input, $form) {
-    return false;
-}
-
-function file_to_array($input, $file) {
-    if (file_exists($file)) {
-        $string = file_get_contents($file, true);
-        
-        if ($string !== false) {
-            return json_decode($string);
-        } else {
-            throw new Exception('KRW nedekodino ble, nes neatidare normaliai');
-        }
+function form_success($safe_input, $form) {
+    if (file_exists(STORAGE_FILE)) {
+        $existing_array = file_to_array(STORAGE_FILE);
+        $existing_array[] = $safe_input;
     } else {
-        throw new Exception('nachui viskas nachui');
+        $existing_array = [$safe_input];
     }
+
+    return array_to_file($existing_array, STORAGE_FILE);
+}
+
+function form_fail($safe_input, $form) {
+    // TO DO
+}
+
+function load_form_data() {
+    $file_data_arr = file_to_array(STORAGE_FILE);
+    $stored_data = [];
+
+    // Build renderable array
+    foreach ($file_data_arr as $user_input) {
+        $stored_data[] = [
+                [
+                'title' => 'Kažkieno vardas',
+                'value' => $user_input['vardas']
+            ],
+                [
+                'title' => 'Turėjo žirnių',
+                'value' => $user_input['zirniu_kiekis']
+            ],
+                [
+                'title' => 'Jo paslaptis',
+                'value' => $user_input['paslaptis']
+            ]
+        ];
+    }
+
+    return $stored_data;
 }
 
 $form = [
@@ -39,7 +51,7 @@ $form = [
             'type' => 'text',
             'placeholder' => 'Vardas',
             'validate' =>
-            [
+                [
                 'validate_not_empty'
             ],
         ],
@@ -48,7 +60,7 @@ $form = [
             'type' => 'text',
             'placeholder' => '1-100',
             'validate' =>
-            [
+                [
                 'validate_not_empty',
                 'validate_is_number'
             ],
@@ -58,10 +70,10 @@ $form = [
             'type' => 'password',
             'placeholder' => 'Issipasakok',
             'validate' =>
-            [
+                [
                 'validate_not_empty',
             ],
-        ],
+        ]
     ],
     'callbacks' => [
         'success' => [
@@ -77,9 +89,14 @@ $form = [
         ]
     ]
 ];
+
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
-    validate_form($safe_input, $form);
+    $validation = validate_form($safe_input, $form);
+}
+
+if (file_exists(STORAGE_FILE)) {
+    $stored_data = load_form_data();
 }
 ?>
 <html>
@@ -108,5 +125,12 @@ if (!empty($_POST)) {
                 </button>
             <?php endforeach; ?>
         </form>
+        <?php if (isset($stored_data)): ?>
+            <?php foreach ($stored_data as $user_data): ?>
+                <?php foreach ($user_data as $fields): ?>       
+                    <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </body>
 </html>
