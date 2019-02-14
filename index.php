@@ -20,23 +20,35 @@ function form_fail($safe_input, $form) {
 }
 
 function load_form_data() {
-    $file_data_arr = file_to_array(STORAGE_FILE);
     $stored_data = [];
 
+    if (file_exists(STORAGE_FILE)) {
+        $file_data_arr = file_to_array(STORAGE_FILE);
+    } else {
+        return $stored_data;
+    }
     // Build renderable array
     foreach ($file_data_arr as $user_input) {
         $stored_data[] = [
-                [
-                'title' => 'Kažkieno vardas',
+            [
+                'title' => 'Tavo vardas',
                 'value' => $user_input['vardas']
             ],
-                [
-                'title' => 'Turėjo žirnių',
-                'value' => $user_input['zirniu_kiekis']
+            [
+                'title' => 'Tavo pavarde',
+                'value' => $user_input['pavarde']
             ],
-                [
-                'title' => 'Jo paslaptis',
-                'value' => $user_input['paslaptis']
+            [
+                'title' => 'Duhas ar duhe',
+                'value' => $user_input['duhas/e']
+            ],
+            [
+                'title' => 'Tavo ugis',
+                'value' => $user_input['ugis']
+            ],
+            [
+                'title' => 'Banano ilgio paslaptis',
+                'value' => $user_input['bananas']
             ]
         ];
     }
@@ -50,29 +62,49 @@ $form = [
             'label' => 'Mano vardas',
             'type' => 'text',
             'placeholder' => 'Vardas',
-            'validate' =>
-                [
+            'validate' => [
                 'validate_not_empty'
             ],
         ],
-        'zirniu_kiekis' => [
-            'label' => 'Kiek turiu zirniu?',
+        'pavarde' => [
+            'label' => 'Mano pavarde',
+            'type' => 'text',
+            'placeholder' => 'Pavarde',
+            'validate' => [
+                'validate_not_empty'
+            ],
+        ],
+        'duhas/e' => [
+            'label' => 'Duhas ar duhe ?',
+            'type' => 'text',
+            'placeholder' => 'Vardas',
+            'validate' => [
+                'validate_not_empty'
+            ],
+        ],
+        'ugis' => [
+            'label' => 'Tavo ugis ?',
             'type' => 'text',
             'placeholder' => '1-100',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
                 'validate_is_number'
             ],
         ],
-        'paslaptis' => [
-            'label' => 'Paslaptis, kodel turiu zirniu',
+        'bananas' => [
+            'label' => 'banano ilgis cm',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
             ],
+        ]
+    ],
+    'buttons' => [
+        'do_zirniai' => [
+            'text' => 'Paberti...'
         ]
     ],
     'callbacks' => [
@@ -83,11 +115,6 @@ $form = [
             'form_fail'
         ]
     ],
-    'buttons' => [
-        'do_zirniai' => [
-            'text' => 'Paberti...'
-        ]
-    ]
 ];
 
 if (!empty($_POST)) {
@@ -95,9 +122,7 @@ if (!empty($_POST)) {
     $validation = validate_form($safe_input, $form);
 }
 
-if (file_exists(STORAGE_FILE)) {
-    $stored_data = load_form_data();
-}
+$stored_data = load_form_data();
 ?>
 <html>
     <head>
@@ -125,12 +150,10 @@ if (file_exists(STORAGE_FILE)) {
                 </button>
             <?php endforeach; ?>
         </form>
-        <?php if (isset($stored_data)): ?>
-            <?php foreach ($stored_data as $user_data): ?>
-                <?php foreach ($user_data as $fields): ?>       
-                    <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
-                <?php endforeach; ?>
+        <?php foreach ($stored_data as $user_data): ?>
+            <?php foreach ($user_data as $fields): ?>       
+                <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
             <?php endforeach; ?>
-        <?php endif; ?>
+        <?php endforeach; ?>
     </body>
 </html>

@@ -1,1 +1,1 @@
-[{"action":"do_zirniai","vardas":"Donatas","zirniu_kiekis":"23","paslaptis":"donatasnxnx"}]
+[{"action":"do_zirniai","vardas":"Donatas","pavarde":"Jurkus","duhas\/e":"duhas","ugis":"190","bananas":"23"}]
