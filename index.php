@@ -119,43 +119,57 @@ $form = [
     ]
 ];
 
-if (!empty($_POST)) {
-    $safe_input = get_safe_input($form);
-    $validation = validate_form($safe_input, $form);
+$show_form = true;
+
+if (!isset($_COOKIE['form'])) {
+    if (!empty($_POST)) {
+        $safe_input = get_safe_input($form);
+        $form_success = validate_form($safe_input, $form);
+
+        if ($form_success) {
+            setcookie('form', 'submitted', time() + 3600, '/');
+            $show_form = false;
+        }
+    }
+} else {
+    $show_form = false;
 }
 
 $stored_data = load_form_data();
 ?>
 <html>
     <head>
-        <title>02/11/2019</title>
+        <title>02/14/2019</title>
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <h1>Generuojam forma is array</h1>
-        <form method="POST">
-            <!-- Input Fields -->
-            <?php foreach ($form['fields'] as $field_id => $field): ?>
-                <label>
-                    <p><?php print $field['label']; ?></p>
-                    <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
-                    <?php if (isset($field['error_msg'])): ?>
-                        <p class="error"><?php print $field['error_msg']; ?></p>
-                    <?php endif; ?>
-                </label>
-            <?php endforeach; ?>
+        <?php if ($show_form): ?>
+            <form method="POST">
+                <!-- Input Fields -->
+                <?php foreach ($form['fields'] as $field_id => $field): ?>
+                    <label>
+                        <p><?php print $field['label']; ?></p>
+                        <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
+                        <?php if (isset($field['error_msg'])): ?>
+                            <p class="error"><?php print $field['error_msg']; ?></p>
+                        <?php endif; ?>
+                    </label>
+                <?php endforeach; ?>
 
-            <!-- Buttons -->
-            <?php foreach ($form['buttons'] as $button_id => $button): ?>
-                <button name="action" value="<?php print $button_id; ?>">
-                    <?php print $button['text']; ?>
-                </button>
+                <!-- Buttons -->
+                <?php foreach ($form['buttons'] as $button_id => $button): ?>
+                    <button name="action" value="<?php print $button_id; ?>">
+                        <?php print $button['text']; ?>
+                    </button>
+                <?php endforeach; ?>
+            </form>
+        <?php else: ?>
+            <?php foreach ($stored_data as $user_data): ?>
+                <?php foreach ($user_data as $fields): ?>       
+                    <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
+                <?php endforeach; ?>
             <?php endforeach; ?>
-        </form>
-        <?php foreach ($stored_data as $user_data): ?>
-            <?php foreach ($user_data as $fields): ?>       
-                <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
-            <?php endforeach; ?>
-        <?php endforeach; ?>
+        <?php endif; ?>
     </body>
 </html>
