@@ -181,13 +181,13 @@ var_dump($_POST);
                         <?php print $button['text']; ?>
                     </button>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <?php foreach ($stored_data as $user_data): ?>
-                    <?php foreach ($user_data as $fields): ?>       
-                        <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
-                    <?php endforeach; ?>
-                <?php endforeach; ?>
             </form>
+        <?php else: ?>
+            <?php foreach ($stored_data as $user_data): ?>
+                <?php foreach ($user_data as $fields): ?>       
+                    <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
             <?php foreach ($form['delete_button'] as $delete_button_id => $button): ?>
                 <button form="form1" name="action" value="<?php print $delete_button_id; ?>">
                     <?php print $button['text']; ?>
