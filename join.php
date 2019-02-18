@@ -5,33 +5,29 @@ require_once 'functions/form.php';
 require_once 'functions/file.php';
 
 function form_success($safe_input, $form) {
-    $team = [
-        'team_name' => $safe_input['team_name'],
-        'players' => []
+    $team_idx = $safe_input['team'];
+    $player = [
+        'nick_name' => $safe_input['nick'],
+        'score' => 0
     ];
 
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
-        $teams_array[] = $team;
-    } else {
-        $teams_array = [$team];
+        $teams_array[$team_idx]['players'][] = $player;
+        return array_to_file($teams_array, STORAGE_FILE);
     }
-
-    return array_to_file($teams_array, STORAGE_FILE);
 }
 
-function form_fail($safe_input, $form) {
-    // TO DO
-}
-
-function validate_team_name($field_input, &$field, $input) {
+function validate_nick($field_input, &$field, $form_inputs) {
+    $team_idx = $form_inputs['team'];
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
+        $player_team = $teams_array[$team_idx];
 
-        foreach ($teams_array as $team) {
-            if ($team['team_name'] == $field_input) {
+        foreach ($player_team['players'] as $player) {
+            if ($player['nick_name'] == $field_input) {
                 $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                        . 'toks team name @field yra uzimtas', ['@field' => $field_input
+                        . 'toks nick @field yra uzimtas', ['@field' => $field_input
                 ]);
                 return false;
             }
@@ -41,17 +37,39 @@ function validate_team_name($field_input, &$field, $input) {
     return true;
 }
 
+function form_fail($safe_input, $form) {
+    // TO DO
+}
+
+function get_team_names() {
+    if (file_exists(STORAGE_FILE)) {
+
+        $teams_array = file_to_array(STORAGE_FILE);
+        return array_column($teams_array, 'team_name');
+    }
+    return [];
+}
+
 $form = [
     'fields' => [
-        'team_name' => [
-            'label' => 'Create team',
-            'type' => 'text',
-            'placeholder' => 'Team name',
+        'team' => [
+            'label' => 'Choose team',
+            'type' => 'select',
             'validate' => [
                 'validate_not_empty',
-                'validate_team_name'
-            ]
+            //'validate_team_name'
+            ],
+            'options' => get_team_names()
         ],
+        'nick' => [
+            'label' => 'nick team',
+            'type' => 'text',
+            'placeholder' => 'Nickname',
+            'validate' => [
+                'validate_not_empty',
+                'validate_nick'
+            ],
+        ]
     ],
     'buttons' => [
         'submit' => [

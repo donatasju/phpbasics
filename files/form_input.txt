@@ -1,1 +1,1 @@
-[{"team_name":"ernestas","players":[]}]
+[{"team_name":"ernestas","players":[{"nick_name":"ernestas","score":0},{"nick_name":"ernestas","score":0}]},{"team_name":"dainius","players":[]}]
