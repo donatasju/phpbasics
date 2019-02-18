@@ -120,7 +120,7 @@ if (!empty($_POST)) {
                 <?php endforeach; ?>
             </form>
         <?php else: ?>
-            <p>mldc</p>
+            <p>Sekmingai sukurei komanda</p>
         <?php endif; ?>
     </body>
 </html>

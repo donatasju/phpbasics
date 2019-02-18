@@ -14,6 +14,7 @@ function form_success($safe_input, $form) {
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
         $teams_array[$team_idx]['players'][] = $player;
+
         return array_to_file($teams_array, STORAGE_FILE);
     }
 }
@@ -57,7 +58,6 @@ $form = [
             'type' => 'select',
             'validate' => [
                 'validate_not_empty',
-            //'validate_team_name'
             ],
             'options' => get_team_names()
         ],
@@ -88,13 +88,20 @@ $form = [
 
 $show_form = true;
 
-if (!empty($_POST)) {
-    $safe_input = get_safe_input($form);
-    $form_success = validate_form($safe_input, $form);
+if (!isset($_COOKIE['nick'])) {
+    if (!empty($_POST)) {
+        $safe_input = get_safe_input($form);
+        $form_success = validate_form($safe_input, $form);
 
-    if ($form_success) {
-        $show_form = false;
+        if ($form_success) {
+            setcookie('nick', $safe_input['nick'], time() + 3600, '/');
+            setcookie('team', $safe_input['team'], time() + 3600, '/');
+
+            $show_form = false;
+        }
     }
+} else {
+    $show_form = false;
 }
 ?>
 <html>
@@ -138,7 +145,14 @@ if (!empty($_POST)) {
                 <?php endforeach; ?>
             </form>
         <?php else: ?>
-            <p>mldc</p>
+            <?php if (isset($_COOKIE['nick'])): ?>
+                <p><?php
+                    print 'Zdarova pizdaballs zaidejau ' . '"' . $_COOKIE['nick'] . '"'
+                            . '. Jau esi komandoje: ' . get_team_names()[$_COOKIE['team']];
+                    ?></p>
+            <?php else: ?>
+                <p>Sekmingai sukurei savo nick</p>
+            <?php endif; ?>
         <?php endif; ?>
     </body>
 </html>
