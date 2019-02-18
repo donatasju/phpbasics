@@ -10,11 +10,9 @@ function get_safe_input($form) {
     $filtro_parametrai = [
         'action' => FILTER_SANITIZE_SPECIAL_CHARS
     ];
-
     foreach ($form['fields'] as $field_id => $value) {
         $filtro_parametrai[$field_id] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
-
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
@@ -28,7 +26,6 @@ function get_safe_input($form) {
  */
 function validate_form($input, &$form) {
     $success = true;
-
     foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
@@ -64,7 +61,6 @@ function validate_form($input, &$form) {
             }
         }
     }
-
     return $success;
 }
 
