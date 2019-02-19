@@ -98,7 +98,10 @@ if (!isset($_COOKIE['nick'])) {
     }
 } else {
     $show_form = false;
-    $message = 'Zdarova pizdaballs zaidejau ' . '"' . $_COOKIE['nick'] . '"' . '. Jau esi komandoje: ' . get_team_names()[$_COOKIE['team']];
+    $message = strtr('Zdarova pizdaballs zaidejau  "@nick". Jau esi komandoje: @team ',
+            ['@nick' => $_COOKIE['nick'],
+            '@team' => get_team_names()[$_COOKIE['team']]
+            ]);
 }
 ?>
 <html>
