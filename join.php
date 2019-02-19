@@ -91,7 +91,6 @@ if (!isset($_COOKIE['nick'])) {
         $form_success = validate_form($safe_input, $form);
 
         if ($form_success) {
-            $success_msg = 'SÄ—kmingai pasijungei Ä¯ komandÄ…!';
             $show_form = false;            
             $message = 'Sekmingai sukurei savo nick';
         }

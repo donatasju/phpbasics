@@ -16,16 +16,48 @@ $form = [
     ]
 ];
 
-$show_form = true;
+function check_player($team_idx, $nick) {
+    if (file_exists(STORAGE_FILE)) {
+        $teams_array = file_to_array(STORAGE_FILE);
+        $player_team = $teams_array[$team_idx] ?? false;
 
-if (!empty($_POST)) {
-    $safe_input = get_safe_input($form);
-    $form_success = validate_form($safe_input, $form);
-
-    if ($form_success) {
-        $success_msg = 'Sėkmingai pasijungei į komandą!';
-        $show_form = false;
+        if ($player_team) {
+            return in_array($nick, array_column(
+                            $player_team['players'], 'nick_name')
+            );
+        }
     }
+
+    return false;
+}
+
+$show_form = false;
+$valid_player = false;
+$message = '';
+
+if (!empty($_COOKIE)) {
+    $nick = $_COOKIE['nick'] ?? false;
+    $team_idx = $_COOKIE['team'] ?? false;
+
+    if ($nick && $team_idx !== false) {
+        $valid_player = check_player($team_idx, $nick);
+    }
+}
+
+if ($valid_player) {
+    $show_form = true;
+
+    if (!empty($_POST)) {
+        $safe_input = get_safe_input($form);
+        $form_success = validate_form($safe_input, $form);
+
+        if ($form_success) {
+            $message = 'Ball(s) have been kicked!';
+            $show_form = false;
+        }
+    }
+} else {
+    $message = 'Eik nx';
 }
 ?>
 <html>
@@ -44,7 +76,7 @@ if (!empty($_POST)) {
             <?php require 'objects/form.php'; ?>
         <?php else: ?>
             <h2>Zašibys!</h2>
-            <h3><?php print $success_msg; ?></h3>
+            <h3><?php print $message; ?></h3>
         <?php endif; ?>
     </body>
 </html>
