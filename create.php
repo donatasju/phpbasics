@@ -1,8 +1,6 @@
 <?php
-define('STORAGE_FILE', 'files/form_input.txt');
 
-require_once 'functions/form.php';
-require_once 'functions/file.php';
+require_once 'bootstrap.php';
 
 function form_success($safe_input, $form) {
     $team = [
@@ -20,18 +18,15 @@ function form_success($safe_input, $form) {
     return array_to_file($teams_array, STORAGE_FILE);
 }
 
-function form_fail($safe_input, $form) {
-    // TO DO
-}
-
-function validate_team_name($field_input, &$field, $input) {
+function validate_team_name($field_input, &$field, $form_input) {
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
 
         foreach ($teams_array as $team) {
             if ($team['team_name'] == $field_input) {
-                $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                        . 'toks team name @field yra uzimtas', ['@field' => $field_input
+                $field['error_msg'] = strtr('Pz2aball team pavadinimu '
+                        . '"@team" jau egzistuoja!', [
+                    '@team' => $field_input
                 ]);
                 return false;
             }
@@ -55,16 +50,14 @@ $form = [
     ],
     'buttons' => [
         'submit' => [
-            'text' => 'Create'
+            'text' => 'Create!'
         ]
     ],
     'callbacks' => [
         'success' => [
             'form_success'
         ],
-        'fail' => [
-            'form_fail'
-        ]
+        'fail' => []
     ]
 ];
 
@@ -75,6 +68,9 @@ if (!empty($_POST)) {
     $form_success = validate_form($safe_input, $form);
 
     if ($form_success) {
+        $success_msg = strtr('Team`as "@team_name" sėkmingai sukurtas!', [
+            '@team_name' => $safe_input['team_name']
+        ]);
         $show_form = false;
     }
 }
@@ -82,45 +78,21 @@ if (!empty($_POST)) {
 <html>
     <head>
         <link rel="stylesheet" href="css/style.css">
-        <title>Call Friday</title>
+        <title>PZ2ABALL | Create Team</title>
     </head>
     <body>
-        <h1>Call Friday</h1>
+        <!-- Navigation -->    
+        <?php require 'objects/navigation.php'; ?>        
+
+        <!-- Content -->    
+        <h1>Create a PZ2ABALL team!</h1>
+
         <?php if ($show_form): ?>
-            <form method="POST">
-                <?php foreach ($form['fields'] as $field_id => $field): ?>
-                    <label>
-                        <span><?php print $field['label']; ?></span>
-
-                        <!-- Form field -->            
-                        <?php if (in_array($field['type'], ['text', 'password'])): ?>
-                            <!-- Simple input field: text, password -->
-                            <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
-                        <?php elseif ($field['type'] == 'select'): ?>
-                            <!-- Select field -->
-                            <select name="<?php print $field_id; ?>">
-                                <?php foreach ($field['options'] as $option_id => $option_label): ?>
-                                    <option value="<?php print $option_id; ?>"><?php print $option_label; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        <?php endif; ?>
-
-                        <!-- Errors -->
-                        <?php if (isset($field['error_msg'])): ?>
-                            <p class="error"><?php print $field['error_msg']; ?></p>
-                        <?php endif; ?>
-                    </label>
-                <?php endforeach; ?>
-
-                <!-- Buttons -->
-                <?php foreach ($form['buttons'] as $button_id => $button): ?>
-                    <button name="action" value="<?php print $button_id; ?>">
-                        <?php print $button['text']; ?>
-                    </button>
-                <?php endforeach; ?>
-            </form>
+            <!-- Form -->        
+            <?php require 'objects/form.php'; ?>
         <?php else: ?>
-            <p>Sekmingai sukurei komanda</p>
+            <h2>Zašibys!</h2>
+            <h3><?php print $success_msg; ?></h3>
         <?php endif; ?>
     </body>
 </html>

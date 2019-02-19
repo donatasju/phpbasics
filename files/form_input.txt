@@ -1,1 +1,0 @@
-[{"team_name":"Dainius maladec","players":[]},{"team_name":"ButtPirates","players":[{"nick_name":"ButtRage","score":0}]}]
