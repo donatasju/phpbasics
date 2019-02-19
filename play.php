@@ -3,7 +3,11 @@ require_once 'bootstrap.php';
 
 $form = [
     'fields' => [],
-    'buttons' => [],
+        'buttons' => [
+        'submit' => [
+            'text' => 'Kick the ball!'
+        ]
+    ],
     'callbacks' => [
         'success' => [
             'form_success'
