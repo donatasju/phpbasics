@@ -16,6 +16,22 @@ $form = [
     ]
 ];
 
+function form_success($safe_input, $form) {
+    $team_idx = $_COOKIE['team'] ?? false;
+    $nick = $_COOKIE['nick'] ?? false;
+
+    if (file_exists(STORAGE_FILE)) {
+        $teams_array = file_to_array(STORAGE_FILE);
+        foreach ($teams_array[$team_idx]['players'] as &$player) {
+            if ($player['nick_name'] == $nick) {
+                $player['score'] ++;
+            }
+        }
+
+        return array_to_file($teams_array, STORAGE_FILE);
+    }
+}
+
 function check_player($team_idx, $nick) {
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
@@ -50,11 +66,6 @@ if ($valid_player) {
     if (!empty($_POST)) {
         $safe_input = get_safe_input($form);
         $form_success = validate_form($safe_input, $form);
-
-        if ($form_success) {
-            $message = 'Ball(s) have been kicked!';
-            $show_form = false;
-        }
     }
 } else {
     $message = 'Eik nx';
