@@ -1,6 +1,8 @@
 <?php
 require_once 'bootstrap.php';
 
+session_start();
+
 function form_success($safe_input, $form) {
     $team_idx = $safe_input['team'];
     $player = [
@@ -11,9 +13,9 @@ function form_success($safe_input, $form) {
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
         $teams_array[$team_idx]['players'][] = $player;
+        $_SESSION['nick'] = $safe_input['nick'];
+        $_SESSION['team'] = $safe_input['team'];
 
-        setcookie('nick', $safe_input['nick'], time() + 3600, '/');
-        setcookie('team', $safe_input['team'], time() + 3600, '/');
         return array_to_file($teams_array, STORAGE_FILE);
     }
 }
@@ -85,22 +87,21 @@ $form = [
 $show_form = true;
 $message = '';
 
-if (!isset($_COOKIE['nick'])) {
+if (!isset($_SESSION['nick'])) {
     if (!empty($_POST)) {
         $safe_input = get_safe_input($form);
         $form_success = validate_form($safe_input, $form);
 
         if ($form_success) {
-            $show_form = false;            
+            $show_form = false;
             $message = 'Sekmingai sukurei savo nick';
         }
     }
 } else {
     $show_form = false;
-    $message = strtr('Zdarova pizdaballs zaidejau  "@nick". Jau esi komandoje: @team ',
-            ['@nick' => $_COOKIE['nick'],
-            '@team' => get_team_names()[$_COOKIE['team']]
-            ]);
+    $message = strtr('Zdarova pizdaballs zaidejau  "@nick". Jau esi komandoje: @team ', ['@nick' => $_SESSION['nick'],
+        '@team' => get_team_names()[$_SESSION['team']]
+    ]);
 }
 ?>
 <html>

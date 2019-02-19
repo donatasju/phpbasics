@@ -1,5 +1,6 @@
 <?php
 require_once 'bootstrap.php';
+session_start();
 
 $form = [
     'fields' => [],
@@ -17,8 +18,8 @@ $form = [
 ];
 
 function form_success($safe_input, $form) {
-    $team_idx = $_COOKIE['team'] ?? false;
-    $nick = $_COOKIE['nick'] ?? false;
+    $team_idx = $_SESSION['team'] ?? false;
+    $nick = $_SESSION['nick'] ?? false;
 
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
@@ -51,9 +52,9 @@ $show_form = false;
 $valid_player = false;
 $message = '';
 
-if (!empty($_COOKIE)) {
-    $nick = $_COOKIE['nick'] ?? false;
-    $team_idx = $_COOKIE['team'] ?? false;
+if (!empty($_SESSION)) {
+    $nick = $_SESSION['nick'] ?? false;
+    $team_idx = $_SESSION['team'] ?? false;
 
     if ($nick && $team_idx !== false) {
         $valid_player = check_player($team_idx, $nick);
