@@ -1,12 +1,25 @@
 <?php
 require_once 'bootstrap.php';
 
+session_start();
 
 if (file_exists(STORAGE_FILE)) {
+    $team_idx = $_SESSION['team'] ?? false;
+    $nick = $_SESSION['nick'] ?? false;
     $teams_array = file_to_array(STORAGE_FILE);
+    
+    foreach ($teams_array[$team_idx]['players'] as $player) {
+        $individual_score = 0;
+        
+        if ($player['nick_name'] == $nick) {
+
+            $individual_score = $player['score'];
+            break;
+        }
+    }
+
     foreach ($teams_array as &$team) {
         $team['team_score'] = 0;
-        var_dump($team['team_name']);
         foreach ($team['players'] as $player) {
             $team['team_score'] += $player['score'];
         }
@@ -27,8 +40,10 @@ if (file_exists(STORAGE_FILE)) {
         <!-- Content -->       
         <h1>PZDABALL Scoreboard!</h1>
         <?php foreach ($teams_array as $team): ?>
-            <p><?php print $team['team_name']; ?></p>
-            <p><?php print $team['team_score']; ?></p>
+            <p><?php print 'Komandos pavadinimas: ' . $team['team_name']; ?></p>
+            <p><?php print 'Komandos score: ' . $team['team_score']; ?></p
         <?php endforeach; ?>
+        <p><?php print 'Tavo nick: ' . $nick ?></p>
+        <p><?php print 'Tavo individual score: ' . $individual_score; ?></p>
     </body>
 </html>
