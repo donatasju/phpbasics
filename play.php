@@ -59,9 +59,6 @@ if (!empty($_SESSION)) {
 
     if ($nick && $team_idx !== false) {
         $valid_player = check_player($team_idx, $nick);
-    } else {
-        header("Location: join.php");
-        exit();
     }
 }
 
@@ -73,7 +70,8 @@ if ($valid_player) {
         $form_success = validate_form($safe_input, $form);
     }
 } else {
-    $message = 'Eik nx';
+    header("Location: join.php");
+    exit();
 }
 ?>
 <html>
