@@ -5,7 +5,8 @@ require_once 'bootstrap.php';
 function form_success($safe_input, $form) {
     $team = [
         'team_name' => $safe_input['team_name'],
-        'players' => []
+        'players' => [],
+        'ball_handler' => null
     ];
 
     if (file_exists(STORAGE_FILE)) {

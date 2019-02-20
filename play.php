@@ -3,8 +3,20 @@ require_once 'bootstrap.php';
 
 session_start();
 
+$team_idx = $_SESSION['team'] ?? false;
+$nick = $_SESSION['nick'] ?? false;
+
 $form = [
-    'fields' => [],
+    'fields' => [
+        'ball_handler' => [
+            'label' => 'Kam pasuoji?',
+            'type' => 'select',
+            'options' => get_players_names($team_idx, $nick),
+            'validate' => [
+                'validate_not_empty'
+            ]
+        ]
+    ],
     'buttons' => [
         'submit' => [
             'text' => 'Kick the ball!'
@@ -18,6 +30,26 @@ $form = [
     ]
 ];
 
+function get_players_names($team_idx, $nick) {
+    if (file_exists(STORAGE_FILE)) {
+        $teams_array = file_to_array(STORAGE_FILE);
+        $team = $teams_array[$team_idx] ?? false;
+
+        if ($team) {
+            $names_array = array_column($team['players'], 'nick_name');
+
+            foreach ($names_array as $name_idx => $name) {
+                if ($name == $_SESSION['nick']) {
+                    array_splice($names_array, $name_idx, 1);
+                    return $names_array;
+                }
+            }
+        }
+    }
+
+    return [];
+}
+
 function form_success($safe_input, $form) {
     $team_idx = $_SESSION['team'] ?? false;
     $nick = $_SESSION['nick'] ?? false;
@@ -29,9 +61,10 @@ function form_success($safe_input, $form) {
                 $player['score'] ++;
             }
         }
-
-        return array_to_file($teams_array, STORAGE_FILE);
+        $teams_array[$team_idx]['ball_handler'] = $_POST['ball_handler'];
     }
+    var_dump($teams_array);
+    return array_to_file($teams_array, STORAGE_FILE);
 }
 
 function check_player($team_idx, $nick) {
