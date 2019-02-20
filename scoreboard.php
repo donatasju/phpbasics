@@ -43,8 +43,10 @@ if (file_exists(STORAGE_FILE)) {
             <p><?php print 'Komandos pavadinimas: ' . $team['team_name']; ?></p>
             <p><?php print 'Komandos score: ' . $team['team_score']; ?></p>
         <?php endforeach; ?>
+        <?php if (!empty($_SESSION)): ?>
             <h3>Zaidejo duomenys:</h3>
-        <p><?php print 'Tavo nick: ' . $nick ?></p>
-        <p><?php print 'Tavo individual score: ' . $individual_score; ?></p>
+            <p><?php print 'Tavo nick: ' . $nick ?></p>
+            <p><?php print 'Tavo individual score: ' . $individual_score; ?></p>
+        <?php endif; ?>
     </body>
 </html>
