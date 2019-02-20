@@ -5,7 +5,7 @@ session_start();
 
 if (file_exists(STORAGE_FILE)) {
     $teams_array = file_to_array(STORAGE_FILE);
-    if (empty($teams_array)) {
+    if (empty($teams_array[0]['team_name'])) {
         header("Location: create.php");
         exit();
     }
