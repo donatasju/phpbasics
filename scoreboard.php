@@ -7,13 +7,12 @@ if (file_exists(STORAGE_FILE)) {
     $team_idx = $_SESSION['team'] ?? false;
     $nick = $_SESSION['nick'] ?? false;
     $teams_array = file_to_array(STORAGE_FILE);
-    
+
     if (!empty($_SESSION)) {
         foreach ($teams_array[$team_idx]['players'] as $player) {
             $individual_score = 0;
 
             if ($player['nick_name'] == $nick) {
-
                 $individual_score = $player['score'];
                 break;
             }
