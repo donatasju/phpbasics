@@ -3,6 +3,17 @@ require_once 'bootstrap.php';
 
 session_start();
 
+if (file_exists(STORAGE_FILE)) {
+    $teams_array = file_to_array(STORAGE_FILE);
+    if (empty($teams_array)) {
+        header("Location: create.php");
+        exit();
+    }
+} else {
+    header("Location: create.php");
+    exit();
+}
+
 function form_success($safe_input, $form) {
     $team_idx = $safe_input['team'];
     $player = [

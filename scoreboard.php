@@ -3,30 +3,42 @@ require_once 'bootstrap.php';
 
 session_start();
 
-if (file_exists(STORAGE_FILE)) {
-    $team_idx = $_SESSION['team'] ?? false;
-    $nick = $_SESSION['nick'] ?? false;
-    $teams_array = file_to_array(STORAGE_FILE);
+function team_scores() {
+    $teams = file_to_array(STORAGE_FILE);
 
-    if (!empty($_SESSION)) {
-        foreach ($teams_array[$team_idx]['players'] as $player) {
-            $individual_score = 0;
+    foreach ($teams as &$team) {
+        $team['total_score'] = 0;
 
-            if ($player['nick_name'] == $nick) {
-                $individual_score = $player['score'];
-                break;
+        foreach ($team['players'] as $player) {
+            $team['total_score'] += $player['score'];
+        }
+    }
+
+    return $teams;
+}
+
+function get_player($team_idx, $nick) {
+    $teams = file_to_array(STORAGE_FILE);
+    $team = $teams[$team_idx] ?? false;
+
+    if ($team) {
+        foreach ($team['players'] as $player) {
+            if ($nick == $player['nick_name']) {
+                return $player;
             }
         }
     }
 
-    foreach ($teams_array as &$team) {
-        $team['team_score'] = 0;
-        foreach ($team['players'] as $player) {
-            $team['team_score'] += $player['score'];
-        }
-    }
-    unset($team);
-    array_to_file($teams_array, STORAGE_FILE);
+    return null;
+}
+
+$scoreboard = team_scores();
+
+$nick = $_SESSION['nick'] ?? false;
+$team_idx = $_SESSION['team'] ?? false;
+
+if ($nick && $team_idx !== false) {
+    $player_stats = get_player($team_idx, $nick);
 }
 ?>
 <html>
@@ -40,14 +52,29 @@ if (file_exists(STORAGE_FILE)) {
 
         <!-- Content -->       
         <h1>PZDABALL Scoreboard!</h1>
-        <?php foreach ($teams_array as $team): ?>
-            <p><?php print 'Komandos pavadinimas: ' . $team['team_name']; ?></p>
-            <p><?php print 'Komandos score: ' . $team['team_score']; ?></p>
-        <?php endforeach; ?>
-        <?php if (!empty($_SESSION)): ?>
-            <h3>Zaidejo duomenys:</h3>
-            <p><?php print 'Tavo nick: ' . $nick ?></p>
-            <p><?php print 'Tavo individual score: ' . $individual_score; ?></p>
+        <table>
+            <tr>
+                <th>Team</th>
+                <th>Score</th>
+            </tr>
+            <?php foreach ($scoreboard as $team): ?>
+                <tr>
+                    <td><?php print $team['team_name']; ?></td>
+                    <td><?php print $team['total_score']; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php if (isset($player_stats)): ?>
+            <table>
+                <tr>
+                    <th>Nickname</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td><?php print $player_stats['nick_name']; ?></td>
+                    <td><?php print $player_stats['score']; ?></td>
+                </tr>
+            </table>
         <?php endif; ?>
     </body>
 </html>
