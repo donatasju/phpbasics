@@ -3,49 +3,14 @@ require_once 'bootstrap.php';
 
 session_start();
 
-$team_idx = $_SESSION['team'] ?? false;
-$nick = $_SESSION['nick'] ?? false;
-
-$form = [
-    'fields' => [
-        'ball_handler' => [
-            'label' => 'Kam pasuoji?',
-            'type' => 'select',
-            'options' => get_players_names($team_idx, $nick),
-            'validate' => [
-                'validate_not_empty',
-                'validate_kick'
-            ]
-        ]
-    ],
-    'buttons' => [
-        'submit' => [
-            'text' => 'Kick the ball!'
-        ]
-    ],
-    'callbacks' => [
-        'success' => [
-            'form_success'
-        ],
-        'fail' => []
-    ]
-];
-
-function get_players_names($team_idx, $nick) {
+function get_players_names($team_idx, $player_idx) {
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
-        $team = $teams_array[$team_idx] ?? false;
+        $team_players = &$teams_array[$team_idx]['players'];
+        $players_nick_list = array_column($team_players, 'nick_name');
+        unset($players_nick_list[$player_idx]);
 
-        if ($team) {
-            $names_array = array_column($team['players'], 'nick_name');
-
-            foreach ($names_array as $name_idx => $name) {
-                if ($name == $_SESSION['nick']) {
-                    unset($names_array[$name_idx]);
-                    return $names_array;
-                }
-            }
-        }
+        return $players_nick_list;
     }
 
     return [];
@@ -73,41 +38,64 @@ function validate_kick($field_input, &$field, $input) {
 
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
-        if ($teams_array[$team_idx]['ball_handler'] == null || $teams_array[$team_idx]['ball_handler'] == $player_ind) {
+        $team = &$teams_array[$team_idx];
+        $ball_handler = $team['ball_handler'];
+        if ($ball_handler == null || $ball_handler == $player_ind) {
             return true;
         } else {
-            $field['error_msg'] = 'Negali pasuoti, nes neturi kamuolio';
+            $field['error_msg'] = strtr('Negali pasuoti, nes @ball_handler turi kamuoli', [
+                '@ball_handler' => $team['players'][$ball_handler]['nick_name']
+            ]);
         }
     }
 
     return false;
 }
 
-function check_player($team_idx, $nick) {
+function check_player($team_idx, $player_idx) {
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
-        $player_team = $teams_array[$team_idx] ?? false;
-
-        if ($player_team) {
-            return in_array($nick, array_column(
-                            $player_team['players'], 'nick_name')
-            );
-        }
+        return $teams_array[$team_idx]['players'][$player_idx] ?? false;
     }
 
     return false;
 }
+
+$team_idx = $_SESSION['team'] ?? false;
+$player_idx = $_SESSION['player_idx'] ?? false;
+
+$form = [
+    'fields' => [
+        'ball_handler' => [
+            'label' => 'Kam pasuoji?',
+            'type' => 'select',
+            'options' => get_players_names($team_idx, $player_idx),
+            'validate' => [
+                'validate_not_empty',
+                'validate_kick'
+            ]
+        ]
+    ],
+    'buttons' => [
+        'submit' => [
+            'text' => 'Kick the ball!'
+        ]
+    ],
+    'callbacks' => [
+        'success' => [
+            'form_success'
+        ],
+        'fail' => []
+    ]
+];
 
 $show_form = false;
 $valid_player = false;
 $message = '';
 
 if (!empty($_SESSION)) {
-    $nick = $_SESSION['nick'] ?? false;
-    $team_idx = $_SESSION['team'] ?? false;
-
-    if ($nick && $team_idx !== false) {
-        $valid_player = check_player($team_idx, $nick);
+    if ($player_idx !== false && $team_idx !== false) {
+        $valid_player = check_player($team_idx, $player_idx);
     }
 }
 
@@ -130,11 +118,11 @@ if ($valid_player) {
     </head>
     <body>
         <!-- Navigation -->    
-        <?php require 'objects/navigation.php'; ?>        
+<?php require 'objects/navigation.php'; ?>        
 
         <!-- Content -->       
         <h1>Išbėk į aikštelę</h1>
-        <?php if ($show_form): ?>
+<?php if ($show_form): ?>
             <!-- Form -->        
             <?php require 'objects/form.php'; ?>
         <?php else: ?>
