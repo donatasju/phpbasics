@@ -53,15 +53,21 @@ function get_players_names($team_idx, $nick) {
 function form_success($safe_input, $form) {
     $team_idx = $_SESSION['team'] ?? false;
     $nick = $_SESSION['nick'] ?? false;
+    $my_index = 0;
 
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
-        foreach ($teams_array[$team_idx]['players'] as &$player) {
+        foreach ($teams_array[$team_idx]['players'] as $player_idx => &$player) {
             if ($player['nick_name'] == $nick) {
                 $player['score'] ++;
             }
+            if ($player == $nick) {
+                $my_index = $player_idx;
+            }
         }
-        $teams_array[$team_idx]['ball_handler'] = $_POST['ball_handler'];
+        if ($teams_array[$team_idx]['ball_handler'] == null || $teams_array[$team_idx]['ball_handler'] == $my_index) {
+            $teams_array[$team_idx]['ball_handler'] = $_POST['ball_handler'];
+        }
     }
     var_dump($teams_array);
     return array_to_file($teams_array, STORAGE_FILE);
