@@ -7,6 +7,8 @@
  */
 
 define('STORAGE_FILE', 'files/teams.txt');
+define('PLAYERS_FILE', 'files/players.txt');
+
 
 require_once 'functions/form.php';
 require_once 'functions/file.php';
