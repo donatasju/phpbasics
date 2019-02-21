@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-define('STORAGE_FILE', 'files/teams.txt');
+define('STORAGE_FILE', './files/teams.txt');
 
 require_once 'functions/form.php';
 require_once 'functions/file.php';
