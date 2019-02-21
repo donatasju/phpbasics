@@ -16,10 +16,10 @@ function form_success($safe_input, $form) {
     return array_to_file($user_names_array, PLAYERS_FILE);
 }
 
-function validate_username($field_input, &$field, $input) {
+function validate_user_name($field_input, &$field, $input) {
     if (file_exists(PLAYERS_FILE)) {
-        $user_names_array = file_to_array(PLAYERS_FILE);
-        foreach ($user_names_array as $user) {
+        $users_array = file_to_array(PLAYERS_FILE);
+        foreach ($users_array as $user) {
             if ($user['user_name'] == $field_input) {
                 $field['error_msg'] = strtr('Username tokiu pavadinimu '
                         . '"@user" jau egzistuoja!', [
@@ -41,7 +41,7 @@ $form = [
             'placeholder' => 'Lopas123',
             'validate' => [
                 'validate_not_empty',
-                'validate_username'
+                'validate_user_name'
             ]
         ],
         'password' => [
@@ -73,7 +73,7 @@ if (!empty($_POST)) {
     $form_success = validate_form($safe_input, $form);
 
     if ($form_success) {
-        $success_msg = strtr('Team`as "@user_name" sėkmingai sukurtas!', [
+        $success_msg = strtr('Useris "@user_name" sėkmingai sukurtas!', [
             '@user_name' => $safe_input['user_name']
         ]);
         $show_form = false;

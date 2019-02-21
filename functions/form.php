@@ -19,17 +19,17 @@ function get_safe_input($form) {
 /**
  * Patikriname ar formoje esancios validacijos funkcijos yra teisingos ir iskvieciame ju funkcijas(not empty, not a number).
  * 
- * @param type $input
+ * @param type $safe_input
  * @param type $form
  * @return boolean
  * @throws Exception
  */
-function validate_form($input, &$form) {
+function validate_form($safe_input, &$form) {
     $success = true;
     foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
-                if (!$validator($input[$field_id], $field, $input)) {
+                if (!$validator($safe_input[$field_id], $field, $safe_input)) {
                     $success = false;
                     break;
                 }
@@ -41,9 +41,26 @@ function validate_form($input, &$form) {
         }
     }
     if ($success) {
+        $form['validate'] = $form['validate'] ?? [];
+        
+		foreach ($form['validate'] as $validator) {
+            if (is_callable($validator)) {
+                if (!$validator($safe_input, $form)) {
+                    $success = false;
+                    break;
+                }
+            } else {
+                throw new Exception(strtr('Not callable @validator function', [
+                    '@validator' => $validator
+                ]));
+            }
+        }
+    }
+    
+    if ($success) {
         foreach ($form['callbacks']['success'] as $callback) {
             if (is_callable($callback)) {
-                $callback($input, $form);
+                $callback($safe_input, $form);
             } else {
                 throw new Exception(strtr('Not callable @function function', [
                     '@function' => $callback
@@ -53,7 +70,7 @@ function validate_form($input, &$form) {
     } else {
         foreach ($form['callbacks']['fail'] as $callback) {
             if (is_callable($callback)) {
-                $callback($input, $form);
+                $callback($safe_input, $form);
             } else {
                 throw new Exception(strtr('Not callable @function function', [
                     '@function' => $callback
@@ -61,6 +78,7 @@ function validate_form($input, &$form) {
             }
         }
     }
+    
     return $success;
 }
 
@@ -71,7 +89,7 @@ function validate_form($input, &$form) {
  * @param array $field $form Field
  * @return boolean
  */
-function validate_not_empty($field_input, &$field, $input) {
+function validate_not_empty($field_input, &$field, $safe_input) {
     if (strlen($field_input) == 0) {
         $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
                 . 'kad palikai @field tuscia!', ['@field' => $field['label']
@@ -88,7 +106,7 @@ function validate_not_empty($field_input, &$field, $input) {
  * @param array $field $form Field
  * @return boolean
  */
-function validate_is_number($field_input, &$field , $input) {
+function validate_is_number($field_input, &$field, $safe_input) {
     if (!is_numeric($field_input)) {
         $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
                 . 'nes @field nera skaicius!', ['@field' => $field['label']
