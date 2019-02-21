@@ -23,10 +23,11 @@ function form_success($safe_input, $form) {
 
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
-        $teams_array[$team_idx]['players'][] = $player;
+        $team_players = &$teams_array[$team_idx]['players'];
+        $team_players[] = $player;
         $_SESSION['nick'] = $safe_input['nick'];
         $_SESSION['team'] = $safe_input['team'];
-
+        $_SESSION['player_idx'] = count($team_players)-1;
         return array_to_file($teams_array, STORAGE_FILE);
     }
 }

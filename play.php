@@ -13,7 +13,8 @@ $form = [
             'type' => 'select',
             'options' => get_players_names($team_idx, $nick),
             'validate' => [
-                'validate_not_empty'
+                'validate_not_empty',
+                'validate_kick'
             ]
         ]
     ],
@@ -40,7 +41,7 @@ function get_players_names($team_idx, $nick) {
 
             foreach ($names_array as $name_idx => $name) {
                 if ($name == $_SESSION['nick']) {
-                    $unset($names_array[$name_idx]);
+                    unset($names_array[$name_idx]);
                     return $names_array;
                 }
             }
@@ -53,22 +54,33 @@ function get_players_names($team_idx, $nick) {
 function form_success($safe_input, $form) {
     $team_idx = $_SESSION['team'] ?? false;
     $nick = $_SESSION['nick'] ?? false;
-    $my_index = 0;
+    $player_ind = $_SESSION['player_idx'] ?? false;
 
     if (file_exists(STORAGE_FILE)) {
         $teams_array = file_to_array(STORAGE_FILE);
-        foreach ($teams_array[$team_idx]['players'] as $player_idx => &$player) {
-            if ($player['nick_name'] == $nick) {
-                $player['score'] ++;
-                $my_index = $player_idx;
-            }
-        }
-        if ($teams_array[$team_idx]['ball_handler'] == null || $teams_array[$team_idx]['ball_handler'] == $my_index) {
-            $teams_array[$team_idx]['ball_handler'] = $safe_input['ball_handler'];
+
+        $teams_array[$team_idx]['ball_handler'] = $safe_input['ball_handler'];
+        $teams_array[$team_idx]['players'][$player_ind]['score'] ++;
+
+        return array_to_file($teams_array, STORAGE_FILE);
+    }
+}
+
+function validate_kick($field_input, &$field, $input) {
+    $team_idx = $_SESSION['team'] ?? false;
+    $nick = $_SESSION['nick'] ?? false;
+    $player_ind = $_SESSION['player_idx'] ?? false;
+
+    if (file_exists(STORAGE_FILE)) {
+        $teams_array = file_to_array(STORAGE_FILE);
+        if ($teams_array[$team_idx]['ball_handler'] == null || $teams_array[$team_idx]['ball_handler'] == $player_ind) {
+            return true;
+        } else {
+            $field['error_msg'] = 'Negali pasuoti, nes neturi kamuolio';
         }
     }
-    var_dump($teams_array);
-    return array_to_file($teams_array, STORAGE_FILE);
+
+    return false;
 }
 
 function check_player($team_idx, $nick) {
