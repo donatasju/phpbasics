@@ -66,7 +66,7 @@ function form_success($safe_input, $form) {
             }
         }
         if ($teams_array[$team_idx]['ball_handler'] == null || $teams_array[$team_idx]['ball_handler'] == $my_index) {
-            $teams_array[$team_idx]['ball_handler'] = $_POST['ball_handler'];
+            $teams_array[$team_idx]['ball_handler'] = $safe_input['ball_handler'];
         }
     }
     var_dump($teams_array);
