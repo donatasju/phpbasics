@@ -65,27 +65,39 @@ $form = [
         'fail' => []
     ]
 ];
+
 $show_form = true;
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $form_success = validate_form($safe_input, $form);
+
+    if ($form_success) {
+        $success_msg = strtr('Team`as "@user_name" sėkmingai sukurtas!', [
+            '@user_name' => $safe_input['user_name']
+        ]);
+        $show_form = false;
+    }
 }
 ?>
 <html>
     <head>
         <link rel="stylesheet" href="css/style.css">
-        <title>PZ2ABALL | Play</title>
+        <title>PZ2ABALL | Create Team</title>
     </head>
     <body>
         <!-- Navigation -->    
         <?php require 'objects/navigation.php'; ?>        
 
-        <!-- Content -->       
-        <h1>Registracija!</h1>
+        <!-- Content -->    
+        <h1>Register!</h1>
+
         <?php if ($show_form): ?>
             <!-- Form -->        
             <?php require 'objects/form.php'; ?>
+        <?php else: ?>
+            <h2>Zašibys!</h2>
+            <h3><?php print $success_msg; ?></h3>
         <?php endif; ?>
     </body>
 </html>
