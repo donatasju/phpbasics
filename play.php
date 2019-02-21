@@ -40,7 +40,7 @@ function get_players_names($team_idx, $nick) {
 
             foreach ($names_array as $name_idx => $name) {
                 if ($name == $_SESSION['nick']) {
-                    array_splice($names_array, $name_idx, 1);
+                    $unset($names_array[$name_idx]);
                     return $names_array;
                 }
             }
@@ -60,8 +60,6 @@ function form_success($safe_input, $form) {
         foreach ($teams_array[$team_idx]['players'] as $player_idx => &$player) {
             if ($player['nick_name'] == $nick) {
                 $player['score'] ++;
-            }
-            if ($player == $nick) {
                 $my_index = $player_idx;
             }
         }
