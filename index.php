@@ -7,7 +7,6 @@ class ThailandSurpise {
 
     public function __construct() {
         $this->balls = rand(0, 1);
-        $this->clothes = $clothes;
     }
     
     public function attachBalls() {
@@ -19,7 +18,9 @@ class ThailandSurpise {
     }
 }
 
-$miniskirt = new ThailandSurpise();
+$surpise = new ThailandSurpise();
+
+$surpise->clothes = 'miniskirt';
 
 
 
