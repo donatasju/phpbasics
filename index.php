@@ -15,8 +15,8 @@ class FileDb {
         $this->data[$table][$row_id] = $row_data;
     }
 
-    public function setRowColumn($table, $row_id, $column_id, $row_data) {
-        $this->data[$table][$row_id][$column_id] = $row_data;
+    public function setRowColumn($table, $row_id, $column_id, $column_data) {
+        $this->data[$table][$row_id][$column_id] = $column_data;
     }
 
     public function getRow($table, $row_id) {
