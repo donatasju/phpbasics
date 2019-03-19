@@ -2,7 +2,7 @@
 
 /**
  * Gauname saugu patikrinta user input.
- * 
+ *
  * @param type $form
  * @return type
  */
@@ -18,7 +18,7 @@ function get_safe_input($form) {
 
 /**
  * Patikriname ar formoje esancios validacijos funkcijos yra teisingos ir iskvieciame ju funkcijas(not empty, not a number).
- * 
+ *
  * @param type $safe_input
  * @param type $form
  * @return boolean
@@ -42,7 +42,7 @@ function validate_form($safe_input, &$form) {
     }
     if ($success) {
         $form['validate'] = $form['validate'] ?? [];
-        
+
 		foreach ($form['validate'] as $validator) {
             if (is_callable($validator)) {
                 if (!$validator($safe_input, $form)) {
@@ -56,7 +56,7 @@ function validate_form($safe_input, &$form) {
             }
         }
     }
-    
+
     if ($success) {
         foreach ($form['callbacks']['success'] as $callback) {
             if (is_callable($callback)) {
@@ -78,13 +78,13 @@ function validate_form($safe_input, &$form) {
             }
         }
     }
-    
+
     return $success;
 }
 
 /**
  * Checks if field is empty
- * 
+ *
  * @param string $field_input
  * @param array $field $form Field
  * @return boolean
@@ -101,7 +101,7 @@ function validate_not_empty($field_input, &$field, $safe_input) {
 
 /**
  * Checks if field is a number
- * 
+ *
  * @param string $field_input
  * @param array $field $form Field
  * @return boolean

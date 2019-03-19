@@ -1,0 +1,16 @@
+.border {
+    display: inline-block;
+    border: 1px solid black;
+    background-image: url('../images/test.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 331px;
+    height: 400px;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+.blokas, label {
+    display: block;
+    margin: 10px;
+}
