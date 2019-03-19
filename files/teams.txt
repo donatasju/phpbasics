@@ -1,1 +1,0 @@
-[{"team_name":"lopas","players":[],"ball_handler":null},{"team_name":"fdsafs","players":[{"nick_name":"fsfa","score":0}],"ball_handler":null}]
