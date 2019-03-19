@@ -11,11 +11,11 @@ class ThailandSurpise {
     }
     
     public function attachBalls() {
-        $this->balls = true;
+        $this->balls = 1;
     }
     
     public function detachBalls() {
-        $this->balls = false;
+        $this->balls = 0;
     }
 }
 
