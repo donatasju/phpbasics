@@ -36,7 +36,7 @@ $surpise = new ThailandSurpise();
 
     </head>
     <body>
-        <img src= <?php print $surpise->getPhoto() ?> >
+        <img src= <?php print $surpise->getPhoto(); ?> >
     </body>
 </html>
 
