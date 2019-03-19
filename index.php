@@ -6,7 +6,7 @@ class ThailandSurpise {
 
 }
 
-$miniskirt = new ThailandSurpise('miniskirt');
+$miniskirt = new ThailandSurpise();
 print $miniskirt->$clothes;
 
 
