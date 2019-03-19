@@ -29,7 +29,7 @@ class ThailandSurpise {
 
 }
 
-$surpise = new ThailandSurpise();
+$surpise = new ThailandSurpise('Donatas');
 ?>
 <html>
     <head>
