@@ -14,13 +14,15 @@ class FileDb {
     public function setRow($table, $row_id, $row_data) {
         $this->data[$table][$row_id] = $row_data;
     }
+
     public function setRowColumn($table, $row_id, $column_id, $row_data) {
         $this->data[$table][$row_id][$column_id] = $row_data;
     }
-    
+
     public function getRow($table, $row_id) {
         return $this->data[$table][$row_id];
     }
+
     public function getRowColumn($table, $row_id, $column_id) {
         return $this->data[$table][$row_id][$column_id];
     }
@@ -48,7 +50,6 @@ class FileDb {
 $db = new FileDb('db/database.txt');
 $db->setRow('Donatas table named', 'row_id', ['location' => 'oral']);
 $db->save();
-
 ?>
 
 
