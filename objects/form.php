@@ -1,4 +1,5 @@
 <form method="POST">
+    <div class="form-group">
     <?php foreach ($form['fields'] as $field_id => $field): ?>
         <label>
             <span><?php print $field['label']; ?></span>
@@ -6,8 +7,9 @@
             <!-- Form field -->            
             <?php if (in_array($field['type'], ['text', 'password'])): ?>
                 <!-- Simple input field: text, password -->
-                <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
+                <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
             <?php elseif ($field['type'] == 'select'): ?>
+    </div>
                 <!-- Select field -->
                 <select name="<?php print $field_id; ?>">
                     <?php foreach ($field['options'] as $option_id => $option_label): ?>
