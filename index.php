@@ -19,8 +19,10 @@ class ThailandSurpise {
 
     public function getPhoto() {
         if ($this->balls == true) {
+            
             return 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Logo-TRUE.svg/1200px-Logo-TRUE.svg.png';
         } else {
+            
             return 'https://1islam.files.wordpress.com/2012/08/false.jpg';
         }
     }
