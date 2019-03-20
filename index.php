@@ -17,5 +17,5 @@ class Jacuzzi {
     
 }
 
-$skaidruu = new Jacuzzi(1000, 100);
+$skaidruu = new Jacuzzi(30, 10);
 print $skaidruu->getWaterPurity();
