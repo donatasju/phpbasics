@@ -6,7 +6,7 @@ class Gerimas {
 
     private $data;
 
-    public function __construct($data) {
+    public function __construct() {
         $this->data = [
             'name' => null,
             'amount_ml' => null,
@@ -14,7 +14,7 @@ class Gerimas {
         ];
     }
 
-    public function setName(String $name) {
+    public function setName(string $name) {
         $this->data['name'] = $name;
     }
 
@@ -34,7 +34,7 @@ class Gerimas {
         $this->data['abarot'] = $abarot;
     }
 
-    public function GetAbarot() {
+    public function getAbarot() {
         return $this->data['abarot'];
     }
 
