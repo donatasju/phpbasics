@@ -1,44 +1,41 @@
 <?php
 
-class Jacuzzi {
+declare(strict_types = 1);
 
-    public $amount_water;
-    public $amount_non_water;
+class Gerimas {
 
-    public function __construct($water = 0, $non_water = 0) {
-        $this->amount_water = $water;
-        $this->amount_non_water = $non_water;
+    private $data;
+
+    public function __construct($data) {
+        $this->data = [
+            'name' => null,
+            'amount_ml' => null,
+            'abarot' => null
+        ];
     }
-    
-    public function getWaterPurity() {
-        return $this->amount_water / ($this->amount_water + $this->amount_non_water) * 100;
-        
+
+    public function setName(String $name) {
+        $this->data['name'] = $name;
     }
+
+    public function getName() {
+        return $this->data['name'];
+    }
+
+    public function setAmount(int $amount_ml) {
+        $this->data['amount_ml'] = $amount_ml;
+    }
+
+    public function getAmount() {
+        return $this->data['amount_ml'];
+    }
+
+    public function setAbarot(float $abarot) {
+        $this->data['abarot'] = $abarot;
+    }
+
+    public function GetAbarot() {
+        return $this->data['abarot'];
+    }
+
 }
-
-class User {
-    
-    public function peeInJacuzzi (Jacuzzi $jacuzzi, $amount) {
-        $jacuzzi->amount_non_water += $amount;
-    }
-}
-
-$jacuzzis = new Jacuzzi(600);
-$petras = new User();
-$piotras = new User();
-$petras->peeInJacuzzi($jacuzzis, rand(0, 200) / 1000);
-$piotras->peeInJacuzzi($jacuzzis, rand(0, 100) / 1000);
-$skaidrumas = $jacuzzis->getWaterPurity();
-
-?>
-<html>
-    <head>
-        <title>OOP</title>
-    </head>
-    <body>
-        <span>Skaidrus: <?php print $jacuzzis->amount_water; ?>L<span><br>
-        <span>Neskaidrus: <?php print $jacuzzis->amount_non_water; ?>L</span><br>
-        <span>Skaidrumas: <?php print $skaidrumas ;?>%</span>
-    </body>    
-</html>
-
