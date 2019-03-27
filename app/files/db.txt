@@ -1,0 +1,1 @@
+{"USER_DRINKS":{"0.22247900 1553686265":{"name":"Donato gerimas","amount_ml":1000,"abarot":40,"image":"uploads\/0.21984800 1553686265-long.jpg"}}}
