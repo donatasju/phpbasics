@@ -59,7 +59,9 @@ Class User {
     }
 
     public function setGender(string $gender) {
-        $this->data['gender'] = $gender;
+        if (in_array($gender, [$this::GENDER_MALE, $this::GENDER_FEMALE])) {
+            $this->data['gender'] = $gender;
+        }
     }
 
     public function getGender() {
@@ -77,9 +79,7 @@ Class User {
     }
 
     public function setPhoto(string $photo) {
-        if (in_array($photo, [$this::GENDER_MALE, $this::GENDER_FEMALE])) {
-            $this->data['photo'] = $photo;
-        }
+        $this->data['photo'] = $photo;
     }
 
     public function getPhoto() {
