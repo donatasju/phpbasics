@@ -131,6 +131,7 @@ if (!empty($_POST)) {
 
 $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
 $model_users = new App\Model\ModelUser($db, 'USERS');
+
 ?>
 <html>
     <head>
