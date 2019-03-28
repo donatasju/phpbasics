@@ -17,7 +17,7 @@ Class User {
             $this->setData($data);
         } else {
             $this->data = [
-                'user_name' => null,
+                'username' => null,
                 'email' => null,
                 'full_name' => null,
                 'age' => null,
@@ -28,12 +28,12 @@ Class User {
         }
     }
 
-    public function setUserName(string $user_name) {
-        $this->data['user_name'] = $user_name;
+    public function setUsername(string $username) {
+        $this->data['username'] = $username;
     }
 
-    public function getUserName() {
-        return $this->data['user_name'];
+    public function getUsername() {
+        return $this->data['username'];
     }
 
     public function setEmail(string $email) {
@@ -91,7 +91,7 @@ Class User {
     public function setData(array $data) {
         $this->setUsername($data['username'] ?? '');
         $this->setEmail($data['email'] ?? '');
-        $this->setFullname($data['fullname'] ?? '');
+        $this->setFullname($data['full_name'] ?? '');
         $this->setAge($data['age'] ?? null);
         $this->setGender($data['gender'] ?? '');
         $this->setOrientation($data['orientation'] ?? '');
