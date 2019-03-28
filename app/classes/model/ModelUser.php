@@ -12,12 +12,12 @@ class ModelUser {
         $this->db = $db;
     }
 
-    public function load($row_id) {        
+    public function load($row_id) {
         $row_data = $this->db->getRow($this->table_name, $row_id);
         if ($row_data) {
-            return new \App\User($row_data);        
+            return new \App\User($row_data);
         }
-        
+
         return false;
     }
 
@@ -52,8 +52,6 @@ class ModelUser {
     }
 
     public function loadAll() {
-        
-        
         $rows_data = $this->db->getRows($this->table_name);
         $users = [];
 
@@ -61,6 +59,7 @@ class ModelUser {
             foreach ($rows_data as $row_data) {
                 $users[] = new \App\User($row_data);
             }
+
             return $users;
         } else {
             return [];
@@ -68,8 +67,13 @@ class ModelUser {
     }
 
     public function deleteAll() {
-        $this->db->deleteRows($this->table_name);
-        $this->db->save();
+        if ($this->db->deleteRows($this->table_name)) {
+            $this->db->save();
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

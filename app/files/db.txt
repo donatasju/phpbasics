@@ -1,1 +1,1 @@
-{"USER_DRINKS":{"0.22247900 1553686265":{"name":"Donato gerimas","amount_ml":1000,"abarot":40,"image":"uploads\/0.21984800 1553686265-long.jpg"},"0.01703300 1553686844":{"name":"Donato gerimas","amount_ml":1000,"abarot":40,"image":"uploads\/0.01465800 1553686844-long.jpg"}}}
+{"USERS":{"0.68080700 1553770907":{"username":"nihuje","email":"donatas.jurkusl@gmail.com","full_name":"donatas jurkus","age":23,"gender":"m","orientation":"s","photo":"uploads\/0.66137300 1553770907-balls.jpg"}}}
