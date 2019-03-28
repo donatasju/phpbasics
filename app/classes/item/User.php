@@ -96,4 +96,8 @@ Class User {
         $this->setPhoto($data['photo'] ?? '');
     }
 
+    public function getData() {
+        return $this->data;
+    }
+
 }
