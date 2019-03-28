@@ -67,7 +67,7 @@ Class User {
     }
 
     public function setOrientation(string $orientation) {
-        if (in_array($orientation, [$this::GAY, $this::STRAIGHT, $this::BISEXUAL])) {
+        if (in_array($orientation, [$this::ORIENTATION_GAY, $this::ORIENTATION_STRAIGHT, $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
     }
@@ -77,7 +77,7 @@ Class User {
     }
 
     public function setPhoto(string $photo) {
-        if (in_array($photo, [$this::MALE, $this::FEMALE])) {
+        if (in_array($photo, [$this::GENDER_MALE, $this::GENDER_FEMALE])) {
             $this->data['photo'] = $photo;
         }
     }
