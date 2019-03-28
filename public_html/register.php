@@ -131,7 +131,6 @@ if (!empty($_POST)) {
 
 $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
 $model_users = new App\Model\ModelUser($db, 'USERS');
-
 ?>
 <html>
     <head>
@@ -139,15 +138,17 @@ $model_users = new App\Model\ModelUser($db, 'USERS');
     </head>
     <body>
         <?php require '../core/views/form.php'; ?>
+        <?php if (isset($success_msg)): ?>
             <h3><?php print $success_msg; ?></h3>
+        <?php endif; ?>
         <?php foreach ($model_users->loadAll() as $user): ?>
             <div>
                 <h2>Username: <?php print $user->getUsername(); ?></h2>
                 <p>Email: <?php print $user->getEmail(); ?></p>
-                <p>Fullname: <?php print $user->getFullName(); ?></p>
+                <p>Full name: <?php print $user->getFullName(); ?></p>
                 <p>Age: <?php print $user->getAge(); ?></p>
-                <p>Gender: <?php print $user->getGender(); ?></p>
-                <p>Orientation: <?php print $user->getOrientation(); ?></p>
+                <p>Gender: <?php print \App\User::getGenderOptions()[$user->getGender()]; ?></p>
+                <p>Orientation: <?php print \App\User::getOrientationOptions()[$user->getOrientation()]; ?></p>
                 <img src="<?php print $user->getPhoto(); ?>">
             </div>
         <?php endforeach; ?>

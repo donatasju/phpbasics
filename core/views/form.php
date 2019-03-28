@@ -13,6 +13,7 @@
                 <!-- Select field -->
                 <select name="<?php print $field_id; ?>">
                     <?php foreach ($field['options'] as $option_id => $option_label): ?>
+                    <?php var_dump($option_label); ?>
                         <option value="<?php print $option_id; ?>"><?php print $option_label; ?></option>
                     <?php endforeach; ?>
                 </select>

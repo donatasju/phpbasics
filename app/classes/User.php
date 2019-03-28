@@ -30,16 +30,16 @@ Class User {
 
     public static function getGenderOptions() {
         return [
-            self::GENDER_MALE => 'male',
-            self::GENDER_FEMALE => 'female'
+            self::GENDER_MALE => 'Male',
+            self::GENDER_FEMALE => 'Female'
         ];
     }
 
     public static function getOrientationOptions() {
         return [
-            self::ORIENTATION_STRAIGHT => 'straight',
-            self::ORIENTATION_BISEXUAL => 'bisexual',
-            self::ORIENTATION_GAY => 'gay'
+            self::ORIENTATION_STRAIGHT => 'Straight',
+            self::ORIENTATION_BISEXUAL => 'Bisexual',
+            self::ORIENTATION_GAY => 'Gay'
         ];
     }
 
