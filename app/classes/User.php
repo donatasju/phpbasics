@@ -61,7 +61,10 @@ Class User {
     }
 
     public function setGender(string $gender) {
-        if (in_array($gender, [$this::GENDER_MALE, $this::GENDER_FEMALE])) {
+        if (in_array($gender, [
+            $this::GENDER_MALE, 
+            $this::GENDER_FEMALE
+                ])) {
             $this->data['gender'] = $gender;
         }
     }
@@ -71,7 +74,11 @@ Class User {
     }
 
     public function setOrientation(string $orientation) {
-        if (in_array($orientation, [$this::ORIENTATION_GAY, $this::ORIENTATION_STRAIGHT, $this::ORIENTATION_BISEXUAL])) {
+        if (in_array($orientation, [
+            $this::ORIENTATION_GAY, 
+            $this::ORIENTATION_STRAIGHT, 
+            $this::ORIENTATION_BISEXUAL
+                ])) {
             $this->data['orientation'] = $orientation;
         }
     }
@@ -91,7 +98,7 @@ Class User {
     public function setData(array $data) {
         $this->setUsername($data['username'] ?? '');
         $this->setEmail($data['email'] ?? '');
-        $this->setFullname($data['full_name'] ?? '');
+        $this->setFullName($data['full_name'] ?? '');
         $this->setAge($data['age'] ?? null);
         $this->setGender($data['gender'] ?? '');
         $this->setOrientation($data['orientation'] ?? '');
