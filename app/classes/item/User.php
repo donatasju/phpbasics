@@ -90,7 +90,7 @@ Class User {
         $this->setUsername($data['username'] ?? '');
         $this->setEmail($data['email'] ?? '');
         $this->setFullname($data['fullname'] ?? '');
-        $this->setAge($data['age'] ?? 0);
+        $this->setAge($data['age'] ?? null);
         $this->setGender($data['gender'] ?? '');
         $this->setOrientation($data['orientation'] ?? '');
         $this->setPhoto($data['photo'] ?? '');
