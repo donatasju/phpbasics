@@ -20,7 +20,7 @@ Class User {
                 'fullname' => null,
                 'age' => null,
                 'gender' => null,
-                'orienation' => null,
+                'orientation' => null,
                 'photo' => null
             ];
         }
