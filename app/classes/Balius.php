@@ -52,21 +52,20 @@ class Balius {
 
         if ($get_vodka) {
 
-            if ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.7) {
-                return $this::STATUS_VOMITTRON;
-            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.5 && $get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.7) {
-                return $this::STATUS_FIRE;
-            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.3 && $get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.5) {
-                return $this::STATUS_GOOD;
-            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.1 && $get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.3) {
-                return $this::STATUS_PUSSY;
+            if ($get_vodka >= self::PURE_ALC_IN_VODKA_L * 0.7) {
+                return self::STATUS_VOMITTRON;
+            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.5) {
+                return self::STATUS_FIRE;
+            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.3) {
+                return self::STATUS_GOOD;
+            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.1) {
+                return self::STATUS_PUSSY;
+            } elseif ($get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.1) {
+                return self::STATUS_POOP;
             } else {
 
-                return $this::STATUS_POOP;
+                return self::STATUS_PENDING;
             }
-        } else {
-
-            return $this::STATUS_PENDING;
         }
     }
 
