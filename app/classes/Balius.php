@@ -50,7 +50,7 @@ class Balius {
     public function getPartyStatus() {
         $get_vodka = $this->getPureAlchoholPerUser();
 
-        if ($get_vodka) {
+        if ($get_vodka != false) {
 
             if ($get_vodka >= self::PURE_ALC_IN_VODKA_L * 0.7) {
                 return self::STATUS_VOMITTRON;
