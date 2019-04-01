@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class ModelUser {
+Class ModelUser {
 
     private $table_name;
     private $db;
@@ -12,39 +12,43 @@ class ModelUser {
         $this->db = $db;
     }
 
-    public function load($row_id) {
-        $row_data = $this->db->getRow($this->table_name, $row_id);
-        if ($row_data) {
-            return new \App\User($row_data);
-        }
+    public function load($id) {
+        $data_row = $this->db->getRow($this->table_name, $id);
 
-        return false;
+        if ($data_row) {
+            return new \App\User($data_row);
+        } else {
+            return false;
+        }
     }
 
-    public function insert($row_id, \App\User $user) {
-        if (!$this->db->getRow($this->table_name, $row_id)) {
-            $this->db->setRow($this->table_name, $row_id, $user->getData());
+    public function insert($id, \App\User $user) {
+        if (!$this->db->getRow($this->table_name, $id)) {
+            $this->db->setRow($this->table_name, $id, $user->getData());
             $this->db->save();
+
             return true;
         } else {
             return false;
         }
     }
 
-    public function update($row_id, \App\User $user) {
-        if ($this->db->getRow($this->table_name, $row_id)) {
-            $this->db->setRow($this->table_name, $row_id, $user->getData());
+    public function update($id, \App\User $user) {
+        if ($this->db->getRow($this->table_name, $id)) {
+            $this->db->setRow($this->table_name, $id, $user->getData());
             $this->db->save();
+
             return true;
         } else {
             return false;
         }
     }
 
-    public function delete($row_id) {
-        if ($this->db->getRow($this->table_name, $row_id)) {
-            $this->db->deleteRow($this->table_name, $row_id);
+    public function delete($id) {
+        if ($this->db->getRow($this->table_name, $id)) {
+            $this->db->deleteRow($this->table_name, $id);
             $this->db->save();
+
             return true;
         } else {
             return false;
@@ -52,24 +56,18 @@ class ModelUser {
     }
 
     public function loadAll() {
-        $rows_data = $this->db->getRows($this->table_name);
-        $users = [];
+        $user_masyvas = [];
 
-        if ($rows_data) {
-            foreach ($rows_data as $row_data) {
-                $users[] = new \App\User($row_data);
-            }
-
-            return $users;
-        } else {
-            return [];
+        foreach ($this->db->getRows($this->table_name) as $user) {
+            $user_masyvas[] = new \App\User($user);
         }
+
+        return $user_masyvas;
     }
 
     public function deleteAll() {
         if ($this->db->deleteRows($this->table_name)) {
             $this->db->save();
-
             return true;
         } else {
             return false;

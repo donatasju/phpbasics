@@ -13,9 +13,7 @@ Class User {
     const GENDER_FEMALE = 'f';
 
     public function __construct($data = null) {
-        if ($data) {
-            $this->setData($data);
-        } else {
+        if (!$data) {
             $this->data = [
                 'username' => null,
                 'email' => null,
@@ -23,87 +21,81 @@ Class User {
                 'age' => null,
                 'gender' => null,
                 'orientation' => null,
-                'photo' => null
+                'photo' => null,
             ];
+        } else {
+            $this->setData($data);
         }
     }
 
-    public static function getGenderOptions() {
-        return [
-            self::GENDER_MALE => 'Male',
-            self::GENDER_FEMALE => 'Female'
-        ];
-    }
-
-    public static function getOrientationOptions() {
-        return [
-            self::ORIENTATION_STRAIGHT => 'Straight',
-            self::ORIENTATION_BISEXUAL => 'Bisexual',
-            self::ORIENTATION_GAY => 'Gay'
-        ];
-    }
-
-    public function setUsername(string $username) {
-        $this->data['username'] = $username;
-    }
-
-    public function getUsername() {
-        return $this->data['username'];
+    public function setUserName(string $name) {
+        $this->data['username'] = $name;
     }
 
     public function setEmail(string $email) {
         $this->data['email'] = $email;
     }
 
-    public function getEmail() {
-        return $this->data['email'];
-    }
-
     public function setFullName(string $full_name) {
         $this->data['full_name'] = $full_name;
-    }
-
-    public function getFullName() {
-        return $this->data['full_name'];
     }
 
     public function setAge(int $age) {
         $this->data['age'] = $age;
     }
 
-    public function getAge() {
-        return $this->data['age'];
-    }
-
     public function setGender(string $gender) {
-        if (in_array($gender, [
-                    $this::GENDER_MALE,
-                    $this::GENDER_FEMALE
-                ])) {
+        if (in_array($gender, [$this::GENDER_MALE, $this::GENDER_FEMALE])) {
             $this->data['gender'] = $gender;
         }
-    }
-
-    public function getGender() {
-        return $this->data['gender'];
     }
 
     public function setOrientation(string $orientation) {
         if (in_array($orientation, [
                     $this::ORIENTATION_GAY,
                     $this::ORIENTATION_STRAIGHT,
-                    $this::ORIENTATION_BISEXUAL
-                ])) {
+                    $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
+    }
+
+    public function setPhoto(string $photo) {
+        $this->data['photo'] = $photo;
+    }
+
+    public function getUsername() {
+        return $this->data['username'];
+    }
+
+    public function getEmail() {
+        return $this->data['email'];
+    }
+
+    public function getFullName() {
+        return $this->data['full_name'];
+    }
+
+    public function getAge() {
+        return $this->data['age'];
+    }
+
+    public function getGender() {
+        return $this->data['gender'];
     }
 
     public function getOrientation() {
         return $this->data['orientation'];
     }
 
-    public function setPhoto(string $photo) {
-        $this->data['photo'] = $photo;
+    public static function getGenderOptions() {
+        return [self::GENDER_FEMALE => 'Female',
+            self::GENDER_MALE => 'Male'];
+    }
+
+    public static function getOrientationOptions() {
+        return [self::ORIENTATION_GAY => 'Gay',
+            self::ORIENTATION_STRAIGHT => 'Straight',
+            self::ORIENTATION_BISEXUAL => 'Bisexual'];
     }
 
     public function getPhoto() {

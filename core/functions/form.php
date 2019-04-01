@@ -120,13 +120,13 @@ function validate_is_number($field_input, &$field, $safe_input) {
 
 function validate_file($field_input, &$field, &$safe_input) {
     $file = $_FILES[$field['id']] ?? false;
+
     if ($file) {
         if ($file['error'] == 0) {
             $safe_input[$field['id']] = $file;
             return true;
         }
+    } else {
+        $field['error_msg'] = 'Nenurodei fotkes';
     }
-    $field['error_msg'] = 'Fotkes nenurodei';
 }
-
-
