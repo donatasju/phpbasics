@@ -76,7 +76,7 @@ Class ModelUser {
 
     
     public function getCount() {
-        $getCount = $this->db->getCount($table_name);
+        $getCount = $this->db->getCount($this->table_name);
         
         if($getCount) {
             return $getCount;
