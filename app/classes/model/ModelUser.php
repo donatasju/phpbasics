@@ -79,7 +79,7 @@ Class ModelUser {
         $getCount = $this->db->getCount($table_name);
         
         if($getCount) {
-            return $$getCount;
+            return $getCount;
         }
         
         return 0;
