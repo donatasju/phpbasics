@@ -151,6 +151,17 @@ Class FileDB {
         }
     }
 
+    public function getCount($table) {
+        if ($this->tableExists($table)) {
+            $this->getRows($table);
+
+            return count($table);
+        } else {
+            
+            return false;
+        }
+    }
+
 }
 
 ?>
