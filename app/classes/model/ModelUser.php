@@ -74,4 +74,12 @@ Class ModelUser {
         }
     }
 
+    
+    public function getCount() {
+        if($this->db->getCount($table_name)) {
+            return $this->db->getCount($table_name);
+        }
+        
+        return 0;
+    }
 }
