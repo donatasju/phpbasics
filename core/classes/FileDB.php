@@ -27,44 +27,44 @@ Class FileDB {
 
     /**
      * Sets specific row in the table.
-     * @param type string $table
+     * @param type string $table_name
      * @param type string $row_id
      * @param type array $row_data
      */
-    public function setRow($table, $row_id, $row_data) {
-        $this->data[$table][$row_id] = $row_data;
+    public function setRow($table_name, $row_id, $row_data) {
+        $this->data[$table_name][$row_id] = $row_data;
     }
 
     /**
      * Sets specific column in the row.
-     * @param type string $table
+     * @param type string $table_name
      * @param type string $row_id
      * @param type string $column_id
      * @param type string $column_data
      */
-    public function setRowColumn($table, $row_id, $column_id, $column_data) {
-        $this->data[$table][$row_id][$column_id] = $column_data;
+    public function setRowColumn($table_name, $row_id, $column_id, $column_data) {
+        $this->data[$table_name][$row_id][$column_id] = $column_data;
     }
 
     /**
      * Gets the specific row from given table.
-     * @param type string $table
+     * @param type string $table_name
      * @param type string $row_id
      * @return type array
      */
-    public function getRow($table, $row_id) {
-        return $this->data[$table][$row_id] ?? false;
+    public function getRow($table_name, $row_id) {
+        return $this->data[$table_name][$row_id] ?? false;
     }
 
     /**
      * Gets the specific column from given table and specific row.
-     * @param type string $table
+     * @param type string $table_name
      * @param type string $row_id
      * @param type string $column_id
      * @return type string
      */
-    public function getRowColumn($table, $row_id, $column_id) {
-        return $this->data[$table][$row_id][$column_id];
+    public function getRowColumn($table_name, $row_id, $column_id) {
+        return $this->data[$table_name][$row_id][$column_id];
     }
 
     /**
@@ -95,30 +95,30 @@ Class FileDB {
 
     /**
      * Deletes specific row in the table.
-     * @param type string $table
+     * @param type string $table_name
      * @param type string $row_id
      */
-    public function deleteRow($table, $row_id) {
-        unset($this->data[$table][$row_id]);
+    public function deleteRow($table_name, $row_id) {
+        unset($this->data[$table_name][$row_id]);
     }
 
     /**
      * Checks if table with given name exists.
-     * @param type string $table
+     * @param type string $table_name
      * @return type boolean
      */
-    public function tableExists($table) {
-        return isset($this->data[$table]) ? true : false;
+    public function tableExists($table_name) {
+        return isset($this->data[$table_name]) ? true : false;
     }
 
     /**
      * Gets all rows from the given table.
-     * @param type string $table
+     * @param type string $table_name
      * @return all rows or returns false if failed to return rows.
      */
-    public function getRows($table) {
-        if ($this->tableExists($table)) {
-            return $this->data[$table];
+    public function getRows($table_name) {
+        if ($this->tableExists($table_name)) {
+            return $this->data[$table_name];
         } else {
             return [];
         }
@@ -126,12 +126,12 @@ Class FileDB {
 
     /**
      * Deletes all rows from given table.
-     * @param type string $table
+     * @param type string $table_name
      * @return boolean
      */
-    public function deleteRows($table) {
-        if ($this->tableExists($table)) {
-            $this->data[$table] = [];
+    public function deleteRows($table_name) {
+        if ($this->tableExists($table_name)) {
+            $this->data[$table_name] = [];
             return true;
         } else {
             return false;
@@ -140,12 +140,12 @@ Class FileDB {
 
     /**
      * Deletes whole given table.
-     * @param type string $table
+     * @param type string $table_name
      * @return boolean
      */
-    public function deleteTable($table) {
-        if ($this->tableExists($table)) {
-            unset($this->data[$table]);
+    public function deleteTable($table_name) {
+        if ($this->tableExists($table_name)) {
+            unset($this->data[$table_name]);
         } else {
             return false;
         }
