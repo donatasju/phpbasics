@@ -39,10 +39,35 @@ class Balius {
     }
 
     public function getPureAlchoholPerUser() {
-        if ($this->getUserCount() != 0) {
-            return $this->getPureAlchoholTotal() / $this->getUserCount();
+        $user_cnt = $this->getUserCount();
+
+        if ($user_cnt > 0) {
+            return $this->getPureAlchoholTotal() / $user_cnt;
         }
         return false;
+    }
+
+    public function getPartyStatus() {
+        $get_vodka = $this->getPureAlchoholPerUser();
+
+        if ($get_vodka != false) {
+
+            if ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.7) {
+                return $this::STATUS_VOMITTRON;
+            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.5 && $get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.7) {
+                return $this::STATUS_FIRE;
+            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.3 && $get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.5) {
+                return $this::STATUS_GOOD;
+            } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.1 && $get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.3) {
+                return $this::STATUS_PUSSY;
+            } else {
+
+                return $this::STATUS_POOP;
+            }
+        } else {
+
+            return $this::STATUS_PENDING;
+        }
     }
 
 }
