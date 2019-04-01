@@ -40,7 +40,7 @@ class Balius {
 
     public function getPureAlchoholPerUser() {
         if ($this->getUserCount() != 0) {
-            return $this->getUserCount() / $this->getPureAlchoholTotal();
+            return $this->getPureAlchoholTotal() / $this->getUserCount();
         }
         return false;
     }
