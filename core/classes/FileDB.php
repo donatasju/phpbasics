@@ -151,11 +151,10 @@ Class FileDB {
         }
     }
 
-    public function getCount($table) {
-        if ($this->tableExists($table)) {
-            $this->getRows($table);
+    public function getCount($table_name) {
+        if ($this->tableExists($table_name)) {
 
-            return count($table);
+            return count($this->data[$table_name]);
         } else {
             
             return false;
