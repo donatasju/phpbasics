@@ -156,7 +156,7 @@ Class FileDB {
 
             return count($this->data[$table_name]);
         } else {
-            
+
             return false;
         }
     }
