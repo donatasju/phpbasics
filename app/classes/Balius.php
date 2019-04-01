@@ -34,12 +34,15 @@ class Balius {
         foreach ($this->gerimai as $gerimas) {
             $pure_alchohol_amount += $gerimas->getAmount() * $gerimas->getAbarot() / 100;
         }
-        
+
         return $pure_alchohol_amount;
     }
-    
+
     public function getPureAlchoholPerUser() {
-        return $this->getUserCount() / $this->getPureAlchoholTotal();
+        if ($this->getUserCount() != 0) {
+            return $this->getUserCount() / $this->getPureAlchoholTotal();
+        }
+        return false;
     }
 
 }
