@@ -16,10 +16,26 @@ class Balius {
     const STATUS_GOOD = 'good';
     const STATUS_PUSSY = 'pussy';
     const STATUS_PENDING = 'pending';
+    
+    const PURE_ALC_IN_VODKA_L = 400;
 
     public function __construct(\App\Model\ModelUser $model_user, \App\Model\ModelGerimai $model_gerimai) {
         $this->users = $model_user->loadAll();
         $this->gerimai = $model_gerimai->loadAll();
     }
+    public function getUserCount() {
+        
+        return count($this->useriai);
+    }
+    public function getPureAlchoholTotal() {
+        $pure_alchohol_amount = 0;
+        
+        foreach($gerimai as $gerimas) {
+            $pure_alchohol_amount += ($gerimas->getAmount() / 100) * $gerimas->getAbarot();
+            
+            return $pure_alchohol_amount;
+        }
+    }
+            
 
 }
