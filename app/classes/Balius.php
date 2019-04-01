@@ -33,9 +33,9 @@ class Balius {
 
         foreach ($gerimai as $gerimas) {
             $pure_alchohol_amount += ($gerimas->getAmount() / 100) * $gerimas->getAbarot();
-
-            return $pure_alchohol_amount;
         }
+        
+        return $pure_alchohol_amount;
     }
 
 }
