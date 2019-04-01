@@ -1,9 +1,6 @@
 <?php
 require '../bootloader.php';
 
-define('USER', 'input_users');
-define('USER_DRINKS', 'input_kokteiliai');
-
 $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
 $model_user = new App\Model\ModelUser($db, USER);
 $model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);

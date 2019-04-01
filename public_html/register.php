@@ -1,8 +1,6 @@
 <?php
 require '../bootloader.php';
 
-define('USERS', 'input_users');
-
 $form = [
     'fields' => [
         'username' => [

@@ -1,9 +1,6 @@
 <?php
 require '../bootloader.php';
 
-define('USER', 'input_users');
-define('USER_DRINKS', 'input_kokteiliai');
-
 $form = [
     'fields' => [
         'drink_name' => [
