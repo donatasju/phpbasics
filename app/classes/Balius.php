@@ -60,12 +60,12 @@ class Balius {
                 return self::STATUS_GOOD;
             } elseif ($get_vodka >= $this::PURE_ALC_IN_VODKA_L * 0.1) {
                 return self::STATUS_PUSSY;
-            } elseif ($get_vodka < $this::PURE_ALC_IN_VODKA_L * 0.1) {
-                return self::STATUS_POOP;
             } else {
-
-                return self::STATUS_PENDING;
+                return self::STATUS_POOP;
             }
+        } else {
+
+            return self::STATUS_PENDING;
         }
     }
 
