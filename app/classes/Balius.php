@@ -31,7 +31,7 @@ class Balius {
     public function getPureAlchoholTotal() {
         $pure_alchohol_amount = 0;
 
-        foreach ($gerimai as $gerimas) {
+        foreach ($this->gerimai as $gerimas) {
             $pure_alchohol_amount += ($gerimas->getAmount() / 100) * $gerimas->getAbarot();
         }
         
