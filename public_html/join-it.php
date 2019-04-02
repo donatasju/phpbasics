@@ -146,11 +146,6 @@ if (!empty($_POST)) {
         ]);
     }
 }
-
-$db = new Core\FileDB(ROOT_DIR . DB_PATH);
-$model_user = new App\Model\ModelUser($db, TABLE_USER);
-$model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
-$balius = new \App\Balius($model_user, $model_gerimas);
 ?>
 <html>
     <head>
@@ -162,7 +157,7 @@ $balius = new \App\Balius($model_user, $model_gerimas);
             <a href="index.php">PZ/DC</a>
             <a href="bring-it.php">BRING SOME DRINKS</a>
         </nav>
-<?php require '../core/views/form.php'; ?>
+        <?php require '../core/views/form.php'; ?>
         <?php if (isset($success_msg)): ?>
             <h3><?php print $success_msg; ?></h3>
         <?php endif; ?>
