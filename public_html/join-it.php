@@ -129,7 +129,6 @@ function validate_party_status($safe_input, &$form) {
     $balius = new \App\Balius($model_user, $model_gerimas);
 
     if ($balius->getPartyStatus() != \App\Balius::STATUS_POOP) {
-
         return true;
     } else {
         $form['error_msg'] = 'Party is already pooped. Bring some drinks first, you cheap-ass!';
