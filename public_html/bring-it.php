@@ -71,8 +71,8 @@ function form_success($safe_input, $form) {
         'image' => $safe_input['drink_foto']
     ]);
 
-    $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
-    $model_gerimai = new App\model\ModelGerimai($db, USER_DRINKS);
+    $db = new Core\FileDB(ROOT_DIR . DB_PATH);
+    $model_gerimai = new App\model\ModelGerimai($db, TABLE_DRINKS);
     $model_gerimai->insert(microtime(), $gerimas);
 }
 
@@ -95,9 +95,9 @@ if (!empty($_POST)) {
             '@drink_name' => $safe_input['drink_name']
         ]);
 
-        $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
-        $model_user = new App\Model\ModelUser($db, USER);
-        $model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);
+        $db = new Core\FileDB(ROOT_DIR . DB_PATH);
+        $model_user = new App\Model\ModelUser($db, TABLE_USER);
+        $model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
         $balius = new \App\Balius($model_user, $model_gerimas);
 
         if ($balius->getSilpniejiAmount() != 0 || $balius->getStipriejiAmount() != 0) {

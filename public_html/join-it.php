@@ -66,6 +66,7 @@ $form = [
         ],
     ],
     'validate' => [
+        'validate_party_status',
         'validate_form_file'
     ],
     'buttons' => [
@@ -92,8 +93,8 @@ function form_success($safe_input, $form) {
         'photo' => $safe_input['photo']
     ]);
 
-    $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
-    $model_user = new App\model\ModelUser($db, USER);
+    $db = new Core\FileDB(ROOT_DIR . DB_PATH);
+    $model_user = new App\model\ModelUser($db, TABLE_USER);
     $model_user->insert(microtime(), $user);
 }
 
@@ -121,6 +122,20 @@ function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'imag
     return false;
 }
 
+function validate_party_status(&$safe_input, &$form) {
+    $db = new Core\FileDB(ROOT_DIR . DB_PATH);
+    $model_user = new App\Model\ModelUser($db, TABLE_USER);
+    $model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
+    $balius = new \App\Balius($model_user, $model_gerimas);
+
+    if ($balius->getPartyStatus() != \App\Balius::STATUS_POOP) {
+
+        return true;
+    } else {
+        $form['error_msg'] = 'Party is already pooped. Bring some drinks first, you cheap-ass!';
+    }
+}
+
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $form_success = validate_form($safe_input, $form);
@@ -132,12 +147,10 @@ if (!empty($_POST)) {
     }
 }
 
-$db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
-$model_user = new App\Model\ModelUser($db, USER);
-$model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);
+$db = new Core\FileDB(ROOT_DIR . DB_PATH);
+$model_user = new App\Model\ModelUser($db, TABLE_USER);
+$model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
 $balius = new \App\Balius($model_user, $model_gerimas);
-
-$fail_msg = 'Party is already pooped. Bring some drinks first, you cheap-ass!';
 ?>
 <html>
     <head>
@@ -149,11 +162,7 @@ $fail_msg = 'Party is already pooped. Bring some drinks first, you cheap-ass!';
             <a href="index.php">PZ/DC</a>
             <a href="bring-it.php">BRING SOME DRINKS</a>
         </nav>
-        <?php if ($balius->partyStatus() != 'POOP'): ?>
-            <?php require '../core/views/form.php'; ?>
-        <?php else: ?>
-            <?php print $fail_msg; ?>
-        <?php endif; ?>
+<?php require '../core/views/form.php'; ?>
         <?php if (isset($success_msg)): ?>
             <h3><?php print $success_msg; ?></h3>
         <?php endif; ?>

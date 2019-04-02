@@ -1,9 +1,9 @@
 <?php
 require '../bootloader.php';
 
-$db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
-$model_user = new App\Model\ModelUser($db, USER);
-$model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);
+$db = new Core\FileDB(ROOT_DIR . DB_PATH);
+$model_user = new App\Model\ModelUser($db, TABLE_USER);
+$model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
 $balius = new \App\Balius($model_user, $model_gerimas);
 ?>
 <html>
