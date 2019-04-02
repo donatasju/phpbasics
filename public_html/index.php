@@ -1,9 +1,8 @@
 <?php
 require '../bootloader.php';
-
-$db = new Core\FileDB(ROOT_DIR . DB_PATH);
-$model_user = new App\Model\ModelUser($db, TABLE_USER);
-$model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
+$db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
+$model_user = new App\Model\ModelUser($db, USER);
+$model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);
 $balius = new \App\Balius($model_user, $model_gerimas);
 ?>
 <html>
@@ -11,13 +10,13 @@ $balius = new \App\Balius($model_user, $model_gerimas);
         <title>P-OOP party !</title>
         <link rel="stylesheet" href="/css/style.css">
     </head>
-    <body class="<?php print $balius->partyStatus(); ?>">
+    <body class="<?php print $balius->getpartyStatus(); ?>">
         <nav class="container">
             <a href="join-it.php">JOIN US TO DRINK</a>
             <a href="bring-it.php">BRING SOME DRINKS</a>
         </nav>
         <h1>P-OOOPPARTY IS ON!</h1>
-        <h2><?php print $balius->partyStatus(); ?></h2>
+        <h2><?php print $balius->getPartyStatus(); ?></h2>
         <div class="container">
             <div class="flex-container">
                 <h3>Baliaus dalyviai:</h3>

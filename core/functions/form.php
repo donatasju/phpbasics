@@ -130,3 +130,4 @@ function validate_file($field_input, &$field, &$safe_input) {
         $field['error_msg'] = 'Nenurodei fotkes';
     }
 }
+

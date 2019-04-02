@@ -1,6 +1,5 @@
 <?php
 require '../bootloader.php';
-
 $form = [
     'fields' => [
         'drink_name' => [
@@ -52,7 +51,6 @@ $form = [
         'fail' => []
     ]
 ];
-
 function validate_form_file(&$safe_input, &$form) {
     $file_saved_url = save_file($safe_input['drink_foto']);
     if ($file_saved_url) {
@@ -62,7 +60,6 @@ function validate_form_file(&$safe_input, &$form) {
         $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes failas supistas!';
     }
 }
-
 function form_success($safe_input, $form) {
     $gerimas = new \App\Item\Gerimas([
         'name' => $safe_input['drink_name'],
@@ -70,12 +67,10 @@ function form_success($safe_input, $form) {
         'abarot' => $safe_input['drink_abarot'],
         'image' => $safe_input['drink_foto']
     ]);
-
-    $db = new Core\FileDB(ROOT_DIR . DB_PATH);
-    $model_gerimai = new App\model\ModelGerimai($db, TABLE_DRINKS);
+    $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
+    $model_gerimai = new App\model\ModelGerimai($db, USER_DRINKS);
     $model_gerimai->insert(microtime(), $gerimas);
 }
-
 function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpeg', 'image/gif']) {
     if ($file['error'] == 0 && in_array($file['type'], $allowed_types)) {
         $target_file_name = microtime() . '-' . strtolower($file['name']);
@@ -86,7 +81,6 @@ function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'imag
     }
     return false;
 }
-
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $form_success = validate_form($safe_input, $form);
@@ -94,17 +88,15 @@ if (!empty($_POST)) {
         $success_msg = strtr('Gerimas "@drink_name" sėkmingai sukurtas!', [
             '@drink_name' => $safe_input['drink_name']
         ]);
-
-        $db = new Core\FileDB(ROOT_DIR . DB_PATH);
-        $model_user = new App\Model\ModelUser($db, TABLE_USER);
-        $model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
+        $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
+        $model_user = new App\Model\ModelUser($db, USER);
+        $model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);
         $balius = new \App\Balius($model_user, $model_gerimas);
-
-        if ($balius->getSilpniejiAmount() != 0 || $balius->getStipriejiAmount() != 0) {
-            if (($balius->getSilpniejiAmount() / $balius->getStipriejiAmount()) < 2) {
-                $error_msg = 'Truksta zagirono, eik nusipirk NX';
-            }
-        }
+//        if ($balius->getSilpniejiAmount() != 0 || $balius->getStipriejiAmount() != 0) {
+//            if (($balius->getSilpniejiAmount() / $balius->getStipriejiAmount()) < 2) {
+//                $error_msg = 'Truksta zagirono, eik nusipirk NX';
+//            }
+//        }
     }
 }
 ?>

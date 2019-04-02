@@ -1,6 +1,6 @@
+    
 <?php
 require '../bootloader.php';
-
 $form = [
     'fields' => [
         'username' => [
@@ -81,7 +81,6 @@ $form = [
         'fail' => []
     ]
 ];
-
 function form_success($safe_input, $form) {
     $user = new \App\User([
         'username' => $safe_input['username'],
@@ -92,59 +91,55 @@ function form_success($safe_input, $form) {
         'orientation' => $safe_input['orientation'],
         'photo' => $safe_input['photo']
     ]);
-
-    $db = new Core\FileDB(ROOT_DIR . DB_PATH);
-    $model_user = new App\model\ModelUser($db, TABLE_USER);
+    $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
+    $model_user = new App\model\ModelUser($db, USER);
     $model_user->insert(microtime(), $user);
 }
-
 function validate_form_file(&$safe_input, &$form) {
     $file_saved_url = save_file($safe_input['photo']);
-
     if ($file_saved_url) {
         $safe_input['photo'] = 'uploads/' . $file_saved_url;
-
         return true;
     } else {
         $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes failas supistas!';
     }
 }
-
+function validate_party_status(&$safe_input, &$form) {
+    $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
+    $model_user = new App\Model\ModelUser($db, USER);
+    $model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);
+    $balius = new \App\Balius($model_user, $model_gerimas);
+    var_dump($balius->getPartyStatus());
+    if ($balius->getPartyStatus() != \App\Balius::STATUS_POOP) {
+        
+        return true;
+    } else {
+        $form['error_msg'] = 'Party jau supoopintas';
+    }
+}
 function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpeg', 'image/gif']) {
     if ($file['error'] == 0 && in_array($file['type'], $allowed_types)) {
         $target_file_name = microtime() . '-' . strtolower($file['name']);
         $target_path = $dir . '/' . $target_file_name;
-
         if (move_uploaded_file($file['tmp_name'], $target_path)) {
             return $target_file_name;
         }
     }
     return false;
 }
-
-function validate_party_status($safe_input, &$form) {
-    $db = new Core\FileDB(ROOT_DIR . DB_PATH);
-    $model_user = new App\Model\ModelUser($db, TABLE_USER);
-    $model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
-    $balius = new \App\Balius($model_user, $model_gerimas);
-
-    if ($balius->getPartyStatus() != \App\Balius::STATUS_POOP) {
-        return true;
-    } else {
-        $form['error_msg'] = 'Party is already pooped. Bring some drinks first, you cheap-ass!';
-    }
-}
-
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $form_success = validate_form($safe_input, $form);
-
     if ($form_success) {
         $success_msg = strtr('User "@username" sėkmingai sukurtas!', [
             '@username' => $safe_input['username']
         ]);
     }
 }
+$db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
+$model_user = new App\Model\ModelUser($db, USER);
+$model_gerimas = new App\model\ModelGerimai($db, USER_DRINKS);
+$balius = new \App\Balius($model_user, $model_gerimas);
 ?>
 <html>
     <head>
