@@ -122,7 +122,7 @@ function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'imag
     return false;
 }
 
-function validate_party_status(&$safe_input, &$form) {
+function validate_party_status($safe_input, &$form) {
     $db = new Core\FileDB(ROOT_DIR . DB_PATH);
     $model_user = new App\Model\ModelUser($db, TABLE_USER);
     $model_gerimas = new App\model\ModelGerimai($db, TABLE_DRINKS);
